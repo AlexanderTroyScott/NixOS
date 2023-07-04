@@ -8,6 +8,7 @@
   services.tlp = {
   enable = true;
   settings = {
+    CPU_BOOST_ON_BAT = "0";
     SATA_LINKPWR_ON_AC = "med_power_with_dipm";
     SATA_LINKPWR_ON_BAT = "min_power";
     PCIE_ASPM_ON_AC = "default";
