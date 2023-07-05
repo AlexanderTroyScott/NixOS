@@ -84,7 +84,34 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    baobab      # disk usage analyzer
+    cheese      # photo booth
+    eog         # image viewer
+    epiphany    # web browser
+    gedit       # text editor
+    simple-scan # document scanner
+    totem       # video player
+    yelp        # help viewer
+    evince      # document viewer
+    file-roller # archive manager
+    geary       # email client
+    seahorse    # password manager
+    gnome-calculator
+    gnome-calendar
+    gnome-characters
+    gnome-clocks
+    gnome-contacts
+    gnome-font-viewer
+    gnome-logs
+    gnome-maps
+    gnome-music
+    gnome-screenshot
+    gnome-system-monitor
+    gnome-weather
+    gnome-disk-utility
+    pkgs.gnome-connections
+  ];
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
   programs.sway.enable = true;
@@ -94,7 +121,6 @@
     description = "Alex Scott";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
     #  thunderbird
     ];
   };
@@ -110,6 +136,7 @@
     vscode
     discord
     opera
+    steam
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
