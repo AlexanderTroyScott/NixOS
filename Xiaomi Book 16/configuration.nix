@@ -97,6 +97,7 @@
     file-roller # archive manager
     geary       # email client
     seahorse    # password manager
+
     gnome-calculator
     gnome-calendar
     gnome-characters
@@ -121,6 +122,9 @@
     description = "Alex Scott";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      steam
+      discord
+      pcloud
     #  thunderbird
     ];
   };
@@ -131,12 +135,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    chromium
-    pcloud
     vscode
-    discord
     opera
-    steam
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
