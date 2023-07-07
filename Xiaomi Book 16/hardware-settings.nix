@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  boot.kernel.sysctl."vm.dirty_writeback_centisecs" = 1500; # 15 seconds
+  environment.systemPackages = with pkgs; [
+    undervolt
+  ];
   #TouchPad
   services.xserver.libinput.enable = true;
   #Power Settings
@@ -19,7 +23,17 @@
     RUNTIME_PM_ON_BAT = "auto";
     CPU_SCALING_GOVERNOR_ON_AC = "performance";
     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    ENERGY_PERFORMANCE_PREFERENCE_ON_BAT = "power";
+    CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
   };
 };
+  services.undervolt = {
+    enable = true;
+    tempBat = -25;
+#    package = pkgs.intel-undervolt;
+#    coreOffset = -1;
+#    cacheOffset = -1;
+#    gpuOffset = -100;
+  };
 
 }
