@@ -15,7 +15,7 @@
 #           └─ default.nix
 #
 
-{ config, pkgs, user, ... }:
+{ config, pkgs, user,  inputs, hyprland, ... }:
 
 {
   imports =                                               # For now, if applying to other system, swap files
@@ -31,19 +31,23 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
   environment = {
     systemPackages = with pkgs; [
       simple-scan
     ];
   };
 
-  #programs = {                              # No xbacklight, this is the alterantive
-  #  dconf.enable = true;
-  #  light.enable = true;
-  #};
+  programs = {                              # No xbacklight, this is the alterantive
+    dconf.enable = true;
+    light.enable = true;
+    hyprland = {
+      enable = true;
+      #nvidiaPatches = with host; if hostName == "work" then true else false;
+    };
+    hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  };
 
   services = {
     tlp.enable = true;                      # TLP and auto-cpufreq for power management
