@@ -1,41 +1,28 @@
 {
-  description = "A very basic flake with home mnager";
+  description = "A basic modular flake with home-manager";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager = {
-        url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-  outputs = {self, nixpkgs, home-manager}:
-  let
-    username = "alex";
-    homeDirectory = "/home/alex";
-    system = "x86_64-linux";
-    stateVersion = "23.05";
-    pkgs = import nixpkgs { 
-        inherit system;
-        config.allowUnfree = true;
+  inputs =
+   {
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";                         # Default Stable Nix Packages
+        nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";             # Unstable Nix Packages
+
+        home-manager = {
+            url = "github:nix-community/home-manager/release-23.05";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
-    lib = nixpkgs.lib;
-    in {
-        nixosConfigurations = {
-            alex = lib.nixosSystem {
-                inherit system;
-                modules = [                     
-                    ./configuration.nix
-                    home-manager.nixosModules.home-manager {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.alex = {
-                            imports = [
-                                ./home.nix
-                                ];
-                        };
-                    }
-                ];
-            };
-        }; 
+
+    };
+  outputs = inputs @ {self, nixpkgs, nixpkgs-unstable, home-manager}:
+    let
+        user = "alex";
+        location = "$HOME/.setup";
+    in 
+    {
+        nixosConfigurations = (
+            import ./hosts {
+                inherit (nixpkgs) lib;
+                inherit inputs nixpkgs nixpkgs-unstable home-manager user location;
+            }
+        ); 
    };
 }

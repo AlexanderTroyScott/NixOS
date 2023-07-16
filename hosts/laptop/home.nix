@@ -2,8 +2,6 @@
 
 { 
   home = {
-    username = "alex";
-    #homeDirectory = "/home/alex";
     stateVersion = "23.05";
   };
 
