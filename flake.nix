@@ -1,5 +1,5 @@
 {
-  description = "A basic modular flake with home-manager";
+  description = "A basic modular flake with home-manager and hyprland";
 
   inputs =
    {
@@ -10,9 +10,13 @@
             url = "github:nix-community/home-manager/release-23.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
+        
+        hyprland = {                                                          # Official Hyprland flake
+        url = "github:vaxerski/Hyprland";                                   # Add "hyprland.nixosModules.default" to the host modules
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
     };
-  outputs = inputs @ {self, nixpkgs, nixpkgs-unstable, home-manager}:
+  outputs = inputs @ {self, nixpkgs, nixpkgs-unstable, home-manager, hyprland}:
     let
         user = "alex";
         location = "$HOME/.setup";
@@ -21,7 +25,7 @@
         nixosConfigurations = (
             import ./hosts {
                 inherit (nixpkgs) lib;
-                inherit inputs nixpkgs nixpkgs-unstable home-manager user location;
+                inherit inputs nixpkgs nixpkgs-unstable home-manager user hyprland location;
             }
         ); 
    };
