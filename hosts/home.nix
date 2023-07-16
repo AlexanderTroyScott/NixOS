@@ -27,6 +27,7 @@
       #btop              # Resource Manager
       #ranger            # File Manager
       #tldr              # Helper
+      kitty
 
       # Video/Audio
       #feh               # Image Viewer
