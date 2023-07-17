@@ -4,7 +4,8 @@
   home = {
     stateVersion = "23.05";
   };
-
+  home.packages = with pkgs; [libva];
+  
   programs = {
     home-manager.enable = true;
   };
@@ -18,7 +19,8 @@
       enable = true;
       hidpi = true;
     };
-
+    plugins = [hy3.packages.x86_64-linux.hy3];
+    
     extraConfig = ''
 
 ########################################################################################
