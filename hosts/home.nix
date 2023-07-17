@@ -27,6 +27,7 @@
       #btop              # Resource Manager
       #ranger            # File Manager
       #tldr              # Helper
+      kitty
 
       # Video/Audio
       #feh               # Image Viewer
@@ -53,11 +54,11 @@
       zip               # Zip
 
       # General configuration
-      #git              # Repositories
+      git              # Repositories
       #killall          # Stop Applications
       #nano             # Text Editor
       #pciutils         # Computer Utility Info
-      #pipewire         # Sound
+      pipewire         # Sound
       #usbutils         # USB Utility Info
       #wacomtablet      # Wacom Tablet
       #wget             # Downloader
@@ -65,11 +66,11 @@
       #
       # General home-manager
       #alacritty        # Terminal Emulator
-      #dunst            # Notifications
+      dunst            # Notifications
       #doom emacs       # Text Editor
-      #libnotify        # Dependency for Dunst
+      libnotify        # Dependency for Dunst
       #neovim           # Text Editor
-      #rofi             # Menu
+      rofi             # Menu
       #rofi-power-menu  # Power Menu
       #udiskie          # Auto Mounting
       #vim              # Text Editor
@@ -87,7 +88,7 @@
       #sxhkd            # Shortcuts
       #
       # Wayland configuration
-      #autotiling       # Tiling Script
+      autotiling       # Tiling Script
       #grim             # Image Grabber
       #slurp            # Region Selector
       #swappy           # Screenshot Editor
@@ -99,16 +100,16 @@
       #
       # Wayland home-manager
       #mpvpaper         # Video Wallpaper
-      #pamixer          # Pulse Audio Mixer
-      #swaybg           # Background
-      #swaylock-fancy   # Screen Locker
-      #waybar           # Bar
+      pamixer          # Pulse Audio Mixer
+      swaybg           # Background
+      swaylock-fancy   # Screen Locker
+      waybar           # Bar
       #
       # Desktop
       #ansible          # Automation
       #blueman          # Bluetooth
-      #deluge           # Torrents
-      #discord          # Chat
+      deluge           # Torrents
+      discord          # Chat
       #ffmpeg           # Video Support (dslr)
       #gmtp             # Mount MTP (GoPro)
       #gphoto2          # Digital Photography
@@ -119,15 +120,15 @@
       #mkvtoolnix       # Matroska Tool
       #nvtop            # Videocard Top
       #plex-media-player# Media Player
-      #prismlauncher    # MC Launcher
+      prismlauncher    # MC Launcher
       #steam            # Games
       #simple-scan      # Scanning
       #sshpass          # Ansible dependency
       # 
       # Laptop
-      #cbatticon        # Battery Notifications
-      #blueman          # Bluetooth
-      #light            # Display Brightness
+      cbatticon        # Battery Notifications
+      blueman          # Bluetooth
+      light            # Display Brightness
       #libreoffice      # Office Tools
       #simple-scan      # Scanning
       #

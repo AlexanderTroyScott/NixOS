@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, user, location, ... }:
+{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, hyprland, user, location, ... }:
 
 let
   system = "x86_64-linux";                                  # System architecture
@@ -19,14 +19,14 @@ in
    laptop = lib.nixosSystem {                                # Laptop profile
     inherit system;
     specialArgs = {
-      inherit unstable inputs user location;
+      inherit unstable hyprland inputs user location;
       host = {
         hostName = "laptop";
         #mainMonitor = "eDP-1";
       };
     };
     modules = [
-      #hyprland.nixosModules.default
+      hyprland.nixosModules.default
       ./laptop
       ./configuration.nix
 

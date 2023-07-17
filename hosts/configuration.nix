@@ -16,18 +16,13 @@
       vscode
     ];
   };
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  
   networking.networkmanager.enable = true;
 
-    # Set your time zone.
+#Timezone and Keyboard
   time.timeZone = "America/Chicago";
-
-  # Select internationalisation properties.
+  #Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -40,25 +35,19 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    #videosDrivers = ["nvidia"];
+    displayManager.gdm = {
+        enable = true;
+        wayland = true;
+    };
+};
+hardware = {
+    opengl.enable = true;
+    #nvidia.modesetting.enable = true;
+};
 
   nix = {                                   # Nix Package Manager settings
     settings ={

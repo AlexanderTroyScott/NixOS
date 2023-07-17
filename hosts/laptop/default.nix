@@ -15,7 +15,7 @@
 #           └─ default.nix
 #
 
-{ config, pkgs, user, ... }:
+{ config, pkgs, user,  inputs, hyprland, ... }:
 
 {
   imports =                                               # For now, if applying to other system, swap files
@@ -31,19 +31,51 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
-  environment = {
-    systemPackages = with pkgs; [
-      simple-scan
-    ];
+services = {
+  pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+    jack.enable = true;
   };
-
-  #programs = {                              # No xbacklight, this is the alterantive
-  #  dconf.enable = true;
-  #  light.enable = true;
+};
+hardware = {
+  bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
+};
+  programs = {                              # No xbacklight, this is the alterantive
+    dconf.enable = true;
+    light.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+    #sway.enable = true;
+    #hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  };
+  #wayland.windowManager.hyprland = {
+  #  enable = true;
+  #  systemdIntegration = true;
+  #  recommendedEnvironment = true;
+  #  xwayland = {
+  #    enable = true;
+  #    hidpi = true;
+  #  };
   #};
+  xdg.portal = {                                  # Required for flatpak with window managers
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; #Think this should be hyprland
+  };
 
   services = {
     tlp.enable = true;                      # TLP and auto-cpufreq for power management
