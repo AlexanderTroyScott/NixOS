@@ -70,8 +70,9 @@
       #doom emacs       # Text Editor
       libnotify        # Dependency for Dunst
       #neovim           # Text Editor
+      #wofi
       rofi             # Menu
-      #rofi-power-menu  # Power Menu
+      rofi-power-menu  # Power Menu
       #udiskie          # Auto Mounting
       #vim              # Text Editor
       #
@@ -92,11 +93,11 @@
       #grim             # Image Grabber
       #slurp            # Region Selector
       #swappy           # Screenshot Editor
-      #swayidle         # Idle Management Daemon
-      #wev              # Input Viewer
+      swayidle         # Idle Management Daemon
+      wev              # Input Viewer
       #wl-clipboard     # Console Clipboard
       #wlr-randr        # Screen Settings
-      #xwayland         # X for Wayland
+      xwayland         # X for Wayland
       #
       # Wayland home-manager
       #mpvpaper         # Video Wallpaper
@@ -104,7 +105,7 @@
       swaybg           # Background
       swaylock-fancy   # Screen Locker
       waybar           # Bar
-      #
+      hyprpaper
       # Desktop
       #ansible          # Automation
       #blueman          # Bluetooth

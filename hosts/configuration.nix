@@ -7,7 +7,7 @@
 {
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       steam
       discord
