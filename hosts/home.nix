@@ -70,7 +70,7 @@
       #doom emacs       # Text Editor
       libnotify        # Dependency for Dunst
       #neovim           # Text Editor
-      #wofi
+      wofi
       rofi             # Menu
       rofi-power-menu  # Power Menu
       #udiskie          # Auto Mounting
