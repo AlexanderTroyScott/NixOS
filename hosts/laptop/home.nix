@@ -28,6 +28,78 @@
         "pulseaudio#microphone"
         "tray"];
 
+     tray ={
+        icon-size = 15;
+        spacing = 10;
+    };
+
+    clock = {
+        format = "{: %I:%M %p   %a, %b %e}";
+        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+    };
+
+    backlight = {
+        device = "intel_backlight";
+        format = "{icon} {percent}%";
+        format-icons = ["󰃞" "󰃟" "󰃠"];
+        on-scroll-up = "light -A .01";
+        on-scroll-down = "light -U 0.01";
+        min-length = 6;
+    };
+
+    pulseaudio = {
+        format = "{icon} {volume}%";
+        tooltip = false; 
+        format-muted = " Muted";
+        on-click = "pamixer -t"; #"pavucontrol";
+        on-scroll-up = "pamixer -i 5";
+        on-scroll-down = "pamixer -d 5";
+        scroll-step = 5;
+        format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = ["" "" ""];
+        };
+    };
+
+    network = {
+        format-wifi = "  {signalStrength}%";
+        format-ethernet = "{ipaddr}/{cidr} ";
+        tooltip-format = "{essid} - {ifname} via {gwaddr} ";
+        format-linked = "{ifname} (No IP) ";
+        format-disconnected = "Disconnected ⚠";
+        format-alt = "{ifname}:{essid} {ipaddr}/{cidr}";
+    };
+
+    bluetooth = {
+	    format = " {status}";
+	    format-disabled = "";
+	    format-connected = " {num_connections}";
+	    tooltip-format = "{device_alias}";
+	    tooltip-format-connected = " {device_enumerate}";
+	    tooltip-format-enumerate-connected = "{device_alias}";
+    };
+
+    pulseaudiomicrophone = {
+        format = "{format_source}";
+        format-source = "Mic: {volume}%";
+        format-source-muted = "Mic: Muted";
+        on-click = "pamixer --default-source -t";
+        on-scroll-up = "pamixer --default-source -i 5";
+        on-scroll-down = "pamixer --default-source -d 5";
+        scroll-step = 5;
+    };
+    
+    temperature = {
+        thermal-zone = 1;
+        format = "{temperatureF}°F ";
+        critical-threshold = 80;
+        format-critical = "{temperatureC}°C ";
+    };
 
     battery = {
         states = {
