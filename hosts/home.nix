@@ -72,6 +72,7 @@
       #neovim           # Text Editor
       wofi
       rofi             # Menu
+      mpd
       rofi-power-menu  # Power Menu
       #udiskie          # Auto Mounting
       #vim              # Text Editor

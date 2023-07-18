@@ -7,7 +7,7 @@
 {
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       steam
       discord
@@ -18,6 +18,20 @@
   };
   
   networking.networkmanager.enable = true;
+
+  fonts.fonts = with pkgs; [                # Fonts
+    carlito                                 # NixOS
+    vegur                                   # NixOS
+    source-code-pro
+    jetbrains-mono
+    font-awesome                            # Icons
+    corefonts                               # MS
+    (nerdfonts.override {                   # Nerdfont Icons override
+      fonts = [
+        "FiraCode"
+      ];
+    })
+  ];
 
 #Timezone and Keyboard
   time.timeZone = "America/Chicago";
@@ -70,10 +84,10 @@ hardware = {
   nixpkgs.config.allowUnfree = true;        # Allow proprietary software.
 
   system = {                                # NixOS settings
-    autoUpgrade = {                         # Allow auto update (not useful in flakes)
-      enable = true;
-      channel = "https://nixos.org/channels/nixos-unstable";
-    };
+ #   autoUpgrade = {                         # Allow auto update (not useful in flakes)
+ #     enable = true;
+ #     channel = "https://nixos.org/channels/nixos-unstable";
+ ##   };
     stateVersion = "23.05";
   };
   # This value determines the NixOS release from which the default

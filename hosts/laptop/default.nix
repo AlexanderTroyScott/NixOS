@@ -72,10 +72,14 @@ hardware = {
   #    hidpi = true;
   #  };
   #};
-  xdg.portal = {                                  # Required for flatpak with window managers
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; #Think this should be hyprland
-  };
+  environment.systemPackages = [
+    pkgs.xdg-desktop-portal-hyprland
+  ];
+
+  #xdg.portal = {                                  # Required for flatpak with window managers
+  #  enable = true;
+  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; #Think this should be hyprland
+  #};
 
   services = {
     tlp.enable = true;                      # TLP and auto-cpufreq for power management
