@@ -18,7 +18,7 @@
   };
   
   networking.networkmanager.enable = true;
-
+  security.pam.services.swaylock = {};
   fonts.fonts = with pkgs; [                # Fonts
     carlito                                 # NixOS
     vegur                                   # NixOS
@@ -60,7 +60,6 @@
 };
 hardware = {
     opengl.enable = true;
-    #nvidia.modesetting.enable = true;
 };
 
   nix = {                                   # Nix Package Manager settings

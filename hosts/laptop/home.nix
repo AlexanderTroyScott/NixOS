@@ -18,13 +18,15 @@
       passthrough = false;
       gtk-layer-shell = true;
       height = 30;
+      #width = 3840px;
       modules-left = ["clock"];
       modules-center = [];
       modules-right = ["temperature"
         "custom/power_profile"
         "battery"
         "backlight"
-        "pulseaudio"
+        "
+        audio"
         "pulseaudio#microphone"
         "tray"];
 
@@ -84,7 +86,7 @@
 	    tooltip-format-enumerate-connected = "{device_alias}";
     };
 
-    pulseaudiomicrophone = {
+    pulseaudio.microphone = {
         format = "{format_source}";
         format-source = "Mic: {volume}%";
         format-source-muted = "Mic: Muted";

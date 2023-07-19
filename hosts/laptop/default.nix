@@ -75,7 +75,11 @@ hardware = {
   environment.systemPackages = [
     pkgs.xdg-desktop-portal-hyprland
   ];
-
+security.pam.services.swaylock = {
+    text = ''
+     auth include login
+    '';
+  };
   #xdg.portal = {                                  # Required for flatpak with window managers
   #  enable = true;
   #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; #Think this should be hyprland

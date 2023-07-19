@@ -24,7 +24,7 @@
 
     packages = with pkgs; [
       # Terminal
-      #btop              # Resource Manager
+      btop              # Resource Manager
       #ranger            # File Manager
       #tldr              # Helper
       kitty
@@ -32,7 +32,7 @@
       # Video/Audio
       #feh               # Image Viewer
       #mpv               # Media Player
-      #pavucontrol       # Audio Control
+      pavucontrol       # Audio Control
       #plex-media-player # Media Player
       #vlc               # Media Player
       #stremio           # Media Streamer
@@ -57,11 +57,11 @@
       git              # Repositories
       #killall          # Stop Applications
       #nano             # Text Editor
-      #pciutils         # Computer Utility Info
+      pciutils         # Computer Utility Info
       pipewire         # Sound
-      #usbutils         # USB Utility Info
+      usbutils         # USB Utility Info
       #wacomtablet      # Wacom Tablet
-      #wget             # Downloader
+      wget             # Downloader
       #zsh              # Shell
       #
       # General home-manager
@@ -74,7 +74,7 @@
       rofi             # Menu
       mpd
       rofi-power-menu  # Power Menu
-      #udiskie          # Auto Mounting
+      udiskie          # Auto Mounting
       #vim              # Text Editor
       #
       # Xorg configuration
@@ -85,7 +85,7 @@
       #xterm            # Terminal
       #
       # Xorg home-manager
-      #flameshot        # Screenshot
+      flameshot        # Screenshot
       #picom            # Compositer
       #sxhkd            # Shortcuts
       #
@@ -103,13 +103,14 @@
       # Wayland home-manager
       #mpvpaper         # Video Wallpaper
       pamixer          # Pulse Audio Mixer
-      swaybg           # Background
-      swaylock-fancy   # Screen Locker
+      #swaybg           # Background
+      #swaylock-fancy   # Screen Locker
       waybar           # Bar
       hyprpaper
+      swaylock-effects
       # Desktop
       #ansible          # Automation
-      #blueman          # Bluetooth
+      blueman          # Bluetooth
       deluge           # Torrents
       discord          # Chat
       #ffmpeg           # Video Support (dslr)
@@ -123,7 +124,7 @@
       #nvtop            # Videocard Top
       #plex-media-player# Media Player
       prismlauncher    # MC Launcher
-      #steam            # Games
+      steam            # Games
       #simple-scan      # Scanning
       #sshpass          # Ansible dependency
       # 
