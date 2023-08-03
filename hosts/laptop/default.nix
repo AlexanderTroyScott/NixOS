@@ -20,10 +20,7 @@
 {
   imports =                                               # For now, if applying to other system, swap files
     [(import ./hardware-configuration.nix)] 
-    #++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
-    ++ [(import ./hardware-settings.nix)] #[(import ../../modules/desktop/bspwm/default.nix)] ++ # Window Manager
-    #[(import ../../modules/desktop/virtualisation/docker.nix)] ++  # Docker
-    #(import ../../modules/hardware);                      # Hardware devices
+    ++ [(import ./hardware-settings.nix)] 
     ;
   boot = {                                  # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
@@ -32,28 +29,42 @@
   };
 
 
-services = {
-  pipewire = {
-    enable = true;
-    alsa = {
+  services = {
+    getty.autologinUser = "${user}";        #auto-login at boot
+    logind.extraConfig = ''
+        # Suspend then hibernate when the power key is short pressed. Long presses are handled by Bios and will power off.
+        HandlePowerKey=hibernate
+        HandleLidSwitch=suspend-then-hibernate
+        HandleLidSwitchDocked=ignore
+        HandleLidSwitchExternalPower=ignore
+      '';
+    pcscd.enable = true; #for yubikey but may not have worked
+    pipewire = {
       enable = true;
-      support32Bit = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
     };
-    pulse.enable = true;
-    jack.enable = true;
+    tlp.enable = true;                      # TLP and auto-cpufreq for power management
+    #logind.lidSwitch = "ignore";           # Laptop does not go to sleep when lid is closed
+    auto-cpufreq.enable = true;
+    blueman.enable = true;
   };
-};
-hardware = {
-  bluetooth = {
-    enable = true;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
       };
     };
   };
-};
-  programs = {                              # No xbacklight, this is the alterantive
+  programs = {
     dconf.enable = true;
     light.enable = true;
     hyprland = {
@@ -63,32 +74,36 @@ hardware = {
     #sway.enable = true;
     #hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
-  #wayland.windowManager.hyprland = {
-  #  enable = true;
-  #  systemdIntegration = true;
-  #  recommendedEnvironment = true;
-  #  xwayland = {
-  #    enable = true;
-  #    hidpi = true;
-  #  };
-  #};
+
+  environment.variables.GTK_THEME = "Adwaita:dark";
+
   environment.systemPackages = [
     pkgs.xdg-desktop-portal-hyprland
+    #Yubikey
+    pkgs.gnupg1
+    pkgs.pcscliteWithPolkit
+    pkgs.yubikey-manager
+    pkgs.pinentry
+    #Touchpad
+    #pkgs.xlibinput-calibrator
+    pkgs.libinput
+    #VPNs
+    #pkgs.wireguard 
+    pkgs.wireguard-tools
+    pkgs.networkmanager-openvpn
   ];
-security.pam.services.swaylock = {
-    text = ''
-     auth include login
-    '';
+  environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
+  
+  environment.sessionVariables = {
+    #WLR_NO_HARDWARE_CURSORS = "1"; 
+    #if cursor is invisible
+    NIXOS_OZONE_WL = "1";
+    #
   };
-  #xdg.portal = {                                  # Required for flatpak with window managers
-  #  enable = true;
-  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; #Think this should be hyprland
-  #};
 
-  services = {
-    tlp.enable = true;                      # TLP and auto-cpufreq for power management
-    #logind.lidSwitch = "ignore";           # Laptop does not go to sleep when lid is closed
-    auto-cpufreq.enable = true;
-    blueman.enable = true;
+  security.pam.services.swaylock = {
+    text = ''
+    auth include login
+    '';
   };
 }

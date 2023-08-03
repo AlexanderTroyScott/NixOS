@@ -1,13 +1,66 @@
-{ config, lib, pkgs, unstable, hyprland, user, ... }:
+{ config, lib, pkgs, unstable, hyprland, user, home-manager, ... }:
 
 { 
+  gtk = {                                     # Theming
+    enable = true;
+    theme = {
+      name = "Dracula";
+      #name = "Catppuccin-Mocha-Compact-Mauve-Dark";
+      package = pkgs.dracula-theme;
+      #package = pkgs.catppuccin-gtk.override {
+      #  accents = ["mauve"];
+      #  size = "compact";
+      #  variant = "mocha";
+      #};
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    font = {
+      #name = "JetBrains Mono Medium";
+      name = "FiraCode Nerd Font Mono Medium";
+    };                                        # Cursor is declared under home.pointerCursor
+  };
   home = {
     stateVersion = "23.05";
+
+
+    pointerCursor = {                         # This will set cursor system-wide so applications can not choose their own
+      gtk.enable = true;
+      name = "Dracula-cursors";
+      #name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.dracula-theme;
+      #package = pkgs.catppuccin-cursors.mochaDark;
+      size = 16;
+    };
+
   };
+  
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock";}
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock";}
+      #{ event = "after-resume"; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
+    ];
+    timeouts = [
+      { timeout = 20; command = "${pkgs.swaylock}/bin/swaylock";}
+      #{ timeout = 1200; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
+    ];
+  };
+
+  
   home.packages = with pkgs; [libva];
   
   programs = {
     home-manager.enable = true;
+    kitty = {
+      enable = true;
+      settings = {
+        confirm_os_window_close = 0;
+      };
+    };
     waybar = {
       enable = true;
       settings = [{
@@ -34,6 +87,7 @@
         icon-size = 15;
         spacing = 10;
     };
+    
 
     clock = {
         format = "{: %I:%M %p   %a, %b %e}";
@@ -103,6 +157,16 @@
         format-critical = "{temperatureC}°C ";
     };
 
+    xdg.mimeApps = {
+      enable = true;
+      associations.added = {
+        "application/pdf" = ["org.gnome.Evince.desktop"];
+      };
+      defaultApplications = {
+        "application/pdf" = ["org.gnome.Evince.desktop"];
+      };
+    };
+    
     battery = {
         states = {
             good = 95;

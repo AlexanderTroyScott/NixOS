@@ -25,17 +25,18 @@
     packages = with pkgs; [
       # Terminal
       btop              # Resource Manager
-      #ranger            # File Manager
+      ranger            # File Manager
       #tldr              # Helper
       kitty
 
       # Video/Audio
-      #feh               # Image Viewer
+      feh               # Image Viewer
       #mpv               # Media Player
       pavucontrol       # Audio Control
       #plex-media-player # Media Player
       #vlc               # Media Player
       #stremio           # Media Streamer
+      pinta             # Image editor
 
       # Apps
       #appimage-run      # Runs AppImages on NixOS
@@ -63,6 +64,7 @@
       #wacomtablet      # Wacom Tablet
       wget             # Downloader
       #zsh              # Shell
+      openvpn
       #
       # General home-manager
       #alacritty        # Terminal Emulator
@@ -70,6 +72,7 @@
       #doom emacs       # Text Editor
       libnotify        # Dependency for Dunst
       #neovim           # Text Editor
+      neofetch
       wofi
       rofi             # Menu
       mpd
@@ -85,20 +88,20 @@
       #xterm            # Terminal
       #
       # Xorg home-manager
-      flameshot        # Screenshot
+      #flameshot        # Screenshot
       #picom            # Compositer
       #sxhkd            # Shortcuts
       #
       # Wayland configuration
       autotiling       # Tiling Script
-      #grim             # Image Grabber
-      #slurp            # Region Selector
+      grim             # Image Grabber
+      slurp            # Region Selector
       #swappy           # Screenshot Editor
       swayidle         # Idle Management Daemon
       wev              # Input Viewer
-      #wl-clipboard     # Console Clipboard
-      #wlr-randr        # Screen Settings
-      xwayland         # X for Wayland
+      wl-clipboard     # Console Clipboard
+      wlr-randr        # Screen Settings
+      #xwayland         # X for Wayland
       #
       # Wayland home-manager
       #mpvpaper         # Video Wallpaper
@@ -108,6 +111,7 @@
       waybar           # Bar
       hyprpaper
       swaylock-effects
+      networkmanagerapplet
       # Desktop
       #ansible          # Automation
       blueman          # Bluetooth
