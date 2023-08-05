@@ -24,12 +24,30 @@
     ;
   boot = {                                  # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = ["!" "thunderbolt" ];
+    kernelParams = [ "bolt" ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
 
-
+  environment.systemPackages = [
+    pkgs.xdg-desktop-portal-hyprland
+    pkgs.bolt
+    #Yubikey
+    pkgs.gnupg1
+    pkgs.pcscliteWithPolkit
+    pkgs.yubikey-manager
+    pkgs.pinentry
+    #Touchpad
+    #pkgs.xlibinput-calibrator
+    pkgs.libinput
+    #VPNs
+    #pkgs.wireguard 
+    pkgs.wireguard-tools
+    pkgs.networkmanager-openvpn
+  ];
   services = {
+    bolt.enable = true;
     getty.autologinUser = "${user}";        #auto-login at boot
     logind.extraConfig = ''
         # Suspend then hibernate when the power key is short pressed. Long presses are handled by Bios and will power off.
@@ -77,21 +95,7 @@
 
   environment.variables.GTK_THEME = "Adwaita:dark";
 
-  environment.systemPackages = [
-    pkgs.xdg-desktop-portal-hyprland
-    #Yubikey
-    pkgs.gnupg1
-    pkgs.pcscliteWithPolkit
-    pkgs.yubikey-manager
-    pkgs.pinentry
-    #Touchpad
-    #pkgs.xlibinput-calibrator
-    pkgs.libinput
-    #VPNs
-    #pkgs.wireguard 
-    pkgs.wireguard-tools
-    pkgs.networkmanager-openvpn
-  ];
+
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
   environment.sessionVariables = {

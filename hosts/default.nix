@@ -2,7 +2,7 @@
 
 let
   system = "x86_64-linux";                                  # System architecture
-
+  
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;                              # Allow proprietary software
