@@ -45,11 +45,17 @@
     #pkgs.wireguard 
     pkgs.wireguard-tools
     pkgs.networkmanager-openvpn
+
   ];
-  fileSystems."home-user" = {
-      target = "/home/${user}/.config/hypr/hyprland.conf";
-      source = "/home/${user}/Documents/NixOS/hosts/laptop/.config/hyprland.conf";
-      fsType = "bind";
+   xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+  #      xdg-desktop-portal-hyprland
+  #      #xdg-desktop-portal-wlr
+    ];
+  #  wlr.enable = true;
   };
 
   services = {

@@ -22,10 +22,12 @@
       name = "FiraCode Nerd Font Mono Medium";
     };                                        # Cursor is declared under home.pointerCursor
   };
+ 
   home = {
     stateVersion = "23.05";
-
-
+  #file = {
+  #".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/alex/Documents/NixOS/hosts/laptop/.config/hypr";
+  #};
     pointerCursor = {                         # This will set cursor system-wide so applications can not choose their own
       gtk.enable = true;
       name = "Dracula-cursors";
