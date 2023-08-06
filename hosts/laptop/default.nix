@@ -47,6 +47,7 @@
     pkgs.networkmanager-openvpn
   ];
   services = {
+    hardware.bolt.enable = true;
     getty.autologinUser = "${user}";        #auto-login at boot
     logind.extraConfig = ''
         # Suspend then hibernate when the power key is short pressed. Long presses are handled by Bios and will power off.
