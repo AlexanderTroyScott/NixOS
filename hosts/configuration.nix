@@ -82,10 +82,10 @@ hardware = {
   nixpkgs.config.allowUnfree = true;        # Allow proprietary software.
 
   system = {                                # NixOS settings
-    autoUpgrade = {                         # Allow auto update (not useful in flakes)
-      enable = true;
-      channel = "https://nixos.org/channels/nixos-unstable";
-    };
+    #autoUpgrade = {                         # Allow auto update (not useful in flakes)
+    #  enable = true;
+    #  channel = "https://nixos.org/channels/nixos-unstable";
+    #};
     stateVersion = "23.05";
   };
   # This value determines the NixOS release from which the default
