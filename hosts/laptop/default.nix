@@ -46,6 +46,12 @@
     pkgs.wireguard-tools
     pkgs.networkmanager-openvpn
   ];
+  environment = {
+    symlinks = [
+      { name = ".config/hypr/hyprland.conf"; target = "/home/${user}/Documents/NixOS/hosts/laptop/.config/hyprland.conf";}
+    ]
+  }
+
   services = {
     hardware.bolt.enable = true;
     getty.autologinUser = "${user}";        #auto-login at boot
