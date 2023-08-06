@@ -46,10 +46,10 @@
     pkgs.wireguard-tools
     pkgs.networkmanager-openvpn
   ];
-  environment = {
-    symlinks = [
-      { name = ".config/hypr/hyprland.conf"; target = "/home/${user}/Documents/NixOS/hosts/laptop/.config/hyprland.conf";}
-    ];
+  fileSystems."home-user" = {
+      target = "/home/${user}/.config/hypr/hyprland.conf";
+      source = "/home/${user}/Documents/NixOS/hosts/laptop/.config/hyprland.conf";
+      fsType = "bind";
   };
 
   services = {
