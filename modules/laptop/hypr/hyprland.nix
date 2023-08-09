@@ -1,5 +1,9 @@
-# See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=eDP-1,3840x2400,0x0,auto
+{ config, lib, pkgs, host, ... }:
+
+let
+hyprlandConf = ''
+   # See https://wiki.hyprland.org/Configuring/Monitors/
+monitor=,preferred,auto,auto
 
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -172,3 +176,8 @@ windowrulev2 = fullscreen,class:(vivaldi-stable)
 
 
 exec-once = waybar & hyprpaper & nm-applet
+  '';
+in
+{
+  xdg.configFile."hypr/hyprland.conf".text = hyprlandConf;
+ };

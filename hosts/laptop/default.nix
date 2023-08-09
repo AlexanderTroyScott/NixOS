@@ -21,7 +21,7 @@
   imports =                                               # For now, if applying to other system, swap files
     [(import ./hardware-configuration.nix)] 
     ++ [(import ./hardware-settings.nix)] 
-    ;
+       ;
   boot = {                                  # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["!" "thunderbolt" ];

@@ -1,6 +1,7 @@
 { config, lib, pkgs, unstable, hyprland, user, home-manager, ... }:
 
 { 
+#  imports =  [(../../modules/hypr/hyprland.nix)];
   gtk = {                                     # Theming
     enable = true;
     theme = {
