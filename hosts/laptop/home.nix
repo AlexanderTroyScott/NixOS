@@ -1,42 +1,12 @@
 { config, lib, pkgs, unstable, hyprland, user, home-manager, ... }:
 
 { 
-#  imports =  [(../../modules/hypr/hyprland.nix)];
-  gtk = {                                     # Theming
-    enable = true;
-    theme = {
-      name = "Dracula";
-      #name = "Catppuccin-Mocha-Compact-Mauve-Dark";
-      package = pkgs.dracula-theme;
-      #package = pkgs.catppuccin-gtk.override {
-      #  accents = ["mauve"];
-      #  size = "compact";
-      #  variant = "mocha";
-      #};
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    font = {
-      #name = "JetBrains Mono Medium";
-      name = "FiraCode Nerd Font Mono Medium";
-    };                                        # Cursor is declared under home.pointerCursor
-  };
- 
+
   home = {
     stateVersion = "23.05";
   #file = {
   #".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/alex/Documents/NixOS/hosts/laptop/.config/hypr";
   #};
-    pointerCursor = {                         # This will set cursor system-wide so applications can not choose their own
-      gtk.enable = true;
-      name = "Dracula-cursors";
-      #name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.dracula-theme;
-      #package = pkgs.catppuccin-cursors.mochaDark;
-      size = 16;
-    };
 
   };
   
@@ -72,7 +42,7 @@
       mod = "dock";
       exclusive = true;
       passthrough = false;
-      gtk-layer-shell = true;
+      #gtk-layer-shell = true;
       height = 30;
       #width = 3840px;
       modules-left = ["clock"];

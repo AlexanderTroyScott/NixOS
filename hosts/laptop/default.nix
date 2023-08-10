@@ -34,10 +34,10 @@
     pkgs.xdg-desktop-portal-hyprland
     pkgs.bolt
     #Yubikey
-    pkgs.gnupg1
-    pkgs.pcscliteWithPolkit
-    pkgs.yubikey-manager
-    pkgs.pinentry
+#    pkgs.gnupg1
+ #   pkgs.pcscliteWithPolkit
+ #   pkgs.yubikey-manager
+ #   pkgs.pinentry
     #Touchpad
     #pkgs.xlibinput-calibrator
     pkgs.libinput
@@ -50,12 +50,7 @@
    xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-  #      xdg-desktop-portal-hyprland
-  #      #xdg-desktop-portal-wlr
-    ];
-  #  wlr.enable = true;
+
   };
 
   services = {
@@ -105,7 +100,7 @@
     #hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
 
-  environment.variables.GTK_THEME = "Adwaita:dark";
+  #environment.variables.GTK_THEME = "Adwaita:dark";
 
 
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
