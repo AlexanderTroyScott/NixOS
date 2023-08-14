@@ -43,6 +43,7 @@
       #firefox           # Browser
       #google-chrome     # Browser
       #remmina           # XRDP & VNC Client
+      
 
       # File Management
       gnome.file-roller # Archive Manager
@@ -56,6 +57,8 @@
 
       # General configuration
       git              # Repositories
+      github-runner
+      
       #killall          # Stop Applications
       #nano             # Text Editor
       pciutils         # Computer Utility Info
@@ -117,6 +120,8 @@
       blueman          # Bluetooth
       deluge           # Torrents
       discord          # Chat
+      betterdiscordctl
+
       #ffmpeg           # Video Support (dslr)
       #gmtp             # Mount MTP (GoPro)
       #gphoto2          # Digital Photography
