@@ -43,7 +43,7 @@
       #firefox           # Browser
       #google-chrome     # Browser
       #remmina           # XRDP & VNC Client
-      ib-tws            # Trading
+      #ib-tws            # Trading
       
 
       # File Management
