@@ -79,7 +79,14 @@ hardware = {
     '';
   };
   
-  nixpkgs.config.allowUnfree = true;        # Allow proprietary software.
+   nixpkgs.config = {
+    # Allow non-free packages
+    allowUnfree = true;
+
+    permittedInsecurePackages = [
+      "nodejs-16.20.2"
+    ];
+  };
 
   system = {                                # NixOS settings
     #autoUpgrade = {                         # Allow auto update (not useful in flakes)
