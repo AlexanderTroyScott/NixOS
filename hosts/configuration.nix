@@ -79,7 +79,7 @@ hardware = {
     '';
   };
   
-   nixpkgs.config = {
+  nixpkgs.config = {
     # Allow non-free packages
     allowUnfree = true;
 
