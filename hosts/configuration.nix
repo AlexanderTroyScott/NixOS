@@ -19,19 +19,30 @@
   
   networking.networkmanager.enable = true;
   security.pam.services.swaylock = {};
-  fonts.packages = with pkgs; [                # Fonts
+  fonts= {
+  packages = with pkgs; [                # Fonts
     carlito                                 # NixOS
     vegur                                   # NixOS
     source-code-pro
     jetbrains-mono
     font-awesome                            # Icons
     corefonts                               # MS
-    (nerdfonts.override {                   # Nerdfont Icons override
-      fonts = [
-        "FiraCode"
-      ];
-    })
+    # nerdfonts
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
   ];
+      # causes more issues than it solves
+    enableDefaultPackages = false;
+
+    # user defined fonts
+    # the reason there's Noto Color Emoji everywhere is to override DejaVu's
+    # B&W emojis that would sometimes show instead of some Color emojis
+    fontconfig.defaultFonts = {
+      serif = ["Roboto Serif" "Noto Color Emoji"];
+      sansSerif = ["Roboto" "Noto Color Emoji"];
+      monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
+      emoji = ["Noto Color Emoji"];
+    };
+  };
 
 #Timezone and Keyboard
   #time.timeZone = "America/Chicago";

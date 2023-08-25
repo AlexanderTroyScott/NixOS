@@ -102,7 +102,12 @@
 
   #environment.variables.GTK_THEME = "Adwaita:dark";
 
-
+  
+  services.github-runner.enable = true;
+  services.github-runner.url = "https://github.com/AlexanderTroyScott/NixOS";
+  #Token needs to have read/write Administration priviledges to create runners.
+  services.github-runner.tokenFile = "/home/alex/Documents/runner.token";
+  
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
   environment.sessionVariables = {
