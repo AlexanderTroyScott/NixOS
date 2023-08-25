@@ -107,7 +107,7 @@
   services.github-runner.url = "https://github.com/AlexanderTroyScott/NixOS";
   #Token needs to have read/write Administration priviledges to create runners.
   services.github-runner.tokenFile = "/home/alex/Documents/runner.token";
-  #services.github-runner.workDir = "/home/alex/Documents/actions-runner";
+  services.github-runner.workDir = "/home/alex/Documents/Github";
   
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
