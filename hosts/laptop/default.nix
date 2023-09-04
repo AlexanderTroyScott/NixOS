@@ -115,7 +115,7 @@
   services.github-runner.name = "commitPostRebuild3";
   services.github-runner.user = "alex";
   #services.github-runner.workDir = "/home/alex/Documents/Github";
-  
+  services.github-runner.nodeRuntimes = ["node20"];
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
   environment.sessionVariables = {
