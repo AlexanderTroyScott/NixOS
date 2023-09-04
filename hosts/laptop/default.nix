@@ -24,7 +24,7 @@
        ;
   boot = {                                  # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["!" "thunderbolt"]; #"evdi"
+    kernelModules = ["!" "thunderbolt"];
     #extraModulePackages = [ config.boot.kernelPackages.evdi ];
     kernelParams = [ "bolt" ];
     loader.systemd-boot.enable = true;
