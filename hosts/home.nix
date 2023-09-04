@@ -45,7 +45,7 @@
       #google-chrome     # Browser
       #remmina           # XRDP & VNC Client
       #ib-tws            # Trading
-      
+      vivaldi
 
       # File Management
       gnome.file-roller # Archive Manager

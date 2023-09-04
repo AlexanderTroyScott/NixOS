@@ -12,7 +12,7 @@
       steam
       discord
       pcloud
-      vivaldi
+      #vivaldi
       vscode
     ];
   };
