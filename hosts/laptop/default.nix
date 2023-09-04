@@ -24,15 +24,17 @@
        ;
   boot = {                                  # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["!" "thunderbolt" ];
+    kernelModules = ["!" "thunderbolt" "evdi"];
+    extraModulePackages = [ config.boot.kernelPackages.evdi ];
     kernelParams = [ "bolt" ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-
+  #services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   environment.systemPackages = [
     pkgs.xdg-desktop-portal-hyprland
     pkgs.bolt
+    pkgs.displaylink
     #Yubikey
 #    pkgs.gnupg1
  #   pkgs.pcscliteWithPolkit
@@ -52,6 +54,8 @@
       xdgOpenUsePortal = true;
 
   };
+  #services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+  #services.xserver.videoDrivers = [ "displaylink" ];
 
   services = {
     hardware.bolt.enable = true;
@@ -108,6 +112,10 @@
   #Token needs to have read/write Administration priviledges to create runners.
   services.github-runner.tokenFile = "/home/alex/Documents/runner.token";
   services.github-runner.replace = true;
+  services.github-runner.serviceOverrides = {
+    ProtectHome = false;
+  };
+  services.github-runner.user = "alex";
   services.github-runner.workDir = "/home/alex/Documents/Github";
   
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser

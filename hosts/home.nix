@@ -21,7 +21,7 @@
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
-
+    
     packages = with pkgs; [
       # Terminal
       btop              # Resource Manager
@@ -37,6 +37,7 @@
       #vlc               # Media Player
       #stremio           # Media Streamer
       pinta             # Image editor
+    
 
       # Apps
       #appimage-run      # Runs AppImages on NixOS
@@ -88,7 +89,7 @@
       #xclip            # Console Clipboard
       #xorg.xev         # Input Viewer
       #xorg.xkill       # Kill Applications
-      #xorg.xrandr      # Screen Settings
+      xorg.xrandr      # Screen Settings
       #xterm            # Terminal
       #
       # Xorg home-manager
@@ -144,6 +145,7 @@
       light            # Display Brightness
       #libreoffice      # Office Tools
       #simple-scan      # Scanning
+      firefox
       #
       # Flatpak
       #obs-studio       # Recording/Live Streaming

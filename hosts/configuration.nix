@@ -70,6 +70,7 @@
    #     wayland = true;
    # };
 #};
+
 hardware = {
     opengl.enable = true;
 };
