@@ -12,4 +12,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          path: /home/alex/Documents/Github/NixOS
+          path: /home/alex/Documents/Github
