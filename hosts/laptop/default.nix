@@ -112,7 +112,7 @@
   services.github-runner.serviceOverrides = {
     ProtectHome = false;
   };
-  services.github-runner.name = "commitPostRebuild2";
+  services.github-runner.name = "commitPostRebuild3";
   services.github-runner.user = "alex";
   #services.github-runner.workDir = "/home/alex/Documents/Github";
   
