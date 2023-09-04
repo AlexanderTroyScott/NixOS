@@ -22,10 +22,10 @@
     [(import ./hardware-configuration.nix)] 
     ++ [(import ./hardware-settings.nix)] 
        ;
-  boot = {                                  # Boot options
+  boot = {                                  
+    # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["!" "thunderbolt"];
-    #extraModulePackages = [ config.boot.kernelPackages.evdi ];
     kernelParams = [ "bolt" ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -34,7 +34,6 @@
   environment.systemPackages = [
     pkgs.xdg-desktop-portal-hyprland
     pkgs.bolt
-    #pkgs.displaylink
     #Yubikey
 #    pkgs.gnupg1
  #   pkgs.pcscliteWithPolkit
