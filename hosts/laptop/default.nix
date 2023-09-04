@@ -114,7 +114,7 @@
     ProtectHome = false;
   };
   services.github-runner.user = "alex";
-  services.github-runner.workDir = "$GITHUB_WORKSPACE";
+  #services.github-runner.workDir = "$GITHUB_WORKSPACE";
   
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
