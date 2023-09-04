@@ -24,17 +24,17 @@
        ;
   boot = {                                  # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["!" "thunderbolt" "evdi"];
-    extraModulePackages = [ config.boot.kernelPackages.evdi ];
+    kernelModules = ["!" "thunderbolt"]; #"evdi"
+    #extraModulePackages = [ config.boot.kernelPackages.evdi ];
     kernelParams = [ "bolt" ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-  #services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+
   environment.systemPackages = [
     pkgs.xdg-desktop-portal-hyprland
     pkgs.bolt
-    pkgs.displaylink
+    #pkgs.displaylink
     #Yubikey
 #    pkgs.gnupg1
  #   pkgs.pcscliteWithPolkit
@@ -54,8 +54,6 @@
       xdgOpenUsePortal = true;
 
   };
-  #services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
-  #services.xserver.videoDrivers = [ "displaylink" ];
 
   services = {
     hardware.bolt.enable = true;
