@@ -112,8 +112,9 @@
   services.github-runner.serviceOverrides = {
     ProtectHome = false;
   };
+  services.github-runner.name = "test0904";
   services.github-runner.user = "alex";
-  #services.github-runner.workDir = "/home/alex/Documents/Github";
+  services.github-runner.workDir = "/home/alex/Documents/Github";
   
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
