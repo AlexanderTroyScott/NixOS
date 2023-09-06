@@ -51,11 +51,13 @@
       gnome.file-roller # Archive Manager
       okular            # PDF Viewer
       pcmanfm           # File Manager
+      cinnamon.nemo     # File Manager
       p7zip             # Zip Encryption
       rsync             # Syncer - $ rsync -r dir1/ dir2/
       unzip             # Zip Files
       unrar             # Rar Files
       zip               # Zip
+      
 
       # General configuration
       git              # Repositories
@@ -77,6 +79,7 @@
       #doom emacs       # Text Editor
       libnotify        # Dependency for Dunst
       #neovim           # Text Editor
+      
       neofetch
       wofi
       rofi             # Menu
