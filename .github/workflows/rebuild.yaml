@@ -13,5 +13,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Update flake
         run: nix flake update
-      - name: Rebuild laptop
-        run: nixos-rebuild switch --flake .#laptop 
+      - name: print directory
+        run: pwd
+      #- name: Rebuild laptop
+      #  run: nixos-rebuild switch --flake .#laptop 
