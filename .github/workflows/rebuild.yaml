@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: Print PATH
         run: echo $PATH
+      - name: Add NixOS PATH
+        run: export PATH=/run/current-system/sw/bin/nixos-rebuild:$PATH
+      - name: Print PATH
+        run: echo $PATH
       - name: print directory
         run: pwd
       - name: Checkout
