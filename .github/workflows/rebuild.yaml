@@ -10,6 +10,8 @@ jobs:
   test-runner:
     runs-on: [self-hosted]
     steps:
+      - name: Print PATH
+        run: echo $PATH
       - name: print directory
         run: pwd
       - name: Checkout
