@@ -114,7 +114,7 @@
   };
   services.github-runner.name = "rebuild";
   services.github-runner.user = "alex";
-  services.github-runner.workDir = "/home/alex/Documents/Github/temp";
+  services.github-runner.workDir = "/home/alex/Documents/Github/NixOS/NixOS/temp";
   services.github-runner.nodeRuntimes = ["node16"];
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
