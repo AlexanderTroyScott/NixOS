@@ -112,7 +112,7 @@
   services.github-runner.serviceOverrides = {
     ProtectHome = false;
   };
-  services.github-runner.name = "commitPostRebuild3";
+  services.github-runner.name = "rebuild";
   services.github-runner.user = "alex";
   services.github-runner.workDir = "/home/alex/Documents/Github";
   services.github-runner.nodeRuntimes = ["node16"];
