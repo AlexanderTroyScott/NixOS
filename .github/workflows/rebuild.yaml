@@ -5,7 +5,7 @@ on:
     branches:
       - main
     with:
-      path: /home/alex/Documents/Github
+      path: /home/alex/Documents/Github/temp
 jobs:
   test-runner:
     runs-on: [self-hosted]
@@ -18,6 +18,8 @@ jobs:
         run: pwd
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          path: /home/alex/Documents/Github/temp
       - name: Delay for 10 seconds
         run: |
           echo "Delaying for 10 seconds..."
