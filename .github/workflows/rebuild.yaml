@@ -12,6 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Update flake
-        run: sudo nix flake update
+        run: nix flake update
       - name: Rebuild laptop
-        run: sudo nixos-rebuild switch --flake .#laptop 
+        run: nixos-rebuild switch --flake .#laptop 
