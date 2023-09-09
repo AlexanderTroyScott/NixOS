@@ -114,6 +114,9 @@
   };
   services.github-runner.name = "rebuild";
   services.github-runner.user = "alex";
+  services.github-runner.extraEnvironment ={
+    RUNNER_ROOT = "/";
+  };
   services.github-runner.workDir = "/home/alex/Github/temp";
   services.github-runner.nodeRuntimes = ["node16"];
   services.github-runner.extraPackages = with pkgs; [
