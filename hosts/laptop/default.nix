@@ -122,7 +122,6 @@
     #WLR_NO_HARDWARE_CURSORS = "1"; 
     #if cursor is invisible
     NIXOS_OZONE_WL = "1";
-    #
   };
 
   security.pam.services.swaylock = {
