@@ -114,7 +114,7 @@
   };
   services.github-runner.name = "rebuild";
   services.github-runner.user = "alex";
-  services.github-runner.workDir = "/home/alex/Github/temp";
+  services.github-runner.workDir = "/home/alex/Github";
   services.github-runner.nodeRuntimes = ["node16"];
   services.github-runner.extraPackages = with pkgs; [
     nixos-rebuild
