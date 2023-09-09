@@ -5,7 +5,7 @@ on:
     branches:
       - main
     with:
-      path: /home/alex/Documents/Github/NixOS/NixOS/temp
+      path: /home/alex/Documents/temp
 jobs:
   test-runner:
     runs-on: [self-hosted]
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          path: /home/alex/Documents/Github/NixOS/NixOS/temp
+          path: /home/alex/Github/temp
       - name: Delay for 10 seconds
         run: |
           echo "Delaying for 10 seconds..."
