@@ -116,6 +116,9 @@
   services.github-runner.user = "alex";
   services.github-runner.workDir = "/home/alex/Github/temp";
   services.github-runner.nodeRuntimes = ["node16"];
+  services.github-runner.extraPackages = with pkgs; [
+    nixos-rebuild
+  ];
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
   environment.sessionVariables = {
