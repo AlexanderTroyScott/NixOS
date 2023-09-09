@@ -18,8 +18,8 @@ jobs:
         run: pwd
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          path: /home/alex/Github/temp
+       # with:
+      #    path: /home/alex/Github/temp
       - name: Delay for 10 seconds
         run: |
           echo "Delaying for 10 seconds..."
