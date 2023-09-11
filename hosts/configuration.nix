@@ -48,6 +48,7 @@
   #time.timeZone = "America/Chicago";
   #time.timeZone = "Europe/London";
   services.automatic-timezoned.enable = true;
+  services.timesyncd.enable = true;
   #Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
