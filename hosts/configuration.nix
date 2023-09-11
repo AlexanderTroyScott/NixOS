@@ -49,6 +49,8 @@
   #time.timeZone = "Europe/London";
   services.automatic-timezoned.enable = true;
   services.timesyncd.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
   #Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
