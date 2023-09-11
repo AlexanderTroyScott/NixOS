@@ -108,7 +108,7 @@
   services.github-runner.url = "https://github.com/AlexanderTroyScott/NixOS";
   #Token needs to have read/write Administration priviledges to create runners.
   services.github-runner.tokenFile = "/home/alex/Documents/runner.token";
-  services.github-runner.replace = true;
+  services.github-runner.replace = false;
   services.github-runner.serviceOverrides = {
     ProtectHome = false;
   };
