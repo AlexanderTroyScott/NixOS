@@ -49,6 +49,7 @@
   #time.timeZone = "Europe/London";
   services.automatic-timezoned.enable = true;
   services.timesyncd.enable = true;
+  services.geoclue2.enable = true;
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   #Select internationalisation properties.
