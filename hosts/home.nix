@@ -37,8 +37,8 @@
       #vlc               # Media Player
       #stremio           # Media Streamer
       pinta             # Image editor
-    
-
+      libsForQt5.qtinstaller
+      libsForQt5.audiotube
       # Apps
       #appimage-run      # Runs AppImages on NixOS
       #firefox           # Browser
