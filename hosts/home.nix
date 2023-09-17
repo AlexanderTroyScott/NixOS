@@ -146,6 +146,7 @@
       cbatticon        # Battery Notifications
       blueman          # Bluetooth
       light            # Display Brightness
+      obsidian
       #libreoffice      # Office Tools
       #simple-scan      # Scanning
       firefox
