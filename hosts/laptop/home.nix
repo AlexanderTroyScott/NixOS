@@ -51,6 +51,13 @@
   
   home.packages = with pkgs; [libva];
   
+  wayland.windowManager.hyprland = {
+    enable = true;
+    extraConfig = ''
+    source=/home/alex/Documents/NixOS/hosts/laptop/.config/hypr/hyprland.conf
+  '';
+  };
+
   programs = {
     home-manager.enable = true;
     kitty = {
@@ -59,6 +66,7 @@
         confirm_os_window_close = 0;
       };
     };
+
     waybar = {
       enable = true;
       settings = [{
