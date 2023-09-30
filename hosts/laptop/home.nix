@@ -84,8 +84,7 @@
         "custom/power_profile"
         "battery"
         "backlight"
-        "
-        audio"
+        "audio"
         "pulseaudio#microphone"
         "tray"];
 
