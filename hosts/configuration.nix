@@ -7,16 +7,26 @@
 {
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      steam
-      discord
-      pcloud
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"]; # Enable ‘sudo’ for the user.
+ #   packages = with pkgs; [
+   #   steam
+  #    discord
+ #     pcloud
       #vivaldi
-      vscode
-    ];
+#      vscode
+  #  ];
   };
   
+  environment.systemPackages = with pkgs; [
+  # ... other packages
+  docker
+  ];
+  virtualisation.docker.enable = true;
+  #virtualisation.docker.storageDriver = "btrfs";
+  virtualisation.docker.rootless = {
+  enable = true;
+  setSocketVariable = true;
+  };
   networking.networkmanager.enable = true;
   security.pam.services.swaylock = {};
   fonts= {
@@ -67,12 +77,13 @@
   };
 
   # Enable the X11 windowing system.
-  #services.xserver = {
-   # enable = true;
-   # displayManager.gdm = {
-   #     enable = true;
-   #     wayland = true;
-   # };
+#  services.xserver = {
+#    enable = true;
+    #displayManager.gdm.wayland.enable = true;
+    #displayManager.gdm = {
+    #    enable = true;
+    #    wayland = true;
+    #};
 #};
 
 hardware = {

@@ -17,6 +17,7 @@
   #imports =                                   # Home Manager Modules
     #(import ../modules/programs) ++
     #(import ../modules/services);
+  
 
   home = {
     username = "${user}";
@@ -37,6 +38,7 @@
       #vlc               # Media Player
       #stremio           # Media Streamer
       pinta             # Image editor
+      qt5.qtwayland
       libsForQt5.qtinstaller
       libsForQt5.audiotube
       # Apps
@@ -46,7 +48,7 @@
       #remmina           # XRDP & VNC Client
       #ib-tws            # Trading
       vivaldi
-
+      vscode
       # File Management
       gnome.file-roller # Archive Manager
       okular            # PDF Viewer
@@ -109,7 +111,7 @@
       wev              # Input Viewer
       wl-clipboard     # Console Clipboard
       wlr-randr        # Screen Settings
-      #xwayland         # X for Wayland
+      xwayland         # X for Wayland
       #
       # Wayland home-manager
       #mpvpaper         # Video Wallpaper
@@ -139,6 +141,8 @@
       #plex-media-player# Media Player
       prismlauncher    # MC Launcher
       steam            # Games
+      xterm            # Terminal
+      
       #simple-scan      # Scanning
       #sshpass          # Ansible dependency
       # 
