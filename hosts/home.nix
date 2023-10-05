@@ -81,7 +81,7 @@
       #doom emacs       # Text Editor
       libnotify        # Dependency for Dunst
       #neovim           # Text Editor
-      
+      glxinfo           # Get graphics card info
       neofetch
       wofi
       rofi             # Menu
@@ -111,7 +111,7 @@
       wev              # Input Viewer
       wl-clipboard     # Console Clipboard
       wlr-randr        # Screen Settings
-      xwayland         # X for Wayland
+      #xwayland         # X for Wayland
       #
       # Wayland home-manager
       #mpvpaper         # Video Wallpaper
