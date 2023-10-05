@@ -86,10 +86,6 @@
     #};
 #};
 
-hardware = {
-    opengl.enable = true;
-};
-
   nix = {                                   # Nix Package Manager settings
     settings ={
       auto-optimise-store = true;           # Optimise syslinks

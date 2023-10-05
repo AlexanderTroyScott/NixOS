@@ -1,6 +1,15 @@
 { config, pkgs, ... }:
 
 {
+  #Graphics Settings
+  hardware = {
+    opengl.enable = true;
+  };
+  environment.systemPackages = [
+    pkgs.mesa
+  ];
+
+
   #Power Optimization
   boot.kernel.sysctl."vm.dirty_writeback_centisecs" = 1500; # 15 seconds
   environment.systemPackages = with pkgs; [
