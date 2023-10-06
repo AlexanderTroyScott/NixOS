@@ -60,7 +60,7 @@
       unrar             # Rar Files
       zip               # Zip
       
-
+      libva-utils            # Video Acceleration Info (intel)
       # General configuration
       git              # Repositories
       github-runner
