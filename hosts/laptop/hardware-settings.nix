@@ -5,16 +5,22 @@
   hardware = {
     opengl.enable = true;
   };
-  environment.systemPackages = [
-    pkgs.mesa
+
+  #Intel CPU opencl support
+  hardware.opengl.extraPackages = with pkgs; [
+  intel-media-driver        #GPU acceleration 
+  intel-compute-runtime     #OpenComputeLanguage
+  intel-ocl                 #OpenComputeLanguage
+  # vaapiIntel              #Drivers for older intel CPUs (gen 7 or 8), not needed for 12th gen
+  ];
+  environment.systemPackages = with pkgs; [
+    #mesa        #Graphics
+    undervolt   #undervolting
   ];
 
 
   #Power Optimization
   boot.kernel.sysctl."vm.dirty_writeback_centisecs" = 1500; # 15 seconds
-  environment.systemPackages = with pkgs; [
-    undervolt
-  ];
   #TouchPad
   #services.xserver.libinput.enable = true; #Expected to be enabled by default
   #Power Settings
