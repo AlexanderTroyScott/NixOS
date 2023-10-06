@@ -77,14 +77,14 @@
   };
 
   # Enable the X11 windowing system.
-#  services.xserver = {
-#    enable = true;
+  services.xserver = {
+    enable = true;
     #displayManager.gdm.wayland.enable = true;
     #displayManager.gdm = {
     #    enable = true;
     #    wayland = true;
     #};
-#};
+  };
 
   nix = {                                   # Nix Package Manager settings
     settings ={
