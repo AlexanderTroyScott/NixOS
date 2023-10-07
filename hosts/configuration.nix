@@ -77,15 +77,14 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    #displayManager.gdm.wayland.enable = true;
-    #displayManager.gdm = {
-    #    enable = true;
-    #    wayland = true;
-    #};
-  };
+ services.xserver.displayManager.sddm.enable = true; #This line enables sddm
+ services.xserver.enable = true; # Might need this for Xwayland  
 
+
+programs.hyprland = { # we use this instead of putting it in systemPackages/users  
+  enable = true;  
+  xwayland.enable = true;  
+};
   nix = {                                   # Nix Package Manager settings
     settings ={
       auto-optimise-store = true;           # Optimise syslinks
