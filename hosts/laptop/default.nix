@@ -30,29 +30,35 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-
-  environment.systemPackages = [
-    pkgs.xdg-desktop-portal-hyprland
-    pkgs.bolt
+  #programs.hyprland.enable = true; 
+  environment.systemPackages = with pkgs; [
+    #rtkit
+    #xdg-desktop-portal
+    #xdg-desktop-portal-gtk 
+    xdg-desktop-portal-hyprland
+    bolt
+    hyprland
+    #hyprland-protocols
+    #hyprland-share-picker
     #Yubikey
-#    pkgs.gnupg1
- #   pkgs.pcscliteWithPolkit
- #   pkgs.yubikey-manager
- #   pkgs.pinentry
+#    gnupg1
+ #   pcscliteWithPolkit
+ #   yubikey-manager
+ #   pinentry
     #Touchpad
-    #pkgs.xlibinput-calibrator
-    pkgs.libinput
+    #xlibinput-calibrator
+    libinput
     #VPNs
-    #pkgs.wireguard 
-    pkgs.wireguard-tools
-    pkgs.networkmanager-openvpn
+    #wireguard 
+    wireguard-tools
+    networkmanager-openvpn
 
   ];
-   xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
 
-  };
+  xdg.portal = { 
+     enable = true;
+     xdgOpenUsePortal = true;
+     extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; };
 
   services = {
     hardware.bolt.enable = true;
