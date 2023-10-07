@@ -5,7 +5,8 @@
   hardware = {
     opengl.enable = true;
   };
-
+  hardware.opengl.driSupport32Bit = true;
+  hardware.steam-hardware.enable = true;
   #Intel CPU opencl support
   hardware.opengl.extraPackages = with pkgs; [
   intel-media-driver        #GPU acceleration 
