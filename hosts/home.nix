@@ -39,6 +39,7 @@
       #stremio           # Media Streamer
       pinta             # Image editor
       qt5.qtwayland
+      qt6.qtwayland
       libsForQt5.qtinstaller
       libsForQt5.audiotube
       # Apps
@@ -96,6 +97,9 @@
       #xorg.xkill       # Kill Applications
       xorg.xrandr      # Screen Settings
       #xterm            # Terminal
+      xorg.xinit
+      xorg.xorgserver
+
       #
       # Xorg home-manager
       #flameshot        # Screenshot
