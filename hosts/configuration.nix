@@ -20,7 +20,9 @@
   environment.systemPackages = with pkgs; [
   # ... other packages
   docker
+  pcloud
   ];
+
   virtualisation.docker.enable = true;
   #virtualisation.docker.storageDriver = "btrfs";
   virtualisation.docker.rootless = {
