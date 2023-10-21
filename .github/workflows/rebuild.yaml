@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          path: /tmp/Github
+        #with:
+        #  path: /tmp/Github
