@@ -77,14 +77,14 @@
       passthrough = false;
       #gtk-layer-shell = true;
       height = 30;
-      #width = 3840px;
+      #width = 3840;
       modules-left = ["clock"];
       modules-center = [];
       modules-right = ["temperature"
         "custom/power_profile"
         "battery"
         "backlight"
-        "audio"
+        "pulseaudio"
         "pulseaudio#microphone"
         "tray"];
 
@@ -103,8 +103,8 @@
         device = "intel_backlight";
         format = "{icon} {percent}%";
         format-icons = ["󰃞" "󰃟" "󰃠"];
-        on-scroll-up = "light -A .01";
-        on-scroll-down = "light -U 0.01";
+        on-scroll-up = "light -A 1";
+        on-scroll-down = "light -U 1";
         min-length = 6;
     };
 
@@ -112,7 +112,7 @@
         format = "{icon} {volume}%";
         tooltip = false; 
         format-muted = " Muted";
-        on-click = "pamixer -t"; #"pavucontrol";
+        on-click = "pavucontrol";
         on-scroll-up = "pamixer -i 5";
         on-scroll-down = "pamixer -d 5";
         scroll-step = 5;
@@ -162,15 +162,15 @@
         format-critical = "{temperatureC}°C ";
     };
 
-    xdg.mimeApps = {
-      enable = true;
-      associations.added = {
-        "application/pdf" = ["org.gnome.Evince.desktop"];
-      };
-      defaultApplications = {
-        "application/pdf" = ["org.gnome.Evince.desktop"];
-      };
-    };
+    #xdg.mimeApps = {
+    #  enable = true;
+    #  associations.added = {
+    #    "application/pdf" = ["org.gnome.Evince.desktop"];
+    #  };
+    #  defaultApplications = {
+    #    "application/pdf" = ["org.gnome.Evince.desktop"];
+    #  };
+    #};
     
     battery = {
         states = {

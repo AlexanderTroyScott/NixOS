@@ -18,18 +18,17 @@
     #(import ../modules/programs) ++
     #(import ../modules/services);
   
-
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
-    
+
     packages = with pkgs; [
       # Terminal
       btop              # Resource Manager
       ranger            # File Manager
       #tldr              # Helper
       kitty
-
+      unzip
       # Video/Audio
       feh               # Image Viewer
       #mpv               # Media Player
