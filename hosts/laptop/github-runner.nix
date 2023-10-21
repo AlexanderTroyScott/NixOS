@@ -1,0 +1,30 @@
+{ config, pkgs, ... }:
+
+{
+  environment.systemPackages = with pkgs; [
+  git
+  github-runner
+  ];
+  allowUnfree = true;
+    permittedInsecurePackages = [
+      "nodejs-16.20.2"
+    ];
+  };
+  services.github-runner.enable = true;
+  services.github-runner.url = "https://github.com/AlexanderTroyScott/NixOS";
+  #Token needs to have read/write Administration priviledges to create runners.
+  services.github-runner.tokenFile = "/etc/nixos/runner.token";
+  services.github-runner.replace = true;
+  services.github-runner.serviceOverrides = {
+    ProtectHome = false;
+  };
+
+  services.github-runners.jupyter.extraLabels = ["Xiaomi Book 16"];
+  services.github-runner.name = "Xiaomi Book 16";
+  services.github-runner.user = "alex";
+  services.github-runner.workDir = "/tmp/Github";
+  services.github-runner.nodeRuntimes = ["node16"];
+  services.github-runner.extraPackages = with pkgs; [
+    nixos-rebuild
+  ];
+}

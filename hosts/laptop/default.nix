@@ -20,7 +20,8 @@
 {
   imports =                                               # For now, if applying to other system, swap files
     [(import ./hardware-configuration.nix)] 
-    ++ [(import ./hardware-settings.nix)] 
+    ++ [(import ./hardware-settings.nix)]
+    ++ [(import ./github-runner.nix)] 
        ;
   boot = {                                  
     # Boot options
@@ -73,6 +74,7 @@
     pcscd.enable = true; #for yubikey but may not have worked
     pipewire = {
       enable = true;
+      audio.enable = true;
       alsa = {
         enable = true;
         support32Bit = true;
@@ -107,24 +109,8 @@
     #hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
 
-  #environment.variables.GTK_THEME = "Adwaita:dark";
+  #environment.variables.GTK_THEME = "Adwaita:dark";  
 
-  
-  services.github-runner.enable = true;
-  services.github-runner.url = "https://github.com/AlexanderTroyScott/NixOS";
-  #Token needs to have read/write Administration priviledges to create runners.
-  services.github-runner.tokenFile = "/home/alex/Documents/runner.token";
-  services.github-runner.replace = false;
-  services.github-runner.serviceOverrides = {
-    ProtectHome = false;
-  };
-  services.github-runner.name = "rebuild";
-  services.github-runner.user = "alex";
-  services.github-runner.workDir = "/home/alex/Github";
-  services.github-runner.nodeRuntimes = ["node16"];
-  services.github-runner.extraPackages = with pkgs; [
-    nixos-rebuild
-  ];
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
   
   environment.sessionVariables = {
