@@ -5,6 +5,7 @@
   git
   github-runner
   ];
+  nixpkgs.config = {
   allowUnfree = true;
     permittedInsecurePackages = [
       "nodejs-16.20.2"
@@ -19,8 +20,8 @@
     ProtectHome = false;
   };
 
-  services.github-runners.jupyter.extraLabels = ["Xiaomi Book 16"];
-  services.github-runner.name = "Xiaomi Book 16";
+  services.github-runners.laptop.extraLabels = ["Xiaomi Book 16"];
+  services.github-runner.name = "laptop";
   services.github-runner.user = "alex";
   services.github-runner.workDir = "/tmp/Github";
   services.github-runner.nodeRuntimes = ["node16"];
