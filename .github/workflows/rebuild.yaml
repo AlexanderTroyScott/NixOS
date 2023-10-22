@@ -1,9 +1,12 @@
 name: 'rebuild-deploy'
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - created
+      - edited
+      - deleted
+
 jobs:
   test-runner:
     runs-on: ["Xiaomi Book 16"]
@@ -13,6 +16,9 @@ jobs:
       - name: Download wireguard configuration
         run: |
           echo "${{ secrets.WIREGUARD_XIAOMI_BOOK_16 }}" > "./modules/wireguard/Firewalla.conf"
+      - name: Rebuild image
+        run: |
+          sudo nixos-rebuild switch --flake .#laptop
       - name: Import WireGuard Connection
         run: |
           nmcli connection import type wireguard file "./modules/wireguard/Firewalla.conf"
