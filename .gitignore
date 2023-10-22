@@ -1,4 +1,4 @@
 *.jar
 *.tar.gz
 #ignore wireguard config files
-wireguard/*.conf
+*/wireguard/*.conf

@@ -23,7 +23,7 @@
     ++ [(import ./hardware-settings.nix)]
     ++ [(import ./github-runner.nix)] 
        ;
-  boot = {                                  
+  boot = {
     # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["!" "thunderbolt"];
@@ -39,15 +39,6 @@
     xdg-desktop-portal-hyprland
     bolt
     hyprland
-    #hyprland-protocols
-    #hyprland-share-picker
-    #Yubikey
-#    gnupg1
- #   pcscliteWithPolkit
- #   yubikey-manager
- #   pinentry
-    #Touchpad
-    #xlibinput-calibrator
     libinput
     #VPNs
     #wireguard 
@@ -55,6 +46,20 @@
     networkmanager-openvpn
 
   ];
+  #Ignore Wireguard related traffic
+  networking.firewall = {
+   # if packets are still dropped, they will show up in dmesg
+   logReversePathDrops = true;
+   # wireguard trips rpfilter up
+   extraCommands = ''
+     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
+     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+   '';
+   extraStopCommands = ''
+     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
+     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+   '';
+  };
 
   xdg.portal = { 
      enable = true;
