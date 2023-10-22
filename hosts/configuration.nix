@@ -7,14 +7,7 @@
 {
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"]; # Enable ‘sudo’ for the user.
- #   packages = with pkgs; [
-   #   steam
-  #    discord
- #     pcloud
-      #vivaldi
-#      vscode
-  #  ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"];
   };
   
   environment.systemPackages = with pkgs; [

@@ -27,5 +27,6 @@
   services.github-runner.nodeRuntimes = ["node16"];
   services.github-runner.extraPackages = with pkgs; [
     nixos-rebuild
+    networkmanager
   ];
 }
