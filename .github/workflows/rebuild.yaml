@@ -18,7 +18,7 @@ jobs:
           echo "${{ secrets.WIREGUARD_XIAOMI_BOOK_16 }}" > "./modules/wireguard/Firewalla.conf"
       - name: Rebuild image
         run: |
-          sudo nixos-rebuild switch --flake .#laptop
+          nixos-rebuild switch --flake .#laptop
       - name: Import WireGuard Connection
         run: |
           nmcli connection import type wireguard file "./modules/wireguard/Firewalla.conf"
