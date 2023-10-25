@@ -13,12 +13,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: main
       - name: Download wireguard configuration
         run: |
           echo "${{ secrets.WIREGUARD_XIAOMI_BOOK_16 }}" > "./modules/wireguard/Firewalla.conf"
-      - name: Rebuild image
-        run: |
-          nixos-rebuild switch --flake .#laptop
       - name: Import WireGuard Connection
         run: |
           nmcli connection import type wireguard file "./modules/wireguard/Firewalla.conf"
