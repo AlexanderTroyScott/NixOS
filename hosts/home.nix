@@ -154,7 +154,8 @@
       blueman          # Bluetooth
       light            # Display Brightness
       obsidian
-      #libreoffice      # Office Tools
+      logseq
+      libreoffice      # Office Tools
       #simple-scan      # Scanning
       firefox
       #
