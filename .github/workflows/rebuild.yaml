@@ -15,11 +15,26 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: main
-      - name: Download wireguard configuration
-        run: |
-          echo "${{ secrets.WIREGUARD_XIAOMI_BOOK_16 }}" > "./modules/wireguard/Firewalla.conf"
-      - name: Import WireGuard Connection
-        run: |
-          nmcli connection import type wireguard file "./modules/wireguard/Firewalla.conf"
+      #- name: Download wireguard configuration
+       # run: |
+       #   echo "${{ secrets.WIREGUARD_XIAOMI_BOOK_16 }}" > "./modules/wireguard/Firewalla.conf"
+      #- name: Import WireGuard Connection
+        #run: |
+        #  nmcli connection import type wireguard file "./modules/wireguard/Firewalla.conf"
         #with:
         #  path: /tmp/Github
+      - name: Download WireGuard configuration
+        run: echo "${{ secrets.WIREGUARD_XIAOMI_BOOK_16 }}" > "./modules/wireguard/Firewalla.conf"
+      - name: Check if WireGuard Connection Exists
+        id: check-connection
+        run: |
+          if nmcli connection show Firewalla &> /dev/null; then
+            echo "WireGuard connection 'Firewalla' already exists."
+            echo "::set-output name=exists::true"
+          else
+            echo "WireGuard connection 'Firewalla' does not exist."
+            echo "::set-output name=exists::false"
+          fi
+      - name: Import WireGuard Connection
+        if: steps.check-connection.outputs.exists == 'false'
+        run: nmcli connection import type wireguard file "./modules/wireguard/Firewalla.conf"
