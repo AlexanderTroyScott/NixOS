@@ -39,4 +39,4 @@ jobs:
         if: steps.check-connection.outputs.exists == 'false'
         run: nmcli connection import type wireguard file "./modules/wireguard/Firewalla.conf"
       - name: rebuild image
-        run: nixos-rebuild switch --flake /tmp/Github/NixOS/NixOS.#laptop
+        run: nixos-rebuild switch --flake /tmp/Github/NixOS/NixOS/flake.nix.#laptop
