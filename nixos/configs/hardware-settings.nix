@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+boot = {
+    # Boot options
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = ["!" "thunderbolt"];
+    kernelParams = [ "bolt" "i915.force_probe=46a6" ];
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
+  #boot.kernelParams = [ ]; #12th gen alder lake; see https://nixos.wiki/wiki/Intel_Graphics
+
   #Graphics Settings
   hardware = {
     opengl.enable = true;
@@ -17,8 +27,7 @@
   environment.systemPackages = with pkgs; [
     undervolt   #undervolting
   ];
-  boot.kernelParams = [ "i915.force_probe=46a6" ]; #12th gen alder lake; see https://nixos.wiki/wiki/Intel_Graphics
-
+  
   #Power Optimization
   boot.kernel.sysctl."vm.dirty_writeback_centisecs" = 1500; # 15 seconds
   #TouchPad
