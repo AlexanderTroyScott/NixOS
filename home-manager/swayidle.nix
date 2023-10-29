@@ -18,7 +18,7 @@
         pkgs.swayidle
         pkgs.swaylock
     ];
-    security.pam.services.swaylock = {};
+    
     services.swayidle = {
     enable = true;
     events = [
