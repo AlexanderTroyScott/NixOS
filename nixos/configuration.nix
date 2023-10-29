@@ -6,6 +6,7 @@
   lib,
   config,
   pkgs,
+  hyprland,
   ...
 }: {
   # You can import other NixOS modules here
@@ -75,13 +76,25 @@
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
     };
+    gc = {                                  # Automatic garbage collection
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
 
   # FIXME: Add the rest of your current configuration
   security.pam.services.swaylock = {};
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;  
+    #package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    xwayland.enable = true;  
+  };
+
+
+
   # TODO: Set your hostname
-  networking.hostName = "Xiaomi Book 16";
+  networking.hostName = "MiBook";
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;

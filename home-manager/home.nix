@@ -6,6 +6,7 @@
   lib,
   config,
   pkgs,
+  hyprland,
   ...
 }: {
   # You can import other home-manager modules here
@@ -15,9 +16,9 @@
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
-
+    #inputs.hyprland.nixosModules.default
+    inputs.hyprland.homeManagerModules.default
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
     ./hyprland.nix
     ./kitty.nix
     ./swayidle.nix
@@ -60,6 +61,8 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
+  #home.packages = with pkgs; [ hyprland ];
+
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

@@ -15,7 +15,11 @@
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
-
+    # hyprland
+    hyprland = {                                                            # Official Hyprland flake
+        url = "github:vaxerski/Hyprland";                                   # Add "hyprland.nixosModules.default" to the host modules
+        inputs.nixpkgs.follows = "nixpkgs-unstable";
+      };
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -25,6 +29,7 @@
     self,
     nixpkgs,
     home-manager,
+    hyprland,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -59,18 +64,13 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # FIXME replace with your hostname
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          # > Our main nixos configuration file <
           ./nixos/configuration.nix
+          hyprland.nixosModules.default
         ];
       };
     };
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-
   };
 }
