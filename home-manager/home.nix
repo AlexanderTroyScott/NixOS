@@ -18,6 +18,10 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./hyprland.nix
+    ./kitty.nix
+    ./swayidle.nix
+    ./waybar.nix
   ];
 
   nixpkgs = {
