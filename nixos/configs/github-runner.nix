@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
   git
   github-runner
   ];
