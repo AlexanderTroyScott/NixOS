@@ -23,6 +23,7 @@
     ./kitty.nix
     ./swayidle.nix
     ./waybar.nix
+    ./github-runner.nix
   ];
 
   nixpkgs = {

@@ -58,6 +58,9 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
+      permittedInsecurePackages = [
+        "nodejs-16.20.2"
+      ];
     };
   };
 
@@ -87,7 +90,7 @@
   security.pam.services.swaylock = {};
   programs.hyprland = {
     enable = true;  
-    #package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     xwayland.enable = true;  
   };
 
@@ -112,7 +115,7 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel"];
+      extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"];
     };
   };
 
