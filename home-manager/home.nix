@@ -23,7 +23,6 @@
     ./kitty.nix
     ./swayidle.nix
     ./waybar.nix
-    ./wireguard.nix
   ];
 
   nixpkgs = {

@@ -61,4 +61,66 @@ boot = {
 #    gpuOffset = -100;
   };
 
+  services = {
+    hardware.bolt.enable = true;
+    getty.autologinUser = "alex";        #auto-login at boot
+    logind.extraConfig = ''
+        # Suspend then hibernate when the power key is short pressed. Long presses are handled by Bios and will power off.
+        HandlePowerKey=hibernate
+        HandleLidSwitch=suspend-then-hibernate
+        HandleLidSwitchDocked=ignore
+        HandleLidSwitchExternalPower=ignore
+      '';
+    pcscd.enable = true; #for yubikey but may not have worked
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    #logind.lidSwitch = "ignore";           # Laptop does not go to sleep when lid is closed
+    auto-cpufreq.enable = true;
+    blueman.enable = true;
+  };
+  hardware = {
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
+  };
+
+ programs = {
+    dconf.enable = true;
+    light.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+    #sway.enable = true;
+    #hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  };
+
+  environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
+  
+  environment.sessionVariables = {
+    #WLR_NO_HARDWARE_CURSORS = "1"; 
+    #if cursor is invisible
+    NIXOS_OZONE_WL = "1";
+  };
+
+  security.pam.services.swaylock = {
+    text = ''
+    auth include login
+    '';
+  };
+
+
 }
