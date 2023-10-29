@@ -16,6 +16,7 @@
     home.packages = [
         # Install swayidle
         pkgs.swayidle
+        pkgs.swaylock
     ];
     security.pam.services.swaylock = {};
     services.swayidle = {
