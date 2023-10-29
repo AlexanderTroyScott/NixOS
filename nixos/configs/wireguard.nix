@@ -1,7 +1,5 @@
+{ config, pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    wireguard-tools
-  ];
   #Ignore Wireguard related traffic
   networking.firewall = {
    # if packets are still dropped, they will show up in dmesg

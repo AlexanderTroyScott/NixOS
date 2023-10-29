@@ -22,9 +22,9 @@
     # ./users.nix
     ./configs/github-runner.nix
     ./configs/hardware-settings.nix
+    ./configs/wireguard.nix
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-
     #Home manager
     inputs.home-manager.nixosModules.home-manager
   ];

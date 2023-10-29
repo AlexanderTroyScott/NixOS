@@ -137,6 +137,7 @@
       libreoffice      # Office Tools
       firefox
       xdg-desktop-portal-hyprland
+      wireguard-tools
     bolt
     libinput 
     networkmanager-openvpn
