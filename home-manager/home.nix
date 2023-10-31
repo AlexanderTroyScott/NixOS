@@ -103,10 +103,10 @@
       rofi             # Menu
       mpd
       rofi-power-menu  # Power Menu
-      udiskie          # Auto Mounting
-      xorg.xrandr      # Screen Settings
-      xorg.xinit
-      xorg.xorgserver
+      #udiskie          # Auto Mounting
+      #xorg.xrandr      # Screen Settings
+      #xorg.xinit
+      #xorg.xorgserver
       autotiling       # Tiling Script
       grim             # Image Grabber
       slurp            # Region Selector
