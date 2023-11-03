@@ -165,8 +165,6 @@ environment.systemPackages = with pkgs; [
       wl-clipboard     # Console Clipboard
       wlr-randr        # Screen Settings
       pamixer          # Pulse Audio Mixer
-      #swaybg           # Background
-      #swaylock-fancy   # Screen Locker
       waybar           # Bar
       hyprpaper
       networkmanagerapplet

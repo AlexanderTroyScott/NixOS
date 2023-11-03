@@ -9,7 +9,7 @@ boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-  #boot.kernelParams = [ ]; #12th gen alder lake; see https://nixos.wiki/wiki/Intel_Graphics
+  #12th gen alder lake; see https://nixos.wiki/wiki/Intel_Graphics
 
   #Graphics Settings
   hardware = {
@@ -31,12 +31,12 @@ boot = {
   #Power Optimization
   boot.kernel.sysctl."vm.dirty_writeback_centisecs" = 1500; # 15 seconds
   #TouchPad
-  #services.xserver.libinput.enable = true; #Expected to be enabled by default
+  services.xserver.libinput.enable = true; #Expected to be enabled by default
   #Power Settings
   services.power-profiles-daemon.enable = false;
   services.tlp = {
-  enable = true;
-  settings = {
+    enable = true;
+    settings = {
     CPU_BOOST_ON_BAT = "0";
     SATA_LINKPWR_ON_AC = "med_power_with_dipm";
     SATA_LINKPWR_ON_BAT = "min_power";
@@ -50,8 +50,8 @@ boot = {
     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
     ENERGY_PERFORMANCE_PREFERENCE_ON_BAT = "power";
     CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+    };
   };
-};
   services.undervolt = {
     enable = true;
     tempBat = -25;
@@ -104,8 +104,6 @@ boot = {
       enable = true;
       xwayland.enable = true;
     };
-    #sway.enable = true;
-    #hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
 
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
