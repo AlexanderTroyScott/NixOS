@@ -64,14 +64,57 @@
   # home.packages = with pkgs; [ steam ];
   #home.packages = with pkgs; [ hyprland ];
 
-
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
-
+  
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
 
+ xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "application/pdf" = ["org.gnome.Evince.desktop"];
+      "x-scheme-handler/http" = "vivaldi.desktop";
+      "x-scheme-handler/https" = "vivaldi.desktop";
+    };
+    defaultApplications = {
+      "application/pdf" = ["org.gnome.Evince.desktop"];
+      "x-scheme-handler/http" = "vivaldi.desktop";
+      "x-scheme-handler/https" = "vivaldi.desktop";
+    };
+  };
+   gtk = {
+      enable = true;
+      font.name = "TeX Gyre Adventor 10";
+      theme = {
+        name = "Juno";
+        package = pkgs.juno-theme;
+      };
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+
+      gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+      gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+   };
+
+
+
+
+
+
+   
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
 }

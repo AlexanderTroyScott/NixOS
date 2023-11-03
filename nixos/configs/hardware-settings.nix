@@ -116,11 +116,5 @@ boot = {
     NIXOS_OZONE_WL = "1";
   };
 
-  security.pam.services.swaylock = {
-    text = ''
-    auth include login
-    '';
-  };
-
 
 }

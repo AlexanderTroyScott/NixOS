@@ -89,11 +89,35 @@
       options = "--delete-older-than 7d";
     };
   };
+  #Timezone and Keyboard
+  #time.timeZone = "America/Chicago";
+  #time.timeZone = "Europe/London";
+  services.automatic-timezoned.enable = true;
+  services.timesyncd.enable = true;
+  services.geoclue2.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  #Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+ services.xserver.displayManager.sddm.enable = true; #This line enables sddm
+ services.xserver.enable = true; 
+ # security.pam.services.swaylock = {};
+
 environment.systemPackages = with pkgs; [
       # Terminal
       btop              # Resource Manager
       ranger            # File Manager
-      kitty
       unzip
       feh               # Image Viewer
       pavucontrol       # Audio Control
@@ -124,7 +148,7 @@ environment.systemPackages = with pkgs; [
       openvpn
       dunst            # Notifications
       libnotify        # Dependency for Dunst
-      glxinfo           # Get graphics card info
+      glxinfo          # Get graphics card info
       neofetch
       wofi
       rofi             # Menu
@@ -137,7 +161,6 @@ environment.systemPackages = with pkgs; [
       autotiling       # Tiling Script
       grim             # Image Grabber
       slurp            # Region Selector
-      swayidle         # Idle Management Daemon
       wev              # Input Viewer
       wl-clipboard     # Console Clipboard
       wlr-randr        # Screen Settings
@@ -146,7 +169,6 @@ environment.systemPackages = with pkgs; [
       #swaylock-fancy   # Screen Locker
       waybar           # Bar
       hyprpaper
-      swaylock-effects
       networkmanagerapplet
       blueman          # Bluetooth
       deluge           # Torrents
@@ -163,24 +185,50 @@ environment.systemPackages = with pkgs; [
       libreoffice      # Office Tools
       firefox
       #xdg-desktop-portal-hyprland
+      xdg_utils
       wireguard-tools
       #bolt
       #libinput 
       #networkmanager-openvpn 
     ];
   # FIXME: Add the rest of your current configuration
-  #security.pam.services.swaylock = {};
   programs.hyprland = {
     enable = true;  
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     xwayland.enable = true;  
   };
+  security.pam.services.swaylock = {
+    text = ''
+    auth include login
+   '';
+  };
 
+fonts= {
+  packages = with pkgs; [                # Fonts
+    carlito                                 # NixOS
+    vegur                                   # NixOS
+    source-code-pro
+    jetbrains-mono
+    font-awesome                            # Icons
+    corefonts                               # MS
+    # nerdfonts
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+  ];};
 
+  # Font configuration
+  fonts.fontconfig.defaultFonts = {
+    monospace = [ "FiraCode" ];
+    sansSerif = [ "FiraCode" ];
+    serif = [ "FiraCode" ];
+    #monospace = [ "FiraCode" ];
+    emoji =[ "FiraCode" ];
+    #monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
+    #emoji = ["Noto Color Emoji"];
+  };
 
   # TODO: Set your hostname
   networking.hostName = "MiBook";
-
+  networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
 

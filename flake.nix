@@ -11,7 +11,7 @@
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
