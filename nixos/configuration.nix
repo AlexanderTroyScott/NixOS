@@ -90,13 +90,14 @@
     };
   };
   #Timezone and Keyboard
-  #time.timeZone = "America/Chicago";
+  time.timeZone = "America/Chicago";
   #time.timeZone = "Europe/London";
-  services.automatic-timezoned.enable = true;
   services.timesyncd.enable = true;
-  services.geoclue2.enable = true;
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  #services.automatic-timezoned.enable = true;
+  #services.timesyncd.enable = true;
+  #services.geoclue2.enable = true;
+  #services.avahi.enable = true;
+  #services.avahi.nssmdns = true;
   #Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -115,29 +116,10 @@
  # security.pam.services.swaylock = {};
 
 environment.systemPackages = with pkgs; [
-      # Terminal
-      btop              # Resource Manager
-      ranger            # File Manager
-      unzip
-      feh               # Image Viewer
-      pavucontrol       # Audio Control
-      vlc               # Media Player
-      pinta             # Image editor
       #qt5.qtwayland
       #qt6.qtwayland
       #libsForQt5.qtinstaller
       #libsForQt5.audiotube
-      vivaldi
-      vscode
-      #gnome.file-roller # Archive Manager
-      okular            # PDF Viewer
-      pcmanfm           # File Manager
-      cinnamon.nemo     # File Manager
-      p7zip             # Zip Encryption
-      rsync             # Syncer - $ rsync -r dir1/ dir2/
-      unzip             # Zip Files
-      unrar             # Rar Files
-      zip               # Zip
       libva
       libva-utils            # Video Acceleration Info (intel)
       git              # Repositories
@@ -165,23 +147,12 @@ environment.systemPackages = with pkgs; [
       wl-clipboard     # Console Clipboard
       wlr-randr        # Screen Settings
       pamixer          # Pulse Audio Mixer
-      waybar           # Bar
-      hyprpaper
       networkmanagerapplet
       blueman          # Bluetooth
-      deluge           # Torrents
-      discord          # Chat
-      betterdiscordctl
-      #prismlauncher    # MC Launcher
-      steam            # Games
       #xterm            # Terminal
       cbatticon        # Battery Notifications
       blueman          # Bluetooth
       light            # Display Brightness
-      obsidian
-      #logseq          # Uses electron-24.8.6 which is insecure, waiting for update
-      libreoffice      # Office Tools
-      firefox
       #xdg-desktop-portal-hyprland
       xdg_utils
       wireguard-tools

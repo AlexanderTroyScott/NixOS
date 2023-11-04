@@ -62,7 +62,40 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-  #home.packages = with pkgs; [ hyprland ];
+  home.packages = with pkgs; [ 
+    #libnotify
+    #programs
+    btop              # Resource Manager
+    ranger            # File Manager
+    unzip
+    feh               # Image Viewer
+    pavucontrol       # Audio Control
+    vlc               # Media Player
+    pinta             # Image editor
+    discord          # Chat
+    betterdiscordctl # Discord Themes
+    youtube-music
+    vivaldi
+    firefox
+    vscode
+    deluge           # Torrents
+    steam            # Games
+    waybar           # Bar
+    hyprpaper
+    obsidian
+    #logseq          # Uses electron-24.8.6 which is insecure, waiting for update
+    libreoffice      # Office Tools
+    #File management
+    #gnome.file-roller # Archive Manager
+    okular            # PDF Viewer
+    pcmanfm           # File Manager
+    cinnamon.nemo     # File Manager
+    p7zip             # Zip Encryption
+    rsync             # Syncer - $ rsync -r dir1/ dir2/
+    unzip             # Zip Files
+    unrar             # Rar Files
+    zip               # Zip
+    ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
