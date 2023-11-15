@@ -153,8 +153,8 @@ environment.systemPackages = with pkgs; [
       cbatticon        # Battery Notifications
       blueman          # Bluetooth
       light            # Display Brightness
-      #xdg-desktop-portal-hyprland
-      xdg_utils
+      xdg-desktop-portal-hyprland
+      #xdg_utils
       wireguard-tools
       #bolt
       #libinput 

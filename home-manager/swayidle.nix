@@ -15,7 +15,7 @@
       #{ event = "after-resume"; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
     ];
     timeouts = [
-      { timeout = 60; command = "${pkgs.swaylock-effects}/bin/swaylock -f --screenshot --effect-blur 5x7 --grace 5 --clock --indicator";}
+      { timeout = 150; command = "${pkgs.swaylock-effects}/bin/swaylock -f --screenshot --effect-blur 5x7 --grace 30 --clock --indicator";}
       #{ timeout = 1200; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
     ];
   };

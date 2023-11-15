@@ -81,6 +81,9 @@
     deluge           # Torrents
     steam            # Games
     waybar           # Bar
+    lutris
+    wine-wayland
+    #pcloud
     hyprpaper
     obsidian
     #logseq          # Uses electron-24.8.6 which is insecure, waiting for update
@@ -95,6 +98,8 @@
     unzip             # Zip Files
     unrar             # Rar Files
     zip               # Zip
+    trilium-desktop
+    parsec-bin
     ];
 
   # Enable home-manager and git
@@ -104,19 +109,24 @@
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
 
+
+
  xdg.mimeApps = {
     enable = true;
     associations.added = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
-      "x-scheme-handler/http" = "vivaldi.desktop";
-      "x-scheme-handler/https" = "vivaldi.desktop";
+      "text/html" = [ "vivaldi-stable.desktop" ];
+      "text/xml" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
     };
     defaultApplications = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
-      "x-scheme-handler/http" = "vivaldi.desktop";
-      "x-scheme-handler/https" = "vivaldi.desktop";
+      "text/html" = [ "vivaldi-stable.desktop" ];
+      "text/xml" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+      "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
     };
   };
+
    gtk = {
       enable = true;
       font.name = "TeX Gyre Adventor 10";
