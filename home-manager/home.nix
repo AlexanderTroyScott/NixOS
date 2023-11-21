@@ -65,6 +65,7 @@
   home.packages = with pkgs; [ 
     #libnotify
     #programs
+    insync
     btop              # Resource Manager
     ranger            # File Manager
     unzip
@@ -86,6 +87,7 @@
     #pcloud
     hyprpaper
     obsidian
+    appflowy
     #logseq          # Uses electron-24.8.6 which is insecure, waiting for update
     libreoffice      # Office Tools
     #File management
