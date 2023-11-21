@@ -19,7 +19,7 @@
   services.github-runner.name = "laptop";
   services.github-runner.user = "alex";
   services.github-runner.workDir = "/tmp/Github";
-  services.github-runner.nodeRuntimes = ["node16"];
+  services.github-runner.nodeRuntimes = ["node20"];
   services.github-runner.extraPackages = with pkgs; [
     nixos-rebuild
     networkmanager
