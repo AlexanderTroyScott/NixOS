@@ -132,8 +132,7 @@ environment.systemPackages = with pkgs; [
       libnotify        # Dependency for Dunst
       glxinfo          # Get graphics card info
       neofetch
-      wofi
-      rofi             # Menu
+      # Menu
       mpd
       rofi-power-menu  # Power Menu
       #udiskie          # Auto Mounting
