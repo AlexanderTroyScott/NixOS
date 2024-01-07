@@ -61,13 +61,8 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
-      permittedInsecurePackages = [
-        "nodejs-16.20.2"
-      ];
     };
   };
-
-    
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
@@ -152,13 +147,15 @@ environment.systemPackages = with pkgs; [
       cbatticon        # Battery Notifications
       blueman          # Bluetooth
       light            # Display Brightness
+      xdg-desktop-portal
       xdg-desktop-portal-hyprland
       #xdg_utils
       wireguard-tools
       #bolt
-      #libinput 
+      libinput 
       #networkmanager-openvpn 
     ];
+  xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
   # FIXME: Add the rest of your current configuration
   programs.hyprland = {
     enable = true;  
@@ -170,6 +167,19 @@ environment.systemPackages = with pkgs; [
     auth include login
    '';
   };
+  services.xserver.libinput = {
+    enable = true;
+    touchpad = {
+      dev = "/dev/input/event6";
+      sendEventsMode = "enabled";
+      scrollMethod = "twofinger"; #one of "twofinger", "edge", "button", "none"
+      naturalScrolling = true; # Enables natural/reverse scrolling
+      tapping = true; # Enables tap-to-click
+      tappingDragLock = false; # Enables tap-and-drag
+    };
+  };
+
+#services.xserver.libinput.touchpad.tappingDragLock = false;
 
 fonts= {
   packages = with pkgs; [                # Fonts
@@ -216,7 +226,9 @@ fonts= {
       extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"];
     };
   };
-
+networking.extraHosts = ''
+  192.168.190.196:8006 proxmox.actuary.dev
+'';
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
