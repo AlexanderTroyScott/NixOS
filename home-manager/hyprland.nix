@@ -38,11 +38,12 @@
           kb_model = pc104
           kb_options =
           kb_rules =
-
           follow_mouse = 1
-
+          scroll_method = 2fg
+          scroll_button = 9 #escape
           touchpad {
               natural_scroll = yes
+              tap-to-click = no
           }
 
           sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
@@ -54,8 +55,8 @@
           gaps_in = 5
           gaps_out = 20
           border_size = 2
-          col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-          col.inactive_border = rgba(595959aa)
+          col.active_border = rgba(6272a4ff) rgba(bd93f9ff) 45deg
+          col.inactive_border = rgba(44475aff)
           resize_on_border = true
           layout = dwindle
       }
@@ -118,8 +119,16 @@
       # Example windowrule v2
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+      windowrulev2 = float,title:(Picture in picture),class:()
+      windowrulev2 = opacity 0.05 override 1.0 override,title:(Picture in picture),class:()
+      windowrulev2 = pin,title:(Picture in picture)
+      windowrulev2 = move 1046 708,class:(), title:(Picture in picture)
 
-
+      #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
+      #windowrulev2 = float, class:^(firefox)$, title:^(Picture-in-Picture)$
+      #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
+      #windowrulev2 = size 800 450, class:^(firefox)$, title:^(Picture-in-Picture)$
+      windowrulev2 = size 848 468, title:(Picture in picture), class:()
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       $mainMod = SUPER
 
@@ -133,11 +142,11 @@
       bind = $mainMod, E, exec, dolphin
       bind = $mainMod, L, exec, $lockscreen
       bind = $mainMod, V, togglefloating, 
-      bind = $mainMod, R, exec, wofi --show drun
+      bind = $mainMod, R, exec, fuzzel
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
       bind = $mainMod, X, exec, grim -g "$(slurp -d)" - | wl-copy -t image/png
-      bind = $mainMod, grave, exec, wofi --show run
+      bind = $mainMod, grave, exec, fuzzel
       bind = , switch:off:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, 3840x2400@60, 0x0, auto"
       bind = , switch:on:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, disable"
       #grave is ~
