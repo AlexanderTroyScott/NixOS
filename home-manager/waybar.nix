@@ -1,3 +1,4 @@
+#https://github.com/Alexays/Waybar/wiki/Module:-Hyprland
 { config, lib, pkgs, unstable, hyprland, user, home-manager, ... }:
 
 {  
@@ -18,14 +19,15 @@
       height = 30;
       #width = 3840;
       modules-left = ["clock" "hyprland/workspaces"];
-      modules-center = [];
+      modules-center = ["hyprland/window"];
       modules-right = ["temperature"
         "custom/power_profile"
         "battery"
         "backlight"
         "pulseaudio"
         "pulseaudio#microphone"
-        "tray"];
+        "tray"
+        ];
 
      tray ={
         icon-size = 15;
@@ -65,6 +67,24 @@
             default = ["" "" ""];
         };
     };
+
+
+"hyprland/workspaces" = {
+    "format" = "{name}: {icon}";
+	"format-icons" = {
+		"1" = "";
+		"2" = "";
+		"3" = "";
+		"4" = "";
+		"5" = "";
+		"active" = "";
+		"default" = "";
+	};
+    "persistent-workspaces" = {
+             "*" = 5;
+             "HDMI-A-1" = 3;
+       };
+};
 
     network = {
         format-wifi = "  {signalStrength}%";
