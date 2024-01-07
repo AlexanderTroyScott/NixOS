@@ -17,7 +17,7 @@
       #gtk-layer-shell = true;
       height = 30;
       #width = 3840;
-      modules-left = ["clock"];
+      modules-left = ["clock" "hyprland/workspaces"];
       modules-center = [];
       modules-right = ["temperature"
         "custom/power_profile"
