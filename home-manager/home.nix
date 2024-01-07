@@ -59,7 +59,9 @@
     username = "alex";
     homeDirectory = "/home/alex";
   };
-
+ nixpkgs.config.permittedInsecurePackages = [
+                "electron-25.9.0"
+              ];
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
@@ -74,8 +76,8 @@
     pavucontrol       # Audio Control
     vlc               # Media Player
     pinta             # Image editor
-    discord          # Chat
-    betterdiscordctl # Discord Themes
+    discord           # Chat
+    betterdiscordctl  # Discord Themes
     youtube-music
     vivaldi
     firefox
@@ -85,14 +87,11 @@
     waybar           # Bar
     lutris
     wine-wayland
-    #pcloud
     hyprpaper
-    obsidian
+    #obsidian
     appflowy
     #logseq          # Uses electron-24.8.6 which is insecure, waiting for update
     libreoffice      # Office Tools
-    #File management
-    #gnome.file-roller # Archive Manager
     okular            # PDF Viewer
     pcmanfm           # File Manager
     cinnamon.nemo     # File Manager
@@ -101,10 +100,17 @@
     unzip             # Zip Files
     unrar             # Rar Files
     zip               # Zip
-    trilium-desktop
-    parsec-bin
+    #trilium-desktop
+    #parsec-bin
     pcloud
     fuzzel
+    anytype
+    #Utilities
+    dnsutils
+    moonlight-qt
+    obs-studio
+    xplorer
+    powertop
     ];
 
   # Enable home-manager and git
@@ -116,21 +122,21 @@
 
 
 
- xdg.mimeApps = {
-    enable = true;
-    associations.added = {
-      "text/html" = [ "vivaldi-stable.desktop" ];
-      "text/xml" = [ "vivaldi-stable.desktop" ];
-      "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
-      "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
-    };
-    defaultApplications = {
-      "text/html" = [ "vivaldi-stable.desktop" ];
-      "text/xml" = [ "vivaldi-stable.desktop" ];
-      "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
-      "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
-    };
-  };
+ #xdg.mimeApps = {
+ #   enable = true;
+ #   associations.added = {
+ #     "text/html" = [ "vivaldi-stable.desktop" ];
+ #     "text/xml" = [ "vivaldi-stable.desktop" ];
+ #     "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+ #     "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
+ #   };
+ #   defaultApplications = {
+ #     "text/html" = [ "vivaldi-stable.desktop" ];
+ #     "text/xml" = [ "vivaldi-stable.desktop" ];
+ #     "x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+ #     "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
+ #   };
+ # };
 
    gtk = {
     enable = true;
@@ -145,9 +151,11 @@
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme=1;
+      #gtk-cursor-theme-size = 12;
     };
     gtk4.extraConfig = {      
       gtk-application-prefer-dark-theme=1;
+      #gtk-cursor-theme-size = 12;
     };
    };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
