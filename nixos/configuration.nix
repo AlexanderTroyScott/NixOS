@@ -148,6 +148,7 @@ environment.systemPackages = with pkgs; [
       blueman          # Bluetooth
       light            # Display Brightness
       xdg-desktop-portal
+      xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
       #xdg_utils
       wireguard-tools
