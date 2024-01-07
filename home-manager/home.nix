@@ -25,6 +25,7 @@
     ./swayidle.nix
     ./waybar.nix
     ./fuzzel.nix
+    ./hyprpaper.nix
   ];
 
   nixpkgs = {
