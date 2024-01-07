@@ -29,7 +29,7 @@
       # source = ~/.config/hypr/myColors.conf
 
       # Some default env vars.
-      env = XCURSOR_SIZE,36
+      #env = XCURSOR_SIZE,48
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
@@ -114,6 +114,13 @@
           sensitivity = -0.5
       }
 
+      misc {
+        force_default_wallpaper = 0
+        disable_hyprland_logo = 1
+        disable_splash_rendering = 1
+        disable_autoreload = true #This is handled with nixos rebuild
+
+     }
       # Example windowrule v1
       # windowrule = float, ^(kitty)$
       # Example windowrule v2
@@ -198,6 +205,11 @@
 
       #windowrulev2 = float,class:(kitty)
       #windowrulev2 = fullscreen,class:(vivaldi-stable)
+      windowrulev2 = workspace:(coding),title:(Visual Studio Code)
+
+      workspace = 2, name:browser, monitor:eDP-1, default:true
+      workspace = 1, name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:eDP-1
+
       exec-once = waybar & hyprpaper & nm-applet & blueman-applet
   '';
   };

@@ -106,8 +106,8 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
- services.xserver.displayManager.sddm.enable = true; #This line enables sddm
- services.xserver.enable = true; 
+ #services.xserver.displayManager.sddm.enable = true; #This line enables sddm
+ #services.xserver.enable = true; 
  # security.pam.services.swaylock = {};
 
 environment.systemPackages = with pkgs; [
@@ -153,7 +153,7 @@ environment.systemPackages = with pkgs; [
       #xdg_utils
       wireguard-tools
       #bolt
-      libinput 
+      #libinput 
       #networkmanager-openvpn 
     ];
   xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 

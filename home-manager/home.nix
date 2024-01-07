@@ -1,5 +1,8 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
+let 
+  cursorSize = 28;
+in
 {
   inputs,
   outputs,
@@ -138,7 +141,12 @@
  #     "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
  #   };
  # };
-
+  home.pointerCursor = {
+    package = pkgs.catppuccin-cursors.latteDark;
+    name = "Catppuccin-Latte-Dark-Cursors";
+    size = cursorSize;
+    gtk.enable = true;
+  };
    gtk = {
     enable = true;
     font.name = "TeX Gyre Adventor 10";
@@ -147,16 +155,16 @@
       package = pkgs.juno-theme;
     };
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      package = (pkgs.catppuccin-papirus-folders.override { flavor = "Mocha"; accent = "lavender"; });
+      name  = "Papirus-Dark";
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme=1;
-      #gtk-cursor-theme-size = 12;
+      gtk-cursor-theme-size = cursorSize;
     };
     gtk4.extraConfig = {      
       gtk-application-prefer-dark-theme=1;
-      #gtk-cursor-theme-size = 12;
+      gtk-cursor-theme-size = cursorSize;
     };
    };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
