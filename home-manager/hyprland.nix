@@ -53,7 +53,7 @@
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
           gaps_in = 5
-          gaps_out = 20
+          gaps_out = 7
           border_size = 2
           col.active_border = rgba(6272a4ff) rgba(bd93f9ff) 45deg
           col.inactive_border = rgba(44475aff)
@@ -198,9 +198,6 @@
 
       #windowrulev2 = float,class:(kitty)
       #windowrulev2 = fullscreen,class:(vivaldi-stable)
-      #disable_hyprland_logo = true
-      #disable_splash_rendering = true
-      
       exec-once = waybar & hyprpaper & nm-applet & blueman-applet
   '';
   };
