@@ -17,7 +17,7 @@
     # hardware.url = "github:nixos/nixos-hardware";
     # hyprland
     hyprland = {                                                            # Official Hyprland flake
-        url = "github:vaxerski/Hyprland";                                   # Add "hyprland.nixosModules.default" to the host modules
+        url = "github:hyprwm/Hyprland";                                   # Add "hyprland.nixosModules.default" to the host modules
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
     # Shameless plug: looking for a way to nixify your themes and make
