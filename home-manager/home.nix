@@ -115,6 +115,7 @@ in
     obs-studio
     xplorer
     powertop
+    dive # discover docker images
     ];
 
   # Enable home-manager and git
