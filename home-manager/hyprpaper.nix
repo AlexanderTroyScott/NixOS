@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-    packages = with pkgs; [
+    home.packages = with pkgs; [
         hyprpaper
     ];
   # https://github.com/hyprwm/hyprpaper
