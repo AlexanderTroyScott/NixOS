@@ -9,7 +9,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    #xwayland.enable = true;
     extraConfig = ''
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor=desc:Samsung Display Corp. 0x4173,3840x2400,0x0,auto
@@ -19,7 +19,10 @@
       monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
       #right
       monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
-
+      #home monitors
+      #left
+      monitor=desc:LG Electronics LG HDR 4k 0x0001D608,3840x2160,0x0,1
+      monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160,0x2160,1
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
       # Execute your favorite apps at launch
@@ -71,10 +74,16 @@
           #blur_passes = 1
           #blur_new_optimizations = on
 
-          drop_shadow = yes
-          shadow_range = 4
-          shadow_render_power = 3
-          col.shadow = rgba(1a1a1aee)
+          #drop_shadow = yes
+          #shadow_range = 4
+          #shadow_render_power = 3
+          #col.shadow = rgba(1a1a1aee)
+
+          #Battery optimisations
+          blur {
+            enabled = false
+          }
+          drop_shadow = false
       }
 
       animations {
@@ -119,7 +128,8 @@
         disable_hyprland_logo = 1
         disable_splash_rendering = 1
         disable_autoreload = true #This is handled with nixos rebuild
-
+        #Battery optimisations
+        vfr = true
      }
       # Example windowrule v1
       # windowrule = float, ^(kitty)$

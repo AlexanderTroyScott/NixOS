@@ -24,6 +24,7 @@
     ./configs/github-runner.nix
     ./configs/hardware-settings.nix
     ./configs/wireguard.nix
+    #./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     #Home manager
@@ -106,13 +107,12 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
- #services.xserver.displayManager.sddm.enable = true; #This line enables sddm
- #services.xserver.enable = true; 
+
  # security.pam.services.swaylock = {};
 
 environment.systemPackages = with pkgs; [
-      #qt5.qtwayland
-      #qt6.qtwayland
+      qt5.qtwayland
+      qt6.qtwayland
       #libsForQt5.qtinstaller
       #libsForQt5.audiotube
       libva
@@ -143,44 +143,35 @@ environment.systemPackages = with pkgs; [
       pamixer          # Pulse Audio Mixer
       networkmanagerapplet
       blueman          # Bluetooth
-      #xterm            # Terminal
       cbatticon        # Battery Notifications
       blueman          # Bluetooth
       light            # Display Brightness
-      xdg-desktop-portal
+      #xdg-desktop-portal
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
       #xdg_utils
       wireguard-tools
       #bolt
-      #libinput 
-      #networkmanager-openvpn 
+      #networkmanager-openvpn
     ];
-  xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
+  xdg.portal = { 
+    enable = true; 
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+  };
+  services.upower.enable = true;
+  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
+  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
+  #xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
   # FIXME: Add the rest of your current configuration
   programs.hyprland = {
     enable = true;  
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    xwayland.enable = true;  
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
   };
   security.pam.services.swaylock = {
     text = ''
     auth include login
    '';
   };
-  services.xserver.libinput = {
-    enable = true;
-    touchpad = {
-      dev = "/dev/input/event6";
-      sendEventsMode = "enabled";
-      scrollMethod = "twofinger"; #one of "twofinger", "edge", "button", "none"
-      naturalScrolling = true; # Enables natural/reverse scrolling
-      tapping = true; # Enables tap-to-click
-      tappingDragLock = false; # Enables tap-and-drag
-    };
-  };
-
-#services.xserver.libinput.touchpad.tappingDragLock = false;
 
 fonts= {
   packages = with pkgs; [                # Fonts

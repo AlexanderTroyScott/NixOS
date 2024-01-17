@@ -29,6 +29,7 @@ in
     ./waybar.nix
     ./fuzzel.nix
     ./hyprpaper.nix
+    ./vscode.nix
   ];
 
   nixpkgs = {
@@ -85,16 +86,13 @@ in
     youtube-music
     vivaldi
     firefox
-    vscode
     deluge           # Torrents
     steam            # Games
-    waybar           # Bar
     lutris
     wine-wayland
-    hyprpaper
     #obsidian
-    appflowy
-    #logseq          # Uses electron-24.8.6 which is insecure, waiting for update
+    #appflowy
+    #logseq          # electron-24.8.6 which is insecure, waiting for update
     libreoffice      # Office Tools
     okular            # PDF Viewer
     pcmanfm           # File Manager
@@ -115,6 +113,8 @@ in
     obs-studio
     xplorer
     powertop
+    dive
+    baobab
     ];
 
   # Enable home-manager and git
@@ -155,7 +155,7 @@ in
       package = pkgs.juno-theme;
     };
     iconTheme = {
-      package = (pkgs.catppuccin-papirus-folders.override { flavor = "Mocha"; accent = "lavender"; });
+      package = (pkgs.catppuccin-papirus-folders.override { flavor = "mocha"; accent = "lavender"; });
       name  = "Papirus-Dark";
     };
     gtk3.extraConfig = {

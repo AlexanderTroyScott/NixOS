@@ -30,8 +30,7 @@ boot = {
   
   #Power Optimization
   boot.kernel.sysctl."vm.dirty_writeback_centisecs" = 1500; # 15 seconds
-  #TouchPad
-  services.xserver.libinput.enable = true; #Expected to be enabled by default
+
   #Power Settings
   services.power-profiles-daemon.enable = false;
   services.tlp = {
@@ -102,7 +101,6 @@ boot = {
     light.enable = true;
     hyprland = {
       enable = true;
-      xwayland.enable = true;
     };
   };
 
@@ -113,6 +111,5 @@ boot = {
     #if cursor is invisible
     NIXOS_OZONE_WL = "1";
   };
-
 
 }
