@@ -146,22 +146,22 @@ environment.systemPackages = with pkgs; [
       cbatticon        # Battery Notifications
       blueman          # Bluetooth
       light            # Display Brightness
-      #xdg-desktop-portal
+      xdg-desktop-portal
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
-      #xdg_utils
+      xdg_utils
       wireguard-tools
       #bolt
       #networkmanager-openvpn
     ];
   xdg.portal = { 
     enable = true; 
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+    #extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
   };
   services.upower.enable = true;
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
-  #xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
+  xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
   # FIXME: Add the rest of your current configuration
   programs.hyprland = {
     enable = true;  
