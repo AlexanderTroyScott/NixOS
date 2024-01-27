@@ -71,6 +71,13 @@
           hyprland.nixosModules.default
         ];
       };
+      gpu = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/configuration-vm-gpu.nix
+          hyprland.nixosModules.default
+        ];
+      };
     };
   };
 }
