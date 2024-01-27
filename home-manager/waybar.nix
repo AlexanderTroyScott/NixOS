@@ -1,73 +1,13 @@
+#https://github.com/Alexays/Waybar/wiki/Module:-Hyprland
 { config, lib, pkgs, unstable, hyprland, user, home-manager, ... }:
 
-{ 
+{  
+   
 
-  home = {
-    stateVersion = "23.05";
-  #file = {
-  #".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/alex/Documents/NixOS/hosts/laptop/.config/hypr";
-  #};
 
-  };
-  
-   gtk = {
-      enable = true;
-      font.name = "TeX Gyre Adventor 10";
-      theme = {
-        name = "Juno";
-        package = pkgs.juno-theme;
-      };
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
-
-      gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-      gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-   };
-
-  services.swayidle = {
-    enable = true;
-    events = [
-      { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock";}
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock";}
-      #{ event = "after-resume"; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
-    ];
-    timeouts = [
-      { timeout = 20; command = "${pkgs.swaylock}/bin/swaylock";}
-      #{ timeout = 1200; command = "${pkgs.sway}/bin/swaymsg \"output * toggle\"";}
-    ];
-  };
-
-  
-  home.packages = with pkgs; [libva];
-  
-  wayland.windowManager.hyprland = {
-    enable = true;
-    extraConfig = ''
-    source=/home/alex/Documents/NixOS/hosts/laptop/.config/hypr/hyprland.conf
-  '';
-  };
 
   programs = {
-    home-manager.enable = true;
-    kitty = {
-      enable = true;
-      settings = {
-        confirm_os_window_close = 0;
-      };
-    };
-
-    waybar = {
+     waybar = {
       enable = true;
       settings = [{
       layer = "top";
@@ -78,15 +18,16 @@
       #gtk-layer-shell = true;
       height = 30;
       #width = 3840;
-      modules-left = ["clock"];
-      modules-center = [];
+      modules-left = ["clock" "hyprland/workspaces"];
+      modules-center = ["hyprland/window"];
       modules-right = ["temperature"
         "custom/power_profile"
         "battery"
         "backlight"
         "pulseaudio"
         "pulseaudio#microphone"
-        "tray"];
+        "tray"
+        ];
 
      tray ={
         icon-size = 15;
@@ -127,6 +68,24 @@
         };
     };
 
+
+"hyprland/workspaces" = {
+    "format" = "{name}: {icon}";
+	"format-icons" = {
+		"1" = "";
+		"2" = "";
+		"3" = "";
+		"4" = "";
+		"5" = "";
+		"active" = "";
+		"default" = "";
+	};
+    "persistent-workspaces" = {
+             "*" = 5;
+             "HDMI-A-1" = 3;
+       };
+};
+
     network = {
         format-wifi = "  {signalStrength}%";
         format-ethernet = "{ipaddr}/{cidr} ";
@@ -161,16 +120,6 @@
         critical-threshold = 80;
         format-critical = "{temperatureC}°C ";
     };
-
-    #xdg.mimeApps = {
-    #  enable = true;
-    #  associations.added = {
-    #    "application/pdf" = ["org.gnome.Evince.desktop"];
-    #  };
-    #  defaultApplications = {
-    #    "application/pdf" = ["org.gnome.Evince.desktop"];
-    #  };
-    #};
     
     battery = {
         states = {
@@ -187,7 +136,7 @@
 
       }
       ];
-      style = ''
+  style = ''
 * {
     border: none;
     border-radius: 0px;

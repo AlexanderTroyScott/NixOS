@@ -5,12 +5,7 @@
   git
   github-runner
   ];
-  nixpkgs.config = {
-  allowUnfree = true;
-    permittedInsecurePackages = [
-      "nodejs-16.20.2"
-    ];
-  };
+
   services.github-runner.enable = true;
   services.github-runner.url = "https://github.com/AlexanderTroyScott/NixOS";
   #Token needs to have read/write Administration priviledges to create runners.
@@ -24,7 +19,7 @@
   services.github-runner.name = "laptop";
   services.github-runner.user = "alex";
   services.github-runner.workDir = "/tmp/Github";
-  services.github-runner.nodeRuntimes = ["node16"];
+  services.github-runner.nodeRuntimes = ["node20"];
   services.github-runner.extraPackages = with pkgs; [
     nixos-rebuild
     networkmanager
