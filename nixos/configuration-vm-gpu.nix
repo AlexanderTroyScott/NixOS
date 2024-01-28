@@ -41,7 +41,7 @@
   };
   boot = {
     # Boot options
-    #kernelPackages = pkgs.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_testing;
     kernelModules = ["!" "thunderbolt" "uinput"];
     #kernelParams = [ "bolt" "i915.force_probe=56a0" ];
     loader.systemd-boot.enable = true;
