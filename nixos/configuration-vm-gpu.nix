@@ -39,6 +39,29 @@
       alex = import ../home-manager/home.nix;
     };
   };
+  boot = {
+    # Boot options
+    #kernelPackages = pkgs.linuxPackages_testing;
+    kernelModules = ["!" "thunderbolt" "uinput"];
+    #kernelParams = [ "bolt" "i915.force_probe=56a0" ];
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
+  services.avahi.publish.userServices = true;
+  hardware = {
+    opengl.enable = true;
+  };
+  hardware.opengl.driSupport32Bit = true;
+  hardware.steam-hardware.enable = true;
+  #Intel CPU opencl support
+  hardware.opengl.extraPackages = with pkgs; [
+  intel-media-driver        #GPU acceleration 
+  intel-compute-runtime     #OpenComputeLanguage
+  intel-ocl                 #OpenComputeLanguage
+  ];
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
+  services.xserver.enable = false;
+  #services.xserver.autorun = false;
 
   nixpkgs = {
     # You can add overlays here
@@ -115,8 +138,7 @@ environment.systemPackages = with pkgs; [
       qt6.qtwayland
       #libsForQt5.qtinstaller
       #libsForQt5.audiotube
-      libva
-      libva-utils            # Video Acceleration Info (intel)
+
       git              # Repositories
       pciutils         # Computer Utility Info
       pipewire         # Sound
@@ -151,6 +173,11 @@ environment.systemPackages = with pkgs; [
       xdg-desktop-portal-hyprland
       xdg_utils
       wireguard-tools
+      sunshine
+        # For Intel/AMD
+  libva-utils # This provides vainfo
+  # FFmpeg with hardware acceleration support
+  ffmpeg-full # or another variant that supports hardware encoding
       #bolt
       #networkmanager-openvpn
     ];
@@ -172,6 +199,17 @@ environment.systemPackages = with pkgs; [
     auth include login
    '';
   };
+
+programs.nix-ld.enable=true;
+programs.mtr.enable=true;
+programs.gnupg.agent = {
+  enable=true;
+  enableSSHSupport = true;
+};
+
+
+
+
 
 fonts= {
   packages = with pkgs; [                # Fonts
@@ -197,10 +235,9 @@ fonts= {
   };
 
   # TODO: Set your hostname
-  networking.hostName = "MiBook";
+  networking.hostName = "VM-GPU";
   networking.networkmanager.enable = true;
-  # TODO: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.systemd-boot.enable = true;
+
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
@@ -218,6 +255,8 @@ fonts= {
       extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"];
     };
   };
+  networking.firewall.enable=false;
+  services.openssh.enable=true;
 networking.extraHosts = ''
   192.168.190.196:8006 proxmox.actuary.dev
 '';
