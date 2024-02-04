@@ -27,6 +27,8 @@
     #./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration-vm-gpu.nix
+    ./configs/steam.nix
+    ./configs/sunshine.nix
     #Home manager
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -41,17 +43,30 @@
   };
   boot = {
     # Boot options
-    kernelPackages = pkgs.linuxPackages_testing;
-    kernelModules = ["!" "thunderbolt" "uinput"];
-    #kernelParams = [ "bolt" "i915.force_probe=56a0" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
+    kernelModules = [
+       "!" 
+       "thunderbolt" 
+        "uinput"
+        "kvm-intel"
+        "i915"
+    ];
+    kernelParams = [ 
+   #    "bolt" 
+     #  "i915.force_probe=56a0" 
+    ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-  services.avahi.publish.userServices = true;
-  hardware = {
-    opengl.enable = true;
-  };
-  hardware.opengl.driSupport32Bit = true;
+
+
+hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
+
   hardware.steam-hardware.enable = true;
   #Intel CPU opencl support
   hardware.opengl.extraPackages = with pkgs; [
@@ -59,9 +74,7 @@
   intel-compute-runtime     #OpenComputeLanguage
   intel-ocl                 #OpenComputeLanguage
   ];
-  hardware.enableRedistributableFirmware = lib.mkDefault true;
-  services.xserver.enable = false;
-  #services.xserver.autorun = false;
+  #hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   nixpkgs = {
     # You can add overlays here
@@ -116,7 +129,7 @@
   #services.timesyncd.enable = true;
   #services.geoclue2.enable = true;
   #services.avahi.enable = true;
-  #services.avahi.nssmdns = true;
+  
   #Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -173,7 +186,7 @@ environment.systemPackages = with pkgs; [
       xdg-desktop-portal-hyprland
       xdg_utils
       wireguard-tools
-      sunshine
+      
         # For Intel/AMD
   libva-utils # This provides vainfo
   # FFmpeg with hardware acceleration support
@@ -185,7 +198,17 @@ environment.systemPackages = with pkgs; [
     enable = true; 
     #extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
   };
+
+
+
+
+# Inspired from https://github.com/LizardByte/Sunshine/blob/5bca024899eff8f50e04c1723aeca25fc5e542ca/packaging/linux/sunshine.service.in
+
+
   services.upower.enable = true;
+
+
+
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
   xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
@@ -255,6 +278,7 @@ fonts= {
       extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"];
     };
   };
+
   networking.firewall.enable=false;
   services.openssh.enable=true;
 networking.extraHosts = ''

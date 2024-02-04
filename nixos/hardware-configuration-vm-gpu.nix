@@ -8,7 +8,7 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "xhci_pci" "usb_storage" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "thunderbolt" "uinput" "uhci_hcd" "kvm_intel" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "xhci_pci" "usb_storage" "sd_mod" "sr_mod" "virtio_balloon" "i915"];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
