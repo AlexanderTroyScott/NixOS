@@ -49,12 +49,10 @@
        "!" 
        "thunderbolt" 
         "uinput"
-        "kvm-intel"
-        "i915"
     ];
     kernelParams = [ 
    #    "bolt" 
-     #  "i915.force_probe=56a0" 
+    #   "i915.force_probe=56a0" 
     ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -65,15 +63,15 @@ hardware.opengl = {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
+        extraPackages = with pkgs; [
+          intel-media-driver        #GPU acceleration 
+          intel-compute-runtime     #OpenComputeLanguage
+          intel-ocl                 #OpenComputeLanguage
+          libvdpau-va-gl
+          ];
     };
 
-  hardware.steam-hardware.enable = true;
-  #Intel CPU opencl support
-  hardware.opengl.extraPackages = with pkgs; [
-  intel-media-driver        #GPU acceleration 
-  intel-compute-runtime     #OpenComputeLanguage
-  intel-ocl                 #OpenComputeLanguage
-  ];
+
   #hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   nixpkgs = {
@@ -186,7 +184,7 @@ environment.systemPackages = with pkgs; [
       xdg-desktop-portal-hyprland
       xdg_utils
       wireguard-tools
-      
+      intel-vaapi-driver
         # For Intel/AMD
   libva-utils # This provides vainfo
   # FFmpeg with hardware acceleration support
