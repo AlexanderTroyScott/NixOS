@@ -14,13 +14,15 @@
         '';
   in {
 
-    environment.systemPackages = with pkgs; [
-      sunshine
-      avahi
-      xorg.xrandr
+    #users.users.sunshine = with pkgs; [
+    #  sunshine
+    #  xorg.xrandr
 
-    ];
-
+   # ];
+home-manager.users.sunshine = { pkgs, ... }: {
+  home.packages = [ pkgs.sunshine];
+  home.stateVersion = "23.05";
+  };
     # X and audio
     sound.enable = true;
     hardware.pulseaudio.enable = true;
@@ -30,6 +32,9 @@
       allowedTCPPortRanges = [ { from = 0; to = 65535; } ];
       allowedUDPPortRanges = [ { from = 0; to = 65535; } ];
     };
+environment.variables = {
+    VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
+  };
 
 services.xserver = {
     enable = true;
@@ -37,7 +42,7 @@ services.xserver = {
       #variant = "qwerty";
       layout = "us";
     };
-    videoDrivers = ["i915"];
+    videoDrivers = ["modesetting" "fbdev"];
     
     displayManager.gdm.enable = true;
     displayManager.defaultSession = "gnome";
@@ -77,7 +82,7 @@ users.users = {
     ];
   #services.avahi.enable = true;
   services.avahi.publish.userServices = true;
-  #services.avahi.nssmdns4 = true;
+  services.avahi.nssmdns4 = true;
 security.wrappers.sunshine = {
     owner = "root";
     group = "root";

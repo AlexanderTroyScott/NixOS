@@ -58,7 +58,9 @@
     loader.efi.canTouchEfiVariables = true;
   };
 
-
+services.xserver.enable = true;
+services.xserver.displayManager.gdm.enable = true;
+services.xserver.desktopManager.gnome.enable = true;
 hardware.opengl = {
         enable = true;
         driSupport = true;
@@ -67,7 +69,8 @@ hardware.opengl = {
           intel-media-driver        #GPU acceleration 
           intel-compute-runtime     #OpenComputeLanguage
           intel-ocl                 #OpenComputeLanguage
-          libvdpau-va-gl
+          intel-vaapi-driver
+          #libvdpau-va-gl
           ];
     };
 
@@ -185,6 +188,7 @@ environment.systemPackages = with pkgs; [
       xdg_utils
       wireguard-tools
       intel-vaapi-driver
+      steam
         # For Intel/AMD
   libva-utils # This provides vainfo
   # FFmpeg with hardware acceleration support
