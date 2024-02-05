@@ -17,10 +17,10 @@
     #users.users.sunshine = with pkgs; [
     #  sunshine
     #  xorg.xrandr
-
-   # ];
-home-manager.users.sunshine = { pkgs, ... }: {
-  home.packages = [ pkgs.sunshine];
+    #  gnome.gdm
+    #];
+home-manager.users.alex = { pkgs, ... }: {
+  home.packages = [ pkgs.sunshine pkgs.xorg.xrandr pkgs.gnome.gdm];
   home.stateVersion = "23.05";
   };
     # X and audio
@@ -48,19 +48,20 @@ services.xserver = {
     displayManager.defaultSession = "gnome";
 
     displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "sunshine"; # user must exists
+    displayManager.autoLogin.user = "alex"; # user must exists
 
     desktopManager.gnome.enable = true;
        # Dummy screen
 };
 users.users = {
-        sunshine = {
+        alex = {
       # TODO: You can set an initial password for your user.
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
-      #initialPassword = "correcthorsebatterystaple";
+      initialPassword = "";
       isNormalUser = true;
-      home  = "/home/sunshine";
+      home  = "/home/alex";
+      password = "";
         description  = "Sunshine Server";
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
@@ -71,7 +72,7 @@ users.users = {
 };
    security.sudo.extraRules = [
         {  
-            users = [ "sunshine" ];
+            users = [ "alex" ];
             commands = [
                 { 
                     command = "ALL" ;
