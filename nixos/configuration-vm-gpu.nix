@@ -38,7 +38,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
       # Import your home-manager configuration
-      alex = import ../home-manager/home.nix;
+      alex = import ../home-manager2/home.nix;
     };
   };
   boot = {
@@ -46,7 +46,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
     #kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
     kernelModules = [
-       "!" 
        "thunderbolt" 
         "uinput"
     ];
