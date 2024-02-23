@@ -37,8 +37,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
-      # Import your home-manager configuration
-      alex = import ../home-manager2/home.nix;
+      alex = import ../home-manager/home.nix;
     };
   };
   boot = {
@@ -57,10 +56,9 @@
     loader.efi.canTouchEfiVariables = true;
   };
  hardware.enableAllFirmware = true;
-services.xserver.enable = true;
-services.xserver.displayManager.gdm.enable = true;
-services.xserver.desktopManager.gnome.enable = true;
-services.xserver.displayManager.gdm.wayland = false;
+#services.xserver.enable = false;
+
+
 hardware.opengl = {
         enable = true;
         driSupport = true;
@@ -119,7 +117,7 @@ hardware.opengl = {
     gc = {                                  # Automatic garbage collection
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 30d";
     };
   };
   #Timezone and Keyboard
@@ -178,22 +176,33 @@ environment.systemPackages = with pkgs; [
       wlr-randr        # Screen Settings
       pamixer          # Pulse Audio Mixer
       networkmanagerapplet
-      blueman          # Bluetooth
-      cbatticon        # Battery Notifications
-      blueman          # Bluetooth
+      #blueman          # Bluetooth
+      #cbatticon        # Battery Notifications
+      #blueman          # Bluetooth
       light            # Display Brightness
       xdg-desktop-portal
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
       xdg_utils
       wireguard-tools
-      intel-vaapi-driver
+      #intel-vaapi-driver
+      libva-utils
+      libva
+      wayland
+      sunshine
       steam
+      avahi
+    mesa
+    xorg.libXrandr
+    sway
+    xorg.xrandr
+    libglvnd
         # For Intel/AMD
   libva-utils # This provides vainfo
   # FFmpeg with hardware acceleration support
   ffmpeg-full # or another variant that supports hardware encoding
       #bolt
+  
       #networkmanager-openvpn
     ];
   xdg.portal = { 
@@ -215,10 +224,7 @@ environment.systemPackages = with pkgs; [
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
   xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
   # FIXME: Add the rest of your current configuration
-  programs.hyprland = {
-    enable = true;  
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
-  };
+ 
   security.pam.services.swaylock = {
     text = ''
     auth include login
@@ -266,8 +272,8 @@ fonts= {
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
  
-
-  networking.firewall.enable=false;
+ #programs.sway.enable = true;
+ # networking.firewall.enable=false;
   services.openssh.enable=true;
 networking.extraHosts = ''
   192.168.190.196:8006 proxmox.actuary.dev

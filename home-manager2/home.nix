@@ -23,7 +23,7 @@ in
     #inputs.hyprland.nixosModules.default
     #inputs.hyprland.homeManagerModules.default
     # You can also split up your configuration and import pieces of it here:
-    #./hyprland.nix
+    ./hyprland.nix
     ./kitty.nix
     #./swayidle.nix
     #./waybar.nix
@@ -60,10 +60,10 @@ in
   };
 
   # TODO: Set your username
-  home = {
-    username = "alex";
-    homeDirectory = "/home/alex";
-  };
+  #home = {
+  #  username = "alex";
+  #  homeDirectory = "/home/alex";
+  #};
  nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
               ];
@@ -115,6 +115,8 @@ in
     powertop
     dive
     baobab
+    libappindicator-gtk3 # This is an example, actual package name might vary
+    gtk3
     ];
 
   # Enable home-manager and git
