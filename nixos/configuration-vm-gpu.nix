@@ -146,90 +146,89 @@ hardware.opengl = {
  # security.pam.services.swaylock = {};
 
 environment.systemPackages = with pkgs; [
-      qt5.qtwayland
-      qt6.qtwayland
-      #libsForQt5.qtinstaller
-      #libsForQt5.audiotube
-
-      git              # Repositories
-      pciutils         # Computer Utility Info
-      pipewire         # Sound
-      usbutils         # USB Utility Info
-      wget             # Downloader
-      openvpn
-      dunst            # Notifications
-      libnotify        # Dependency for Dunst
-      glxinfo          # Get graphics card info
-      neofetch
-      # Menu
-      mpd
-      rofi-power-menu  # Power Menu
-      #udiskie          # Auto Mounting
-      #xorg.xrandr      # Screen Settings
-      #xorg.xinit
-      #xorg.xorgserver
-      autotiling       # Tiling Script
-      grim             # Image Grabber
-      slurp            # Region Selector
-      wev              # Input Viewer
-      wl-clipboard     # Console Clipboard
-      wlr-randr        # Screen Settings
-      pamixer          # Pulse Audio Mixer
-      networkmanagerapplet
-      #blueman          # Bluetooth
-      #cbatticon        # Battery Notifications
-      #blueman          # Bluetooth
-      light            # Display Brightness
-      xdg-desktop-portal
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-      xdg_utils
-      wireguard-tools
-      #intel-vaapi-driver
-      libva-utils
-      libva
-      wayland
-      sunshine
-      steam
-      avahi
-    mesa
-    xorg.libXrandr
-    sway
-    xorg.xrandr
-    libglvnd
-        # For Intel/AMD
+  qt5.qtwayland
+  qt6.qtwayland
+  git              # Repositories
+  pciutils         # Computer Utility Info
+  pipewire         # Sound
+  usbutils         # USB Utility Info
+  wget             # Downloader
+  openvpn
+  dunst            # Notifications
+  libnotify        # Dependency for Dunst
+  glxinfo          # Get graphics card info
+  neofetch
+  # Menu
+  mpd
+  rofi-power-menu  # Power Menu
+  #udiskie          # Auto Mounting
+  autotiling       # Tiling Script
+  grim             # Image Grabber
+  slurp            # Region Selector
+  wev              # Input Viewer
+  wl-clipboard     # Console Clipboard
+  wlr-randr        # Screen Settings
+  pamixer          # Pulse Audio Mixer
+  networkmanagerapplet
+  blueman          # Bluetooth
+  light            # Display Brightness
+  xdg-desktop-portal
+  xdg-desktop-portal-gtk
+  xdg-desktop-portal-hyprland
+  xdg_utils
+  wireguard-tools
+  #intel-vaapi-driver
+  libva-utils
+  libva
+  wayland
+  sunshine
+  steam
+  avahi
+  mesa
+  xorg.libXrandr
+  sway
+  xorg.xrandr
+  libglvnd
   libva-utils # This provides vainfo
   # FFmpeg with hardware acceleration support
   ffmpeg-full # or another variant that supports hardware encoding
-      #bolt
-  
-      #networkmanager-openvpn
-    ];
-  xdg.portal = { 
-    enable = true; 
-    #extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+  ];
+xdg.portal = { 
+  enable = true; 
+  #extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+};
+  services.blueman.enable = true;
+  hardware = {
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
   };
+  environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
+    services.pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
+    };
+services.upower.enable = true;
 
+xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
+# FIXME: Add the rest of your current configuration
 
-
-
-# Inspired from https://github.com/LizardByte/Sunshine/blob/5bca024899eff8f50e04c1723aeca25fc5e542ca/packaging/linux/sunshine.service.in
-
-
-  services.upower.enable = true;
-
-
-
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
-  xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
-  # FIXME: Add the rest of your current configuration
- 
-  security.pam.services.swaylock = {
-    text = ''
-    auth include login
-   '';
-  };
+security.pam.services.swaylock = {
+  text = ''
+  auth include login
+  '';
+};
 
 programs.nix-ld.enable=true;
 programs.mtr.enable=true;
@@ -237,10 +236,6 @@ programs.gnupg.agent = {
   enable=true;
   enableSSHSupport = true;
 };
-
-
-
-
 
 fonts= {
   packages = with pkgs; [                # Fonts

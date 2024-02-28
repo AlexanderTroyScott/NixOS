@@ -11,6 +11,7 @@
     configFile = pkgs.writeTextDir "config/sunshine.conf"
         ''
         origin_web_ui_allowed=wan
+        encoder=vaapi
         '';
         #encoder = quicksync
         #adapter_name = /dev/dri/renderD128
@@ -22,51 +23,25 @@ home-manager.users.alex = { pkgs, ... }: {
     xorg.xrandr 
     gnome.gdm 
     ffmpeg-full 
+    mesa
     avahi       
     libappindicator-gtk3 # This is an example, actual package name might vary
     gtk3 
   ];
   home.stateVersion = "23.05";
+};
+ 
+  networking.firewall = {
+      enable = false;
+    allowedTCPPortRanges = [ { from = 0; to = 65535; } ];
+    allowedUDPPortRanges = [ { from = 0; to = 65535; } ];
   };
-    # X and audio
-    #sound.enable = true;
-    #hardware.pulseaudio.enable = true;
-    #security.rtkit.enable = true;
-    networking.firewall = {
-       enable = true;
-      allowedTCPPortRanges = [ { from = 0; to = 65535; } ];
-      allowedUDPPortRanges = [ { from = 0; to = 65535; } ];
-    };
-#environment.variables = {
-#    VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
-#  };
+
   programs.hyprland = {
     enable = true;  
     package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
   };
  
- #services = {
- # xserver = {
-    #enable = true; # Enable the X server
-    #xkb.layout = "us";
-    #videoDrivers = ["intel" "i915" "modesetting" "fbdev"];
-    
-    #displayManager = {
-     # gdm = {
-    #    enable = true; # Ensure GDM is enabled
-     #   wayland = true; # Indicate preference for Wayland with GDM
-     # };
-      
-     # autoLogin = {
-      #  enable = true;
-      #  user = "alex";
-      #};
-    #};
-    #desktopManager.gnome.enable = true;
-    #Dummyscreen
- # };
- #};
-
 users.users = {
     alex = {
       #initialPassword = "password";
@@ -80,21 +55,23 @@ users.users = {
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "wheel" "networkmanager" "video" "audio" "sound" "input" "render"];
     };
-};
-   security.sudo.extraRules = [
-        {  
-            users = [ "alex" ];
-            commands = [
-                { 
-                    command = "ALL" ;
-                #    options= [ "NOPASSWD" ];
-                }
-            ];
+  };
+  security.sudo.extraRules = [
+    {  
+      users = [ "alex" ];
+      commands = [
+        { 
+            command = "ALL" ;
+        #    options= [ "NOPASSWD" ];
         }
-    ];
-  services.avahi.enable = true;
-  services.avahi.publish.userServices = true;
-  services.avahi.nssmdns4 = true;
+      ];
+    }
+  ];
+  services.avahi = { 
+    enable = true;
+    publish.userServices = true;
+    nssmdns4 = true;
+  };
   security.wrappers.sunshine = {
     owner = "root";
     group = "root";
@@ -122,8 +99,6 @@ users.users = {
   services.udev.extraRules = ''
       KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
     '';
-
-  #services.udev.extraRules = ''
-  #    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
-  #  '';  
 }
+
+# Inspired from https://github.com/LizardByte/Sunshine/blob/5bca024899eff8f50e04c1723aeca25fc5e542ca/packaging/linux/sunshine.service.in
