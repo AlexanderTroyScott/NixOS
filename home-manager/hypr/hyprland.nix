@@ -12,17 +12,24 @@
     #xwayland.enable = true;
     extraConfig = ''
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor=desc:Samsung Display Corp. 0x4173,3840x2400,0x0,auto
+      #monitor=desc:Samsung Display Corp. 0x4173,3840x2400,0x0,auto
 
       #work monitors
       #left
-      monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
+      #monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
       #right
-      monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
+      #monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
+      #---------------------------------
       #home monitors
+        
       #left
-      monitor=desc:LG Electronics LG HDR 4k 0x0001D608,3840x2160,0x0,1
-      monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160,0x2160,1
+      monitor=desc:LG Electronics LG HDR 4K 0x0001D608,3840x2160@60,auto,1
+      #middle
+      monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160@60,auto,1
+
+
+      monitor=desc:Samsung Display Corp. 0x4173,3840x2400,auto,2
+
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
       # Execute your favorite apps at launch
@@ -50,8 +57,17 @@
           }
 
           sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+     
+     
       }
-
+     device:01e0-mouse {
+            input {
+            touchpad {
+            natural_scroll = no
+            tap-to-click = yes
+            }
+            }
+          }
       general {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
