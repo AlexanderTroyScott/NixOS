@@ -6,6 +6,11 @@
     ];
   # https://github.com/hyprwm/hyprpaper
   xdg.configFile."hypr/hyprlock.conf".text = ''
+
+  general {
+    grace = 30
+  }
+
   background {
     monitor =
     path = /home/alex/Pictures/Wallpaper/black_cat.png   # only png supported for now
@@ -39,10 +44,22 @@ input-field {
     halign = center
     valign = center
 }
+# TIME
+label {
+    monitor =
+    text = cmd[update:1000] echo "$(date +"%-I:%M%p")"
+    color = $foreground
+    #color = rgba(255, 255, 255, 0.6)
+    font_size = 120
+    font_family = JetBrains Mono Nerd Font Mono ExtraBold
+    position = 0, -300
+    halign = center
+    valign = top
+}
 
 label {
     monitor =
-    text = Hi there, $USER
+    text = $USER
     color = rgba(200, 200, 200, 1.0)
     font_size = 25
     font_family = Noto Sans

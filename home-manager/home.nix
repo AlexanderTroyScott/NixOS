@@ -60,7 +60,6 @@ in
       allowUnfreePredicate = _: true;
     };
   };
-
   # TODO: Set your username
   home = {
     username = "alex";
@@ -124,6 +123,7 @@ in
     baobab
     #warp-terminal
     sass
+    unetbootin
     ];
 
   # Enable home-manager and git
