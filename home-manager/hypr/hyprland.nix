@@ -165,7 +165,7 @@
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       $mainMod = SUPER
 
-      $lockscreen = swaylock -f --screenshot --effect-blur 5x7 --grace 5 --clock --indicator
+      
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, Q, exec, kitty
@@ -173,7 +173,7 @@
       bind = $mainMod, M, exit,
       bind = $mainMod, F, fullscreen, 
       bind = $mainMod, E, exec, dolphin
-      bind = $mainMod, L, exec, $lockscreen
+      bind = $mainMod, L, exec, hyprlock
       bind = $mainMod, V, togglefloating, 
       bind = $mainMod, R, exec, fuzzel
       bind = $mainMod, P, pseudo, # dwindle
