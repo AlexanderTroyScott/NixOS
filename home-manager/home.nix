@@ -123,7 +123,10 @@ in
     baobab
     #warp-terminal
     sass
-    unetbootin
+    plex-media-player
+    gparted
+    polkit
+    wineWowPackages.waylandFull
     ];
 
   # Enable home-manager and git

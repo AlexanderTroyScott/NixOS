@@ -9,7 +9,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    #xwayland.enable = true;
+    
     extraConfig = ''
       # See https://wiki.hyprland.org/Configuring/Monitors/
       #monitor=desc:Samsung Display Corp. 0x4173,3840x2400,0x0,auto
@@ -60,14 +60,14 @@
      
      
       }
-     device:01e0-mouse {
-            input {
-            touchpad {
-            natural_scroll = no
-            tap-to-click = yes
-            }
-            }
-          }
+     #device:01e0-mouse {
+     #       input {
+     #       touchpad {
+     #       natural_scroll = no
+     #       tap-to-click = yes
+     #       }
+     #       }
+     #     }
       general {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
@@ -135,9 +135,9 @@
 
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-      device:epic-mouse-v1 {
-          sensitivity = -0.5
-      }
+      #device:epic-mouse-v1 {
+      #    sensitivity = -0.5
+      #}
 
       misc {
         force_default_wallpaper = 0
