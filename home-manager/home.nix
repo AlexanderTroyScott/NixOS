@@ -30,6 +30,7 @@ in
     ./fuzzel.nix
     ./hyprpaper.nix
     ./vscode.nix
+    ./bash.nix
   ];
 
   nixpkgs = {
