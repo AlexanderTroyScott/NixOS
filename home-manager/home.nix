@@ -23,6 +23,7 @@ in
     #inputs.hyprland.nixosModules.default
     #inputs.hyprland.homeManagerModules.default
     # You can also split up your configuration and import pieces of it here:
+
     ./kitty.nix
     #./swayidle.nix
     ./waybar.nix
@@ -154,7 +155,6 @@ in
  #   };
  # };
 
- 
   home.pointerCursor = {
     package = pkgs.catppuccin-cursors.latteDark;
     name = "Catppuccin-Latte-Dark-Cursors";

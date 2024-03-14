@@ -107,8 +107,10 @@ services.xserver.enable = false;
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
  # security.pam.services.swaylock = {};
 services.udisks2.enable = true;
+
 environment.systemPackages = with pkgs; [
       qt5.qtwayland
       qt6.qtwayland
@@ -121,7 +123,6 @@ environment.systemPackages = with pkgs; [
       pipewire         # Sound
       usbutils         # USB Utility Info
       wget             # Downloader
-      #openvpn
       dunst            # Notifications
       libnotify        # Dependency for Dunst
       glxinfo          # Get graphics card info
@@ -199,7 +200,6 @@ fileSystems."/home/Unraid/Media" = {
 	];
   };
 
-  
   services.upower.enable = true;
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
