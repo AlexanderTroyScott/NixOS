@@ -260,6 +260,9 @@ fonts= {
   networking.hostName = "VM-GPU";
   networking.networkmanager.enable = true;
 
+  environment.variables = {
+    VM_GPU = "true";
+  };
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
  

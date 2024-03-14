@@ -7,7 +7,7 @@
       # Add your aliases here if needed
     };
     initExtra = ''
-      if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+      if [ "$VM_GPU" = "true" ]; then
           dbus-run-session Hyprland
       fi
     '';
