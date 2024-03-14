@@ -12,6 +12,7 @@
         ''
         origin_web_ui_allowed=wan
         encoder=vaapi
+        adapter_name = /dev/dri/renderD128
         '';
         #encoder = quicksync
         #adapter_name = /dev/dri/renderD128

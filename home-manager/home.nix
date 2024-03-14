@@ -115,6 +115,10 @@ in
     powertop
     dive
     baobab
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    xdg_utils
     ];
 
   # Enable home-manager and git
