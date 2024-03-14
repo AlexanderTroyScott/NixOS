@@ -21,7 +21,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
-    ./configs/github-runner.nix
+    #./configs/github-runner.nix
     ./configs/hardware-settings.nix
     ./configs/wireguard.nix
     #./configs/xwayland.nix
@@ -31,7 +31,7 @@
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
-
+services.xserver.enable = false;
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
@@ -109,6 +109,7 @@
   };
 
  # security.pam.services.swaylock = {};
+services.udisks2.enable = true;
 
 environment.systemPackages = with pkgs; [
       qt5.qtwayland
@@ -122,7 +123,6 @@ environment.systemPackages = with pkgs; [
       pipewire         # Sound
       usbutils         # USB Utility Info
       wget             # Downloader
-      openvpn
       dunst            # Notifications
       libnotify        # Dependency for Dunst
       glxinfo          # Get graphics card info
@@ -151,13 +151,55 @@ environment.systemPackages = with pkgs; [
       xdg-desktop-portal-hyprland
       xdg_utils
       wireguard-tools
+      lshw
+      udiskie
+      cifs-utils #SMB/CIFS share for unraid
       #bolt
       #networkmanager-openvpn
+      libsecret #for keyring remembering secrets
+      popsicle
+
     ];
+  
   xdg.portal = { 
     enable = true; 
-    #extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
   };
+  services.devmon.enable = true;
+services.gvfs.enable = true;
+#services.udisks2.enable = true;
+
+  #Gnome Keyring
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
+  #ssh.startAgent = true;
+ 
+  fileSystems."/mnt/unraid" = {
+	device = "192.168.2.2:/mnt/user/Test";
+	fsType = "nfs";
+	neededForBoot = false;
+  #automount.enable = true;
+  options = [
+  "nofail"
+	"rw"
+	"hard"
+	"intr"
+	];
+  };
+
+fileSystems."/home/Unraid/Media" = {
+	device = "192.168.2.2:/mnt/user/Media";
+	fsType = "nfs";
+	neededForBoot = false;
+  #automount.enable = true;
+  options = [
+  "nofail"
+	"rw"
+	"hard"
+	"intr"
+	];
+  };
+
   services.upower.enable = true;
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
   #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
@@ -215,11 +257,11 @@ fonts= {
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker"];
+      extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker" "storage"];
     };
   };
 networking.extraHosts = ''
-  192.168.190.196:8006 proxmox.actuary.dev
+  192.168.190.196:8006 proxmox.lan
 '';
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";

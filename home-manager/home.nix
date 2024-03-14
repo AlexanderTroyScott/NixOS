@@ -23,12 +23,15 @@ in
     #inputs.hyprland.nixosModules.default
     #inputs.hyprland.homeManagerModules.default
     # You can also split up your configuration and import pieces of it here:
-    ./hyprland.nix
+
     ./kitty.nix
-    ./swayidle.nix
+    #./swayidle.nix
     ./waybar.nix
     ./fuzzel.nix
-    ./hyprpaper.nix
+    ./hypr/hyprland.nix
+    ./hypr/hyprlock.nix
+    ./hypr/hypridle.nix
+    ./hypr/hyprpaper.nix
     ./vscode.nix
   ];
 
@@ -58,7 +61,6 @@ in
       allowUnfreePredicate = _: true;
     };
   };
-
   # TODO: Set your username
   home = {
     username = "alex";
@@ -73,7 +75,9 @@ in
   home.packages = with pkgs; [ 
     #libnotify
     #programs
+    github-desktop
     insync
+    rsync
     btop              # Resource Manager
     ranger            # File Manager
     unzip
@@ -84,14 +88,17 @@ in
     discord           # Chat
     betterdiscordctl  # Discord Themes
     youtube-music
+    element-desktop
+    element-web
     vivaldi
     firefox
     deluge           # Torrents
     steam            # Games
     lutris
     wine-wayland
+    keepassxc
     #obsidian
-    #appflowy
+    appflowy
     #logseq          # electron-24.8.6 which is insecure, waiting for update
     libreoffice      # Office Tools
     okular            # PDF Viewer
@@ -115,6 +122,12 @@ in
     powertop
     dive
     baobab
+    #warp-terminal
+    sass
+    plex-media-player
+    gparted
+    polkit
+    wineWowPackages.waylandFull
     ];
 
   # Enable home-manager and git
@@ -141,6 +154,7 @@ in
  #     "x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
  #   };
  # };
+
   home.pointerCursor = {
     package = pkgs.catppuccin-cursors.latteDark;
     name = "Catppuccin-Latte-Dark-Cursors";
