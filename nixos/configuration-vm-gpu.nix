@@ -33,7 +33,7 @@
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
-
+  services.getty.autologinUser = "alex";
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
@@ -172,10 +172,6 @@ environment.systemPackages = with pkgs; [
   networkmanagerapplet
   blueman          # Bluetooth
   light            # Display Brightness
-  xdg-desktop-portal
-  xdg-desktop-portal-gtk
-  xdg-desktop-portal-hyprland
-  xdg_utils
   wireguard-tools
   #intel-vaapi-driver
   libva-utils
@@ -268,7 +264,7 @@ fonts= {
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
  
  #programs.sway.enable = true;
- # networking.firewall.enable=false;
+  networking.firewall.enable=false;
   services.openssh.enable=true;
 networking.extraHosts = ''
   192.168.190.196:8006 proxmox.actuary.dev
