@@ -29,6 +29,7 @@
     ./hardware-configuration-vm-gpu.nix
     ./configs/steam.nix
     ./configs/sunshine.nix
+    ./storage.nix
     #Home manager
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -57,7 +58,11 @@
   };
  hardware.enableAllFirmware = true;
 #services.xserver.enable = false;
-
+  programs.hyprland = {
+    enable = true;  
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
+  };
+ 
 
 hardware.opengl = {
         enable = true;
@@ -188,6 +193,10 @@ environment.systemPackages = with pkgs; [
   libva-utils # This provides vainfo
   # FFmpeg with hardware acceleration support
   ffmpeg-full # or another variant that supports hardware encoding
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    xdg_utils
   ];
 xdg.portal = { 
   enable = true; 
