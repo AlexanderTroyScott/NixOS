@@ -113,10 +113,6 @@ services.xserver.enable = false;
 services.udisks2.enable = true;
 virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs; [
-      qt5.qtwayland
-      qt6.qtwayland
-      #libsForQt5.qtinstaller
-      #libsForQt5.audiotube
       libva
       libva-utils            # Video Acceleration Info (intel)
       git              # Repositories

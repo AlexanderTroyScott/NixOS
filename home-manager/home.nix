@@ -123,26 +123,27 @@ in
     powertop
     dive
     baobab
-    xournalpp
     warp-terminal
-    sass
     plex-media-player
     gparted
     docker
     distrobox
     polkit
     wineWowPackages.waylandFull
-    qt5.qtwayland
-    libsForQt5.qt5ct
-    libsForQt5.dolphin #file browser
-    adwaita-qt #qt theme
+    #QT5 and QT6 packages
+    #qt5.qtwayland
+    #qt6.qtwayland
+    #libsForQt5.qt5ct
+    #libsForQt5.dolphin
+    #libsForQt5.qtinstaller
+    #libsForQt5.audiotube
+    #adwaita-qt #qt theme
     cosmic-files
     cosmic-term
     cosmic-icons
     cosmic-greeter
     cosmic-session
     cosmic-edit
-    adminer
     cava
     dysk
     ];
