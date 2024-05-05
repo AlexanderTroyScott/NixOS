@@ -25,7 +25,6 @@ in
     # You can also split up your configuration and import pieces of it here:
 
     ./kitty.nix
-    #./swayidle.nix
     ./waybar.nix
     ./fuzzel.nix
     ./hypr/hyprland.nix
