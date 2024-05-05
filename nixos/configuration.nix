@@ -82,7 +82,7 @@ services.xserver.enable = false;
     };
     gc = {                                  # Automatic garbage collection
       automatic = true;
-      dates = "daily";
+      dates = "weekly";
       options = "--delete-older-than 7d";
     };
   };
@@ -145,7 +145,6 @@ environment.systemPackages = with pkgs; [
       networkmanagerapplet
       blueman          # Bluetooth
       cbatticon        # Battery Notifications
-      blueman          # Bluetooth
       light            # Display Brightness
       xdg-desktop-portal
       xdg-desktop-portal-gtk
@@ -175,74 +174,8 @@ services.gvfs.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
   #ssh.startAgent = true;
  
-
- #services.autofs.enable = true;
-  fileSystems."/unraid/docker/volumes" = {
-	device = "192.168.2.2:/mnt/user/docker/volumes";
-	fsType = "nfs4";
-	neededForBoot = false;
-  #automount.enable = true;
-  options = [
-  "nofail"
-	"rw"
-	"hard"
-	"intr"
-	];
-  };
-  fileSystems."/unraid/library" = {
-	device = "192.168.2.2:/mnt/user/library";
-	fsType = "nfs4";
-	neededForBoot = false;
-  #automount.enable = true;
-  options = [
-  "nofail"
-	"rw"
-	"hard"
-	"intr"
-	];
-  };
- fileSystems."/unraid/vault" = {
-	device = "192.168.2.2:/mnt/user/vault";
-	fsType = "nfs4";
-	neededForBoot = false;
-  #automount.enable = true;
-  options = [
-  "nofail"
-	"rw"
-	"hard"
-	"intr"
-	];
-  };
-
-  fileSystems."/unraid/games" = {
-	device = "192.168.2.2:/mnt/user/games";
-	fsType = "nfs4";
-	neededForBoot = false;
-  #automount.enable = true;
-  options = [
-  "nofail"
-	"rw"
-	"hard"
-	"intr"
-	];
-  };
-  
-  fileSystems."/unraid/scans" = {
-  device = "unraid.lan:/mnt/user/scans";
-  fsType = "nfs4";
-  neededForBoot = false;
-  options = [
-  "nofail"
-	"rw"
-	"hard"
-	];
-  };
-
   services.upower.enable = true;
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk  ];
   xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
-  # FIXME: Add the rest of your current configuration
   programs.hyprland = {
     enable = true;  
     package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
