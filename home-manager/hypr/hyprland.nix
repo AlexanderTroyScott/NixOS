@@ -11,6 +11,8 @@
     enable = true;
     
     extraConfig = ''
+    env = QT_QPA_PLATFORM,wayland
+    env = QT_QPA_PLATFORMTHEME,qt5ct
       # See https://wiki.hyprland.org/Configuring/Monitors/
       #monitor=desc:Samsung Display Corp. 0x4173,3840x2400,0x0,auto
 
@@ -49,16 +51,16 @@
           kb_options =
           kb_rules =
           follow_mouse = 1
-          scroll_method = 2fg
+          scroll_method = 2fg #2fg/edge/on_button_down/no_scroll
           scroll_button = 9 #escape
           touchpad {
               natural_scroll = yes
               tap-to-click = no
+              scroll_factor = 0.5
           }
+          sensitivity = 0.4 # -1.0 - 1.0, 0 means no modification.
+          
 
-          sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-     
-     
       }
      #device:01e0-mouse {
      #       input {
@@ -162,7 +164,9 @@
       #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = size 800 450, class:^(firefox)$, title:^(Picture-in-Picture)$
       windowrulev2 = size 848 468, title:(Picture in picture), class:()
-      # See https://wiki.hyprland.org/Configuring/Keywords/ for more
+      windowrulev2 = float,class:(floating)  
+      # See https://wiki.hyprland.org/Configuring/Keywords/ for more$ nix-env --delete-generations 14d
+
       $mainMod = SUPER
 
       
@@ -173,8 +177,8 @@
       bind = $mainMod, M, exit,
       bind = $mainMod, F, fullscreen, 
       bind = $mainMod, E, exec, dolphin
-      bind = $mainMod, L, exec, hyprlock
-      bind = $mainMod, V, togglefloating, 
+      bind = $mainMod, L, exec, hyprlock 
+      bind = $mainMod, V, exec,  kitty --class floating -e bash  -c 'clipse $PPID' 
       bind = $mainMod, R, exec, fuzzel
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
@@ -224,7 +228,6 @@
       bind =, XF86MonBrightnessDOWN, exec,light  -U .29
       bind =, XF86MonBrightnessUP, exec, light -A 3
 
-
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
@@ -232,11 +235,16 @@
       #windowrulev2 = float,class:(kitty)
       #windowrulev2 = fullscreen,class:(vivaldi-stable)
       windowrulev2 = workspace:(coding),title:(Visual Studio Code)
+      windowrulev2 = workspace  silent,^class:(com.moonlight_stream.Moonlight)$      
 
       workspace = 2, name:browser, monitor:eDP-1, default:true
       workspace = 1, name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:eDP-1
+      misc{
+      disable_autoreload = true
+      }
 
-      exec-once = waybar & hyprpaper & nm-applet & blueman-applet
+      exec-once = waybar & hyprpaper & nm-applet & blueman-applet & clipse -listen  
+
   '';
   };
 }
