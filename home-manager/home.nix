@@ -62,6 +62,7 @@ in
     };
   };
   # TODO: Set your username
+  
   home = {
     username = "alex";
     homeDirectory = "/home/alex";
@@ -92,18 +93,20 @@ in
     element-web
     vivaldi
     firefox
-    deluge           # Torrents
+               # Torrents
     steam            # Games
     lutris
     wine-wayland
     keepassxc
     #obsidian
-    appflowy
     #logseq          # electron-24.8.6 which is insecure, waiting for update
-    libreoffice      # Office Tools
+    #libreoffice      # Office Tools
     okular            # PDF Viewer
     pcmanfm           # File Manager
     cinnamon.nemo     # File Manager
+    cinnamon.xreader
+    cinnamon.xviewer
+    cinnamon.pix
     p7zip             # Zip Encryption
     rsync             # Syncer - $ rsync -r dir1/ dir2/
     unzip             # Zip Files
@@ -111,23 +114,37 @@ in
     zip               # Zip
     #trilium-desktop
     #parsec-bin
-    pcloud
     fuzzel
+    clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
     anytype
     #Utilities
     dnsutils
     moonlight-qt
-    obs-studio
-    xplorer
     powertop
     dive
     baobab
-    #warp-terminal
+    xournalpp
+    warp-terminal
     sass
     plex-media-player
     gparted
+    docker
+    distrobox
     polkit
     wineWowPackages.waylandFull
+    qt5.qtwayland
+    libsForQt5.qt5ct
+    libsForQt5.dolphin #file browser
+    adwaita-qt #qt theme
+    cosmic-files
+    cosmic-term
+    cosmic-icons
+    cosmic-greeter
+    cosmic-session
+    cosmic-edit
+    adminer
+    cava
+    dysk
     ];
 
   # Enable home-manager and git
