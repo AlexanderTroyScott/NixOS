@@ -27,6 +27,7 @@
     #./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
+    ./storage.nix
     #Home manager
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
