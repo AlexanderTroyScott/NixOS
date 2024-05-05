@@ -10,9 +10,9 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "typec_dp" "typec_altmode" "typec" "typec_dp"];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
+  boot.kernelParams = [ "i8042.noloop" "i8042.nomux" "i8042.nopnp" "i8042.reset" ];
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/f9761bbf-ef1b-47dc-a415-98f1cad12d45";
       fsType = "ext4";
