@@ -81,7 +81,7 @@ services.xserver.enable = false;
     };
     gc = {                                  # Automatic garbage collection
       automatic = true;
-      dates = "weekly";
+      dates = "daily";
       options = "--delete-older-than 7d";
     };
   };
@@ -110,7 +110,7 @@ services.xserver.enable = false;
 
  # security.pam.services.swaylock = {};
 services.udisks2.enable = true;
-
+virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs; [
       qt5.qtwayland
       qt6.qtwayland
@@ -174,9 +174,35 @@ services.gvfs.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
   #ssh.startAgent = true;
  
-  fileSystems."/mnt/unraid" = {
-	device = "192.168.2.2:/mnt/user/Test";
-	fsType = "nfs";
+
+ #services.autofs.enable = true;
+  fileSystems."/unraid/docker/volumes" = {
+	device = "192.168.2.2:/mnt/user/docker/volumes";
+	fsType = "nfs4";
+	neededForBoot = false;
+  #automount.enable = true;
+  options = [
+  "nofail"
+	"rw"
+	"hard"
+	"intr"
+	];
+  };
+  fileSystems."/unraid/library" = {
+	device = "192.168.2.2:/mnt/user/library";
+	fsType = "nfs4";
+	neededForBoot = false;
+  #automount.enable = true;
+  options = [
+  "nofail"
+	"rw"
+	"hard"
+	"intr"
+	];
+  };
+ fileSystems."/unraid/vault" = {
+	device = "192.168.2.2:/mnt/user/vault";
+	fsType = "nfs4";
 	neededForBoot = false;
   #automount.enable = true;
   options = [
@@ -187,9 +213,9 @@ services.gvfs.enable = true;
 	];
   };
 
-fileSystems."/home/Unraid/Media" = {
-	device = "192.168.2.2:/mnt/user/Media";
-	fsType = "nfs";
+  fileSystems."/unraid/games" = {
+	device = "192.168.2.2:/mnt/user/games";
+	fsType = "nfs4";
 	neededForBoot = false;
   #automount.enable = true;
   options = [
@@ -197,6 +223,17 @@ fileSystems."/home/Unraid/Media" = {
 	"rw"
 	"hard"
 	"intr"
+	];
+  };
+  
+  fileSystems."/unraid/scans" = {
+  device = "unraid.lan:/mnt/user/scans";
+  fsType = "nfs4";
+  neededForBoot = false;
+  options = [
+  "nofail"
+	"rw"
+	"hard"
 	];
   };
 
@@ -226,6 +263,7 @@ fonts= {
     # nerdfonts
       (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
   ];};
+
 
   # Font configuration
   fonts.fontconfig.defaultFonts = {
