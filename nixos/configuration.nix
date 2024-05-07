@@ -112,7 +112,7 @@ services.xserver.enable = false;
  # security.pam.services.swaylock = {};
 services.udisks2.enable = true;
 virtualisation.docker.enable = true;
-environment.systemPackages = with pkgs; [
+environment.systemPackages = with pkgs.unstable; [
       libva
       libva-utils            # Video Acceleration Info (intel)
       git              # Repositories
