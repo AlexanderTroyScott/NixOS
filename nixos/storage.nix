@@ -50,8 +50,8 @@
 	];
   };
   
-  fileSystems."/unraid/scans" = {
-  device = "unraid.lan:/mnt/user/scans";
+  fileSystems."/unraid/scan" = {
+  device = "unraid.lan:/mnt/user/scan";
   fsType = "nfs4";
   neededForBoot = false;
   options = [
