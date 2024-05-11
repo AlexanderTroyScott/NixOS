@@ -29,7 +29,6 @@
     ./hardware-configuration-vm-gpu.nix
     ./configs/steam.nix
     ./configs/sunshine.nix
-    ./storage.nix
     #Home manager
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -58,7 +57,8 @@
   };
  hardware.enableAllFirmware = true;
 #services.xserver.enable = false;
- 
+
+
 hardware.opengl = {
         enable = true;
         driSupport = true;
@@ -188,14 +188,10 @@ environment.systemPackages = with pkgs; [
   libva-utils # This provides vainfo
   # FFmpeg with hardware acceleration support
   ffmpeg-full # or another variant that supports hardware encoding
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    xdg_utils
   ];
 xdg.portal = { 
   enable = true; 
-  extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+  #extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
 };
   services.blueman.enable = true;
   hardware = {
@@ -254,7 +250,8 @@ fonts= {
     monospace = [ "FiraCode" ];
     sansSerif = [ "FiraCode" ];
     serif = [ "FiraCode" ];
-    #monospace = [ "FiraCode" ];
+ 
+   #monospace = [ "FiraCode" ];
     emoji =[ "FiraCode" ];
     #monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
     #emoji = ["Noto Color Emoji"];

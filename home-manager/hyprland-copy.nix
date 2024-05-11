@@ -8,14 +8,16 @@
   #home.packages = with pkgs; [ hyprland ];
 
 wayland.windowManager.hyprland.systemd.variables = [
+  "DISPLAY"
+  "HYPRLAND_INSTANCE_SIGNATURE"
   "WAYLAND_DISPLAY=headless"
+  "XDG_CURRENT_DESKTOP"
+  "XDG_RUNTIME_DIR"
 ];
   wayland.windowManager.hyprland = {
     enable = true;
     #xwayland.enable = true;
     extraConfig = ''
-    debug:disable_logs = false 
-    env = XDG_RUNTIME_DIR,/run/user/1000
      # XDG_RUNTIME_DIR=/home/alex/temp/
      # exec-once = hyprctl output create headless
       # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -230,10 +232,8 @@ wayland.windowManager.hyprland.systemd.variables = [
 
       workspace = 2, name:browser, monitor:eDP-1, default:true
       workspace = 1, name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:eDP-1
-      exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
-     # exec-once = systemctl start --user sunshine.service
-      #exec-once = waybar & hyprpaper & nm-applet & blueman-applet & hyprctl output create headless
-      exec-once =  hyprctl output create headless
+
+      exec-once = waybar & hyprpaper & nm-applet & blueman-applet & hyprctl output create headless
   '';
   };
 }

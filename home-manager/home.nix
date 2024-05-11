@@ -25,8 +25,8 @@ in
     # You can also split up your configuration and import pieces of it here:
     ./hyprland.nix
     ./kitty.nix
-    ./swayidle.nix
-    ./waybar.nix
+   # ./swayidle.nix
+    #./waybar.nix
     ./fuzzel.nix
     ./hyprpaper.nix
     ./vscode.nix
@@ -89,6 +89,8 @@ in
     firefox
     deluge           # Torrents
     steam            # Games
+    #greetd.greetd #login manager so Hyprland starts?
+    sddm
     lutris
     wine-wayland
     #obsidian
@@ -116,10 +118,6 @@ in
     powertop
     dive
     baobab
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    xdg_utils
     ];
 
   # Enable home-manager and git
