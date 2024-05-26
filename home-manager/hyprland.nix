@@ -164,6 +164,7 @@ wayland.windowManager.hyprland.systemd.variables = [
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, Q, exec, kitty
+      bind = $mainMod, W, exec, vivaldi
       bind = $mainMod, C, killactive, 
       bind = $mainMod, M, exit,
       bind = $mainMod, F, fullscreen, 
@@ -230,10 +231,10 @@ wayland.windowManager.hyprland.systemd.variables = [
 
       workspace = 2, name:browser, monitor:eDP-1, default:true
       workspace = 1, name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:eDP-1
-      exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
+     # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
      # exec-once = systemctl start --user sunshine.service
-      #exec-once = waybar & hyprpaper & nm-applet & blueman-applet & hyprctl output create headless
-      exec-once =  hyprctl output create headless
+      exec-once = waybar & hyprpaper & nm-applet & blueman-applet
+     # exec-once =  hyprctl output create headless
   '';
   };
 }

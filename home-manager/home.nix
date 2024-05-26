@@ -1,8 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-let 
-  cursorSize = 28;
-in
+
 {
   inputs,
   outputs,
@@ -12,7 +10,22 @@ in
   #hyprland,
   #home-manager,
   ...
-}: {
+}:
+let 
+  cursorSize = 28;
+    configFile = pkgs.writeTextDir "/home/alex/.config/sunshine/sunshine.conf"
+        ''
+        origin_web_ui_allowed=wan
+        encoder=vaapi
+        adapter_name = /dev/dri/renderD128
+        #output_name = HEADLESS-2
+#        WLR_BACKENDS=headless
+        '';
+        #encoder = quicksync
+        #adapter_name = /dev/dri/renderD128
+        #capture = wlr
+  
+in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -93,6 +106,7 @@ in
     sddm
     lutris
     wine-wayland
+    kitty
     #obsidian
     #appflowy
     #logseq          # electron-24.8.6 which is insecure, waiting for update
@@ -109,7 +123,7 @@ in
     #parsec-bin
     pcloud
     fuzzel
-    anytype
+   # anytype
     #Utilities
     dnsutils
     moonlight-qt
@@ -118,6 +132,7 @@ in
     powertop
     dive
     baobab
+    dbus #vm gpu to get hyprland instance signature and etc from the service?
     ];
 
   # Enable home-manager and git
@@ -127,7 +142,57 @@ in
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
 
-
+systemd.user.services.headless = {
+   Unit = {
+      Description = "Create hyprland service for headless displays.";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+    Service = {
+      Type = "forking";
+            ExecStart = "${pkgs.writeShellScript "headless-hyprland" ''
+        #!/run/current-system/sw/bin/bash
+        ${pkgs.hyprland}/bin/Hyprland
+        ${pkgs.hyprland}/bin/hyprctl output create headless
+      ''}";
+      Restart = "always";     # Restart the service if it exits
+      RestartSec = "5s";      # Delay before restarting the service
+      RemainAfterExit = true; # Keep service active even if the main process exits
+      TimeoutStartSec = "infinity";
+      #echo "HYPRLAND_INSTANCE_SIGNATURE=$HYPRLAND_INSTANCE_SIGNATURE"
+    #Restart = "on-failure";
+    #RestartSec = "5s";
+   # User = "alex";
+    };
+    #Environment = [  "XDG_RUNTIME_DIR=/run/user/1000"
+    #"WLR_BACKENDS=headless"
+    #"WAYLAND_DISPLAY=headless" 
+    #"PATH=${pkgs.hyprland}/bin/Hyprland/bin"
+    # ]
+  };
+  systemd.user.services.sunshine = {
+  Unit = {
+    Description = "start streaming service.";
+  };
+  Install = {
+    WantedBy = [ "default.target" ];
+  };
+ 
+    Service = {
+      ExecStart = "/run/wrappers/bin/sunshine ${configFile}/config/sunshine.conf";
+     # Type = "forking";
+     #       ExecStart = "${pkgs.writeShellScript "sunshine" ''
+     #   #!/run/current-system/sw/bin/bash
+     #   /usr/bin/sudo /usr/bin/setcap cap_sys_admin+ep ${pkgs.sunshine}/bin/sunshine
+     #   ${pkgs.sunshine}/bin/sunshine  ${configFile}/config/sunshine.conf
+     # ''}";
+    Restart = "always";     # Restart the service if it exits
+      RestartSec = "5s";      # Delay before restarting the service
+      RemainAfterExit = true; # Keep service active even if the main process exits
+      TimeoutStartSec = "infinity";
+  };
+};
 
  #xdg.mimeApps = {
  #   enable = true;

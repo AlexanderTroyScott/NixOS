@@ -34,6 +34,7 @@
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
+
   services.getty.autologinUser = "alex";
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -158,6 +159,7 @@ environment.systemPackages = with pkgs; [
   libnotify        # Dependency for Dunst
   glxinfo          # Get graphics card info
   neofetch
+  kitty
   # Menu
   mpd
   rofi-power-menu  # Power Menu
@@ -168,7 +170,7 @@ environment.systemPackages = with pkgs; [
   wev              # Input Viewer
   wl-clipboard     # Console Clipboard
   wlr-randr        # Screen Settings
-  pamixer          # Pulse Audio Mixer
+  #pamixer          # Pulse Audio Mixer
   networkmanagerapplet
   blueman          # Bluetooth
   light            # Display Brightness
@@ -216,7 +218,7 @@ xdg.portal = {
         enable = true;
         support32Bit = true;
       };
-      pulse.enable = true;
+      #pulse.enable = true;
       jack.enable = true;
     };
 services.upower.enable = true;
