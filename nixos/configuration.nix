@@ -24,6 +24,7 @@
     #./configs/github-runner.nix
     ./configs/hardware-settings.nix
     ./configs/wireguard.nix
+    ./hardware/yubikey.nix
     #./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -217,6 +218,10 @@ fonts= {
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
 
+
+  
+
+  
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     # FIXME: Replace with your username
