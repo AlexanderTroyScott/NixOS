@@ -28,6 +28,7 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./storage.nix
+    ./wooting.nix
     #Home manager
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -174,6 +175,10 @@ services.gvfs.enable = true;
   xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
   programs.hyprland = {
     enable = true;  
+    xwayland = {
+      enable = false;
+      #hidpi = true;
+    };
     package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
   };
   security.pam.services.swaylock = {
@@ -228,6 +233,20 @@ fonts= {
       extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker" "storage"];
     };
   };
+hardware.printers = {
+  ensurePrinters = [
+    {
+      name = "Canon";
+      location = "Home";
+      deviceUri = "http://192.168.209.60:631/ipp/print";
+      model = "drv:///sample.drv/generic.ppd";
+      ppdOptions = {
+        PageSize = "A4";
+      };
+    }
+  ];
+  ensureDefaultPrinter = "Canon";
+};
 networking.extraHosts = ''
   192.168.190.196:8006 proxmox.lan
 '';

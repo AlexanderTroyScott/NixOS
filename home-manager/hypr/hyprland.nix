@@ -18,9 +18,9 @@
 
       #work monitors
       #left
-      #monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
+      monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
       #right
-      #monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
+      monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
       #---------------------------------
       #home monitors
         
@@ -97,9 +97,10 @@
           #shadow_render_power = 3
           #col.shadow = rgba(1a1a1aee)
 
-          #Battery optimisations
+          
           blur {
-            enabled = false
+            enabled = false             #Battery optimisations
+            popups_ignorealpha = 1
           }
           drop_shadow = false
       }

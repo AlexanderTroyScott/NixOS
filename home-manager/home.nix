@@ -78,6 +78,7 @@ in
     github-desktop
     insync
     rsync
+    wootility
     btop              # Resource Manager
     ranger            # File Manager
     unzip
@@ -101,7 +102,7 @@ in
     #logseq          # electron-24.8.6 which is insecure, waiting for update
     #libreoffice      # Office Tools
     okular            # PDF Viewer
-    pcmanfm           # File Manager
+    #pcmanfm           # File Manager
     cinnamon.nemo     # File Manager
     cinnamon.xreader
     cinnamon.xviewer
@@ -128,7 +129,7 @@ in
     docker
     distrobox
     polkit
-    wineWowPackages.waylandFull
+    #wineWowPackages.waylandFull
     #QT5 and QT6 packages
     #qt5.qtwayland
     #qt6.qtwayland
