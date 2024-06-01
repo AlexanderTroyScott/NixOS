@@ -67,7 +67,10 @@
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          
           ./nixos/configuration.nix
+          ./nixos/hardware/yubikey.nix
+          ./nixos/hardware/storage.nix
           hyprland.nixosModules.default
         ];
       };
