@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+
+  networking.hostName = "MiBook"; #Xiaomi Book Pro 16 (2022; i5-1240p)
 boot = {
     # Boot options
     kernelPackages = pkgs.linuxPackages_latest;

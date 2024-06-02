@@ -22,14 +22,12 @@
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
     #./configs/github-runner.nix
-    ./configs/hardware-settings.nix
+    
     ./configs/wireguard.nix
-    ./hardware/yubikey.nix
+    ./configs/fonts.nix
     #./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
-    ./storage.nix
-    ./wooting.nix
+
     #Home manager
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -110,8 +108,9 @@ services.xserver.enable = false;
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
- # security.pam.services.swaylock = {};
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  #services.udisks2.enable = true;
 services.udisks2.enable = true;
 virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
@@ -163,9 +162,7 @@ environment.systemPackages = with pkgs.unstable; [
     enable = true; 
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
   };
-  services.devmon.enable = true;
-services.gvfs.enable = true;
-#services.udisks2.enable = true;
+
 
   #Gnome Keyring
   services.gnome.gnome-keyring.enable = true;
@@ -187,40 +184,10 @@ services.gvfs.enable = true;
     auth include login
    '';
   };
-
-fonts= {
-  packages = with pkgs; [                # Fonts
-    carlito                                 # NixOS
-    vegur                                   # NixOS
-    source-code-pro
-    jetbrains-mono
-    font-awesome                            # Icons
-    corefonts                               # MS
-    # nerdfonts
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
-  ];};
-
-
-  # Font configuration
-  fonts.fontconfig.defaultFonts = {
-    monospace = [ "FiraCode" ];
-    sansSerif = [ "FiraCode" ];
-    serif = [ "FiraCode" ];
-    #monospace = [ "FiraCode" ];
-    emoji =[ "FiraCode" ];
-    #monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-    #emoji = ["Noto Color Emoji"];
-  };
-
-  # TODO: Set your hostname
-  networking.hostName = "MiBook";
+  
   networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
-
-
-  
-
   
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
@@ -238,20 +205,7 @@ fonts= {
       extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker" "storage"];
     };
   };
-hardware.printers = {
-  ensurePrinters = [
-    {
-      name = "Canon";
-      location = "Home";
-      deviceUri = "http://192.168.209.60:631/ipp/print";
-      model = "drv:///sample.drv/generic.ppd";
-      ppdOptions = {
-        PageSize = "A4";
-      };
-    }
-  ];
-  ensureDefaultPrinter = "Canon";
-};
+
 networking.extraHosts = ''
   192.168.190.196:8006 proxmox.lan
 '';
