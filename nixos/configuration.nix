@@ -12,6 +12,10 @@
 }: {
   # You can import other NixOS modules here
   imports = [
+         ./hardware/mi-book/hardware-settings.nix
+          ./hardware/mi-book/hardware-configuration.nix
+          ./hardware/yubikey.nix
+          ./hardware/storage.nix
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 

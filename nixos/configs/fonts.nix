@@ -1,4 +1,6 @@
-{
+
+{pkgs, ...}
+:{
 fonts= {
   packages = with pkgs; [                # Fonts
     carlito                                 # NixOS
