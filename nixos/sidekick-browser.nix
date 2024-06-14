@@ -4,8 +4,8 @@ let
   sidekickBrowser = pkgs.stdenv.mkDerivation {
     name = "sidekick-browser";
     src = pkgs.fetchurl {
-      url = "https://api.meetsidekick.com/downloads/linux/deb?aid=93f675ee-fe1e-47c8-a2c0-3db76d17690d&download_source=website&gcid=1801555284.1718376396";
-      # sha256 = "sha256-hash-of-deb-file"; # Uncomment and replace with the actual SHA256 hash once you have it
+      url = "https://api.meetsidekick.com/downloads/linux/deb?aid=93f675ee-fe1e-47c8-a2c0-3db76d17690d&download_source=website&gcid=1801555284.1718376396"; # Replace with the actual URL of the .deb file
+      sha256 = "58ff9bdf22852aa3131d14aa713b75418c093d2ce3f02ffb12c71a2df6fd2cce"; # Replace with the actual SHA256 hash of the .deb file
     };
 
     unpackPhase = "dpkg-deb -x $src $out";
