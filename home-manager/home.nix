@@ -32,6 +32,8 @@ in
     ./hypr/hypridle.nix
     ./hypr/hyprpaper.nix
     ./vscode.nix
+    ./theme/icons.nix
+    
   ];
 
   nixpkgs = {
@@ -173,32 +175,32 @@ in
  #   };
  # };
 
-  home.pointerCursor = {
-    package = pkgs.catppuccin-cursors.latteDark;
-    name = "Catppuccin-Latte-Dark-Cursors";
-    size = cursorSize;
-    gtk.enable = true;
-  };
-   gtk = {
-    enable = true;
-    font.name = "TeX Gyre Adventor 10";
-    theme = {
-      name = "Juno";
-      package = pkgs.juno-theme;
-    };
-    iconTheme = {
-      package = (pkgs.catppuccin-papirus-folders.override { flavor = "mocha"; accent = "lavender"; });
-      name  = "Papirus-Dark";
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme=1;
-      gtk-cursor-theme-size = cursorSize;
-    };
-    gtk4.extraConfig = {      
-      gtk-application-prefer-dark-theme=1;
-      gtk-cursor-theme-size = cursorSize;
-    };
-   };
+  #home.pointerCursor = {
+  #  package = pkgs.catppuccin-cursors.latteDark;
+  #  name = "Catppuccin-Latte-Dark-Cursors";
+  #  size = cursorSize;
+  #  gtk.enable = true;
+  #};
+   #gtk = {
+    #enable = true;
+    #font.name = "TeX Gyre Adventor 10";
+    #theme = {
+    #  name = "Juno";
+    #  package = pkgs.juno-theme;
+    #};
+    #iconTheme = {
+    #  package = (pkgs.catppuccin-papirus-folders.override { flavor = "mocha"; accent = "lavender"; });
+    #  name  = "Papirus-Dark";
+    #};
+    #gtk3.extraConfig = {
+    #  gtk-application-prefer-dark-theme=1;
+    #  gtk-cursor-theme-size = cursorSize;
+    #};
+    #gtk4.extraConfig = {      
+    #  gtk-application-prefer-dark-theme=1;
+    #  gtk-cursor-theme-size = cursorSize;
+    #};
+   #};
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
 }

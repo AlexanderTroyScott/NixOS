@@ -16,6 +16,9 @@
           ./hardware/mi-book/hardware-configuration.nix
           ./hardware/yubikey.nix
           ./hardware/storage.nix
+          ./hardware/printer.nix
+          ./configs/fonts.nix
+          #./sidekick-browser.nix
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 
@@ -159,7 +162,7 @@ environment.systemPackages = with pkgs.unstable; [
       #networkmanager-openvpn
       libsecret #for keyring remembering secrets
       popsicle
-
+      catppuccin-cursors.latteDark
     ];
   
   xdg.portal = { 
