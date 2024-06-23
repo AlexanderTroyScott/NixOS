@@ -14,18 +14,17 @@ boot = {
   #12th gen alder lake; see https://nixos.wiki/wiki/Intel_Graphics
 
   #Graphics Settings
-  hardware = {
-    opengl.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver        #GPU acceleration 
+      intel-compute-runtime     #OpenComputeLanguage
+      intel-ocl                 #OpenComputeLanguage
+      # vaapiIntel              #Drivers for older intel CPUs (gen 7 or 8), not needed for 12th gen
+      ];
   };
-  hardware.opengl.driSupport32Bit = true;
   hardware.steam-hardware.enable = true;
-  #Intel CPU opencl support
-  hardware.opengl.extraPackages = with pkgs; [
-  intel-media-driver        #GPU acceleration 
-  intel-compute-runtime     #OpenComputeLanguage
-  intel-ocl                 #OpenComputeLanguage
-  # vaapiIntel              #Drivers for older intel CPUs (gen 7 or 8), not needed for 12th gen
-  ];
   environment.systemPackages = with pkgs; [
     undervolt   #undervolting
   ];
