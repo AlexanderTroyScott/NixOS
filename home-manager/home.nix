@@ -8,7 +8,7 @@
   config,
   pkgs,
   #hyprland,
-  #home-manager,
+  home-manager,
   ...
 }:
 let 
@@ -39,7 +39,7 @@ in {
     ./hyprland.nix
     ./kitty.nix
    # ./swayidle.nix
-    #./waybar.nix
+    ./waybar.nix
     ./fuzzel.nix
     ./hyprpaper.nix
     ./vscode.nix
@@ -78,6 +78,9 @@ in {
     username = "alex";
     homeDirectory = "/home/alex";
   };
+
+ 
+ 
  nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
               ];
@@ -119,6 +122,7 @@ in {
     unzip             # Zip Files
     unrar             # Rar Files
     zip               # Zip
+    waybar
     #trilium-desktop
     #parsec-bin
     pcloud
@@ -136,7 +140,6 @@ in {
     ];
 
   # Enable home-manager and git
-  programs.home-manager.enable = true;
   programs.git.enable = true;
   
   # Nicely reload system units when changing configs
@@ -153,8 +156,10 @@ systemd.user.services.headless = {
       Type = "forking";
             ExecStart = "${pkgs.writeShellScript "headless-hyprland" ''
         #!/run/current-system/sw/bin/bash
+        systemctl --user import-environment
+        #export WAYLAND_DISPLAY=wayland-1
+        #export XDG_RUNTIME_DIR=/run/user/1000
         ${pkgs.hyprland}/bin/Hyprland
-        ${pkgs.hyprland}/bin/hyprctl output create headless
       ''}";
       Restart = "always";     # Restart the service if it exits
       RestartSec = "5s";      # Delay before restarting the service

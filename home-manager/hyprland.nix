@@ -233,7 +233,8 @@ wayland.windowManager.hyprland.systemd.variables = [
       workspace = 1, name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:eDP-1
      # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
      # exec-once = systemctl start --user sunshine.service
-      exec-once = waybar & hyprpaper & nm-applet & blueman-applet
+     # exec-once = waybar & hyprpaper & nm-applet & blueman-applet
+       exec-once = hyprctl keyword monitor DP-1,3840x2400@60,0x0,2
      # exec-once =  hyprctl output create headless
   '';
   };

@@ -210,6 +210,7 @@ xdg.portal = {
       };
     };
   };
+  home-manager.backupFileExtension = "backup";
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
     services.pipewire = {
       enable = true;
