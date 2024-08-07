@@ -7,7 +7,7 @@
   hyprland,
   home-manager,
   ...
-}: let 
+}: let
     configFile = pkgs.writeTextDir "/home/alex/.config/sunshine/sunshine.conf"
         ''
         origin_web_ui_allowed=wan
@@ -21,19 +21,19 @@
         #capture = wlr
   in {
 #home-manager.users.alex = { pkgs, ... }: {
-#  home.packages = with pkgs; [ 
-#    sunshine 
-#    xorg.xrandr 
-#    gnome.gdm 
-#    ffmpeg-full 
+#  home.packages = with pkgs; [
+#    sunshine
+#    xorg.xrandr
+#    gnome.gdm
+#    ffmpeg-full
 #    mesa
-#    avahi       
+#    avahi
 #    libappindicator-gtk3 # This is an example, actual package name might vary
-#    gtk3 
+#    gtk3
 #  ];
 #  home.stateVersion = "23.05";
 #};
- 
+
   networking.firewall = {
       enable = false;
     allowedTCPPortRanges = [ { from = 0; to = 65535; } ];
@@ -46,6 +46,13 @@
     #capabilities = "-r";
     source = "${pkgs.sunshine}/bin/sunshine";
   };
+  security.wrappers.hyprland = {
+ owner = "alex";
+ group = "100";
+ #capabilities = "cap_sys_admin+p";
+ #capabilities = "-r";
+ source = "${pkgs.hyprland}/bin/hyprland";
+};
 users.users = {
     alex = {
       #initialPassword = "password";
@@ -61,10 +68,10 @@ users.users = {
     };
   };
   security.sudo.extraRules = [
-    {    
+    {
       users = [ "alex" ];
       commands = [
-        {  
+        {
             command = "ALL" ;
             options= [ "NOPASSWD" ];
         }
@@ -72,11 +79,11 @@ users.users = {
     }
   ];
     programs.hyprland = {
-    enable = true;  
-    xwayland = { enable = false;};
-   # package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
+    enable = true;
+    xwayland = { enable = true;};
+   # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
-  services.avahi = { 
+  services.avahi = {
     enable = true;
     publish.userServices = true;
     nssmdns4 = true;
@@ -107,7 +114,7 @@ programs.dconf.enable = true;
 #      ExecStart = "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf";
 #      Restart = "on-failure";
 #      RestartSec = "5s";
-   
+
 #    };
 #  };
 

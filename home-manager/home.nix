@@ -11,7 +11,7 @@
   home-manager,
   ...
 }:
-let 
+let
   cursorSize = 28;
     configFile = pkgs.writeTextDir "/home/alex/.config/sunshine/sunshine.conf"
         ''
@@ -24,7 +24,7 @@ let
         #encoder = quicksync
         #adapter_name = /dev/dri/renderD128
         #capture = wlr
-  
+
 in {
   # You can import other home-manager modules here
   imports = [
@@ -79,18 +79,18 @@ in {
     homeDirectory = "/home/alex";
   };
 
- 
- 
+
+
  nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
               ];
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     #libnotify
     #programs
-    insync
+    #insync
     btop              # Resource Manager
     ranger            # File Manager
     unzip
@@ -140,41 +140,44 @@ in {
     ];
 
   # Enable home-manager and git
+  programs.home-manager.enable = true;
   programs.git.enable = true;
-  
-  # Nicely reload system units when changing configs
-  # systemd.user.startServices = "sd-switch";
 
-systemd.user.services.headless = {
-   Unit = {
+  systemd.user.services.headless = {
+    Unit = {
       Description = "Create hyprland service for headless displays.";
     };
     Install = {
       WantedBy = [ "default.target" ];
     };
     Service = {
-      Type = "forking";
-            ExecStart = "${pkgs.writeShellScript "headless-hyprland" ''
+      #Type = "forking";
+      #User = "alex";
+      #Environment = "PATH=${pkgs.stdenv.shell}/bin:${pkgs.hyprland}/bin:${pkgs.coreutils}/bin"; # Add necessary paths
+      ExecStart = "${pkgs.writeShellScript "headless-hyprland" ''
         #!/run/current-system/sw/bin/bash
+
+        # Import user environment variables including PATH
         systemctl --user import-environment
-        #export WAYLAND_DISPLAY=wayland-1
+
+        # Export required environment variables
         #export XDG_RUNTIME_DIR=/run/user/1000
+
+        # Start Hyprland
         ${pkgs.hyprland}/bin/Hyprland
       ''}";
       Restart = "always";     # Restart the service if it exits
       RestartSec = "5s";      # Delay before restarting the service
       RemainAfterExit = true; # Keep service active even if the main process exits
       TimeoutStartSec = "infinity";
-      #echo "HYPRLAND_INSTANCE_SIGNATURE=$HYPRLAND_INSTANCE_SIGNATURE"
-    #Restart = "on-failure";
-    #RestartSec = "5s";
-   # User = "alex";
+
+      # Environment variables
+      #Environment = [
+        #"XDG_RUNTIME_DIR=/run/user/1000"
+        # All paths from home.sessionVariables.PATH
+        #"PATH=${lib.makeBinPath [ pkgs.kitty pkgs.vivaldi pkgs.dolphin pkgs.hyprland ]}"
+      #];
     };
-    #Environment = [  "XDG_RUNTIME_DIR=/run/user/1000"
-    #"WLR_BACKENDS=headless"
-    #"WAYLAND_DISPLAY=headless" 
-    #"PATH=${pkgs.hyprland}/bin/Hyprland/bin"
-    # ]
   };
   systemd.user.services.sunshine = {
   Unit = {
@@ -183,15 +186,15 @@ systemd.user.services.headless = {
   Install = {
     WantedBy = [ "default.target" ];
   };
- 
+
     Service = {
       ExecStart = "/run/wrappers/bin/sunshine ${configFile}/config/sunshine.conf";
-     # Type = "forking";
-     #       ExecStart = "${pkgs.writeShellScript "sunshine" ''
-     #   #!/run/current-system/sw/bin/bash
-     #   /usr/bin/sudo /usr/bin/setcap cap_sys_admin+ep ${pkgs.sunshine}/bin/sunshine
-     #   ${pkgs.sunshine}/bin/sunshine  ${configFile}/config/sunshine.conf
-     # ''}";
+      Type = "forking";
+      #      ExecStart = "${pkgs.writeShellScript "sunshine" ''
+      #  #!/run/current-system/sw/bin/bash
+      #  /usr/bin/sudo /usr/bin/setcap cap_sys_admin+ep ${pkgs.sunshine}/bin/sunshine
+      #  ${pkgs.sunshine}/bin/sunshine  ${configFile}/config/sunshine.conf
+      #''}";
     Restart = "always";     # Restart the service if it exits
       RestartSec = "5s";      # Delay before restarting the service
       RemainAfterExit = true; # Keep service active even if the main process exits
@@ -235,7 +238,7 @@ systemd.user.services.headless = {
       gtk-application-prefer-dark-theme=1;
       gtk-cursor-theme-size = cursorSize;
     };
-    gtk4.extraConfig = {      
+    gtk4.extraConfig = {
       gtk-application-prefer-dark-theme=1;
       gtk-cursor-theme-size = cursorSize;
     };

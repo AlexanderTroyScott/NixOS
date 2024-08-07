@@ -8,14 +8,14 @@
   #home.packages = with pkgs; [ hyprland ];
 
 wayland.windowManager.hyprland.systemd.variables = [
-  "WAYLAND_DISPLAY=headless"
+  "WAYLAND_DISPLAY=DP-1"
 ];
   wayland.windowManager.hyprland = {
     enable = true;
     #xwayland.enable = true;
     extraConfig = ''
-    debug:disable_logs = false 
-    env = XDG_RUNTIME_DIR,/run/user/1000
+    debug:disable_logs = false
+    #env = XDG_RUNTIME_DIR,/run/user/1000
      # XDG_RUNTIME_DIR=/home/alex/temp/
      # exec-once = hyprctl output create headless
       # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -118,10 +118,10 @@ wayland.windowManager.hyprland.systemd.variables = [
           preserve_split = yes # you probably want this
       }
 
-      master {
+      #master {
           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-          new_is_master = true
-      }
+      #    new_is_master = true
+      #}
 
       gestures {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -163,19 +163,27 @@ wayland.windowManager.hyprland.systemd.variables = [
       $lockscreen = swaylock -f --screenshot --effect-blur 5x7 --grace 5 --clock --indicator
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+      bind = ALT, Q, exec, kitty
+      bind = ALT, R, exec, foot
+      bind = ,r,exec,foot
+      bind = ,q,exec,foot
+      bind = ,Q,exec,kitty
+      bind = ,R,exec,foot
+      bind = ,mouse:273,exec,foot
       bind = $mainMod, Q, exec, kitty
       bind = $mainMod, W, exec, vivaldi
-      bind = $mainMod, C, killactive, 
+      bind = $mainMod, C, killactive,
       bind = $mainMod, M, exit,
-      bind = $mainMod, F, fullscreen, 
+      bind = $mainMod, F, fullscreen,
       bind = $mainMod, E, exec, dolphin
       bind = $mainMod, L, exec, $lockscreen
-      bind = $mainMod, V, togglefloating, 
+      bind = $mainMod, V, togglefloating,
       bind = $mainMod, R, exec, fuzzel
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
       bind = $mainMod, X, exec, grim -g "$(slurp -d)" - | wl-copy -t image/png
       bind = $mainMod, grave, exec, fuzzel
+      bind = $mainMod, Z, exec, fuzzel
       bind = , switch:off:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, 3840x2400@60, 0x0, auto"
       bind = , switch:on:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, disable"
       #grave is ~
@@ -231,7 +239,7 @@ wayland.windowManager.hyprland.systemd.variables = [
 
       workspace = 2, name:browser, monitor:eDP-1, default:true
       workspace = 1, name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:eDP-1
-     # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE
+      #exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE PATH
      # exec-once = systemctl start --user sunshine.service
      # exec-once = waybar & hyprpaper & nm-applet & blueman-applet
        exec-once = hyprctl keyword monitor DP-1,3840x2400@60,0x0,2

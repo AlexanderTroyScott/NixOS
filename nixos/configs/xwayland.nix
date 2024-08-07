@@ -10,7 +10,7 @@
     xwayland.enable = true;  
   };
     #TouchPad
-    services.xserver.libinput = {
+    services.libinput = {
     enable = true;  #Expected to be enabled by default
     touchpad = {
       dev = "/dev/input/event6";

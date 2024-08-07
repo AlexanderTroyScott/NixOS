@@ -35,6 +35,13 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+
+  #environment.variables = {
+  #XDG_SESSION_TYPE = "wayland";
+  #MOZ_ENABLE_WAYLAND = "1";
+  #QT_QPA_PLATFORM = "wayland";
+  #SDL_VIDEODRIVER = "wayland";
+  #};
   services.getty.autologinUser = "alex";
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -60,10 +67,10 @@
  hardware.enableAllFirmware = true;
 #services.xserver.enable = false;
  
-hardware.opengl = {
+hardware.graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
+        #driSupport32Bit = true;
         extraPackages = with pkgs; [
           intel-media-driver        #GPU acceleration 
           intel-compute-runtime     #OpenComputeLanguage
@@ -73,7 +80,12 @@ hardware.opengl = {
           ];
     };
 
-
+programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+};
   #hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   nixpkgs = {
@@ -160,6 +172,7 @@ environment.systemPackages = with pkgs; [
   glxinfo          # Get graphics card info
   neofetch
   kitty
+  foot
   # Menu
   mpd
   rofi-power-menu  # Power Menu
