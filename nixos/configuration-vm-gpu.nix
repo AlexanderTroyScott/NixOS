@@ -35,7 +35,16 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-
+services.greetd = {
+  enable = true;
+  settings = rec {
+    initial_session = {
+      command = "${pkgs.hyprland}/bin/Hyprland";
+      user = "alex";
+    };
+    default_session = initial_session;
+  };
+};
   #environment.variables = {
   #XDG_SESSION_TYPE = "wayland";
   #MOZ_ENABLE_WAYLAND = "1";
