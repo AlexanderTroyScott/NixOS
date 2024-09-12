@@ -163,13 +163,6 @@ wayland.windowManager.hyprland.systemd.variables = [
       $lockscreen = swaylock -f --screenshot --effect-blur 5x7 --grace 5 --clock --indicator
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = ALT, Q, exec, kitty
-      bind = ALT, R, exec, foot
-      bind = ,r,exec,foot
-      bind = ,q,exec,foot
-      bind = ,Q,exec,kitty
-      bind = ,R,exec,foot
-      bind = ,mouse:273,exec,foot
       bind = $mainMod, Q, exec, kitty
       bind = $mainMod, W, exec, vivaldi
       bind = $mainMod, C, killactive,
