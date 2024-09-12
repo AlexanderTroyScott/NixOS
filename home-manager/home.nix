@@ -143,42 +143,7 @@ in {
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  systemd.user.services.headless = {
-    Unit = {
-      Description = "Create hyprland service for headless displays.";
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-    Service = {
-      #Type = "forking";
-      #User = "alex";
-      #Environment = "PATH=${pkgs.stdenv.shell}/bin:${pkgs.hyprland}/bin:${pkgs.coreutils}/bin"; # Add necessary paths
-      ExecStart = "${pkgs.writeShellScript "headless-hyprland" ''
-        #!/run/current-system/sw/bin/bash
-
-        # Import user environment variables including PATH
-        systemctl --user import-environment
-
-        # Export required environment variables
-        #export XDG_RUNTIME_DIR=/run/user/1000
-
-        # Start Hyprland
-        ${pkgs.hyprland}/bin/Hyprland
-      ''}";
-      Restart = "always";     # Restart the service if it exits
-      RestartSec = "5s";      # Delay before restarting the service
-      RemainAfterExit = true; # Keep service active even if the main process exits
-      TimeoutStartSec = "infinity";
-
-      # Environment variables
-      #Environment = [
-        #"XDG_RUNTIME_DIR=/run/user/1000"
-        # All paths from home.sessionVariables.PATH
-        #"PATH=${lib.makeBinPath [ pkgs.kitty pkgs.vivaldi pkgs.dolphin pkgs.hyprland ]}"
-      #];
-    };
-  };
+  
   systemd.user.services.sunshine = {
   Unit = {
     Description = "start streaming service.";
