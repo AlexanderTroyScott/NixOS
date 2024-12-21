@@ -4,15 +4,15 @@
   catppuccin.accent = "teal";
   catppuccin.flavor = "mocha";
   
-  catppuccin.pointerCursor.enable = true;
-  catppuccin.pointerCursor.accent = "teal";
-  catppuccin.pointerCursor.flavor = "mocha";
-  gtk.catppuccin.enable = true;
-  gtk.catppuccin.accent = "teal";
-  gtk.catppuccin.flavor = "mocha";
-  gtk.catppuccin.gnomeShellTheme = false;
-  gtk.catppuccin.icon.enable = true;
-  gtk.catppuccin.icon.accent = "teal";
-  gtk.catppuccin.icon.flavor = "mocha";
-  gtk.catppuccin.size = "standard";
+ # catppuccin.pointerCursor.enable = true;
+ # catppuccin.pointerCursor.accent = "dark";
+ # catppuccin.pointerCursor.flavor = "mocha";
+  catppuccin.gtk.enable = true;
+  catppuccin.gtk.accent = "dark";
+  catppuccin.gtk.flavor = "mocha";
+  catppuccin.gtk.gnomeShellTheme = false;
+  catppuccin.gtk.icon.enable = true;
+  catppuccin.gtk.icon.accent = "dark";
+  catppuccin.gtk.icon.flavor = "mocha";
+  catppuccin.gtk.size = "compact";
 }

@@ -1,6 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-let 
+let
   cursorSize = 28;
 in
 {
@@ -9,6 +9,7 @@ in
   lib,
   config,
   pkgs,
+  catppuccin,
   #hyprland,
   #home-manager,
   ...
@@ -17,7 +18,6 @@ in
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
-
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
     #inputs.hyprland.nixosModules.default
@@ -33,7 +33,7 @@ in
     ./hypr/hyprpaper.nix
     ./vscode.nix
     ./theme/icons.nix
-    
+    ./theme/catppuccin.nix
   ];
 
   nixpkgs = {
@@ -63,7 +63,7 @@ in
     };
   };
   # TODO: Set your username
-  
+
   home = {
     username = "alex";
     homeDirectory = "/home/alex";
@@ -74,13 +74,14 @@ in
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     #libnotify
     #programs
     github-desktop
-    insync
+    coder
+    #insync
     rsync
-    wootility
+   # wootility
     btop              # Resource Manager
     ranger            # File Manager
     unzip
@@ -91,24 +92,30 @@ in
     discord           # Chat
     betterdiscordctl  # Discord Themes
     youtube-music
-    element-desktop
-    element-web
+    #element-desktop
+    #element-web
     vivaldi
     firefox
+    vdhcoapp #firefox video downloader extension
                # Torrents
+    hyprcursor
     steam            # Games
+  # Required libraries for Proton
+  libglvnd
+  vulkan-loader
+ vulkan-tools
+  # Additional graphics drivers, if needed
+  mesa
+    gamescope
     lutris
     wine-wayland
+    siyuan
     keepassxc
     #obsidian
     #logseq          # electron-24.8.6 which is insecure, waiting for update
     #libreoffice      # Office Tools
     okular            # PDF Viewer
     #pcmanfm           # File Manager
-    cinnamon.nemo     # File Manager
-    cinnamon.xreader
-    cinnamon.xviewer
-    cinnamon.pix
     p7zip             # Zip Encryption
     rsync             # Syncer - $ rsync -r dir1/ dir2/
     unzip             # Zip Files
@@ -116,10 +123,13 @@ in
     zip               # Zip
     #trilium-desktop
     #parsec-bin
+    softmaker-office
+    hyprgui
     fuzzel
     clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
-    anytype
+    #anytype
     #Utilities
+    google-chrome
     dnsutils
     moonlight-qt
     powertop
@@ -131,6 +141,11 @@ in
     docker
     distrobox
     polkit
+    rclone
+    rclone-browser
+    nodejs_22
+    traceroute
+    proton-pass
     #wineWowPackages.waylandFull
     #QT5 and QT6 packages
     #qt5.qtwayland
@@ -146,14 +161,21 @@ in
     cosmic-greeter
     cosmic-session
     cosmic-edit
-    cava
+    #cava
     dysk
+    #CINNAMON APPs
+    nemo     # File Manager
+    yt-dlg
+    xreader
+    xviewer
+    pix
     ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
-  
+
+
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
 
@@ -196,7 +218,7 @@ in
     #  gtk-application-prefer-dark-theme=1;
     #  gtk-cursor-theme-size = cursorSize;
     #};
-    #gtk4.extraConfig = {      
+    #gtk4.extraConfig = {
     #  gtk-application-prefer-dark-theme=1;
     #  gtk-cursor-theme-size = cursorSize;
     #};

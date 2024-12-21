@@ -8,17 +8,18 @@
   pkgs,
   hyprland,
   home-manager,
+  catppuccin,
   ...
 }: {
   # You can import other NixOS modules here
   imports = [
          ./hardware/mi-book/hardware-settings.nix
           ./hardware/mi-book/hardware-configuration.nix
-          ./hardware/yubikey.nix
+          #./hardware/yubikey.nix
           ./hardware/storage.nix
           ./hardware/printer.nix
           ./configs/fonts.nix
-          #./sidekick-browser.nix
+         
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 
@@ -29,24 +30,17 @@
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
     #./configs/github-runner.nix
-    
+
     ./configs/wireguard.nix
     ./configs/fonts.nix
-    #./configs/xwayland.nix
+    ./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
 
     #Home manager
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
-services.xserver.enable = false;
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      # Import your home-manager configuration
-      alex = import ../home-manager/home.nix;
-    };
-  };
+#services.xserver.enable = false;
 
   nixpkgs = {
     # You can add overlays here
@@ -70,6 +64,7 @@ services.xserver.enable = false;
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
+      allowUnsupportedSystem = true;
     };
   };
   nix = {
@@ -117,8 +112,8 @@ services.xserver.enable = false;
   };
   services.devmon.enable = true;
   services.gvfs.enable = true;
-  #services.udisks2.enable = true;
-services.udisks2.enable = true;
+  services.udisks2.enable = true;
+services.flatpak.enable = true;
 virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
       libva
@@ -132,6 +127,7 @@ environment.systemPackages = with pkgs.unstable; [
       libnotify        # Dependency for Dunst
       glxinfo          # Get graphics card info
       neofetch
+      vdhcoapp #Firefox downloader extension
       # Menu
       mpd
       rofi-power-menu  # Power Menu
@@ -153,21 +149,22 @@ environment.systemPackages = with pkgs.unstable; [
       xdg-desktop-portal
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
-      xdg_utils
+      xdg-utils
       wireguard-tools
       lshw
       udiskie
+      zed-editor
       cifs-utils #SMB/CIFS share for unraid
       #bolt
       #networkmanager-openvpn
       libsecret #for keyring remembering secrets
       popsicle
-      catppuccin-cursors.latteDark
+      #catppuccin-cursors.latteDark
     ];
-  
-  xdg.portal = { 
-    enable = true; 
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
 
@@ -175,27 +172,28 @@ environment.systemPackages = with pkgs.unstable; [
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
   #ssh.startAgent = true;
- 
+
   services.upower.enable = true;
-  xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in 
+  xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in
   programs.hyprland = {
-    enable = true;  
+    enable = true;
     xwayland = {
-      enable = false;
+      #enable = false;
+      enable=true;
       #hidpi = true;
     };
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
   security.pam.services.swaylock = {
     text = ''
     auth include login
    '';
   };
-  
+
   networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
-  
+
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     # FIXME: Replace with your username

@@ -15,7 +15,7 @@
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
-    # hyprland
+    catppuccin.url = "github:catppuccin/nix";
     hyprland = {                                                            # Official Hyprland flake
         url = "git+https://github.com/hyprwm/Hyprland?submodules=1";                                   # Add "hyprland.nixosModules.default" to the host modules
         inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -30,6 +30,7 @@
     nixpkgs,
     home-manager,
     hyprland,
+    catppuccin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -38,8 +39,8 @@
       "aarch64-linux"
       "i686-linux"
       "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
+    #  "aarch64-darwin"
+    #  "x86_64-darwin"
     ];
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
@@ -68,7 +69,23 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
+          catppuccin.nixosModules.catppuccin
           hyprland.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+          home-manager = {
+            extraSpecialArgs = { inherit inputs outputs; };
+            users.alex = {
+                imports = [
+                  ./home-manager/home.nix
+                  catppuccin.homeManagerModules.catppuccin
+                ];
+            };
+            
+          };
+          catppuccin.flavor = "mocha";
+    catppuccin.enable = true;
+          }
         ];
       };
     };

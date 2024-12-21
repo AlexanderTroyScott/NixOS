@@ -102,8 +102,7 @@
             enabled = false             #Battery optimisations
             popups_ignorealpha = 1
           }
-          drop_shadow = false
-      }
+       }
 
       animations {
           enabled = yes
@@ -126,10 +125,10 @@
           preserve_split = yes # you probably want this
       }
 
-      master {
+      #master {
           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-          new_is_master = true
-      }
+      #    new_is_master = true
+      #}
 
       gestures {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -218,6 +217,12 @@
       bind = $mainMod SHIFT, 8, movetoworkspace, 8
       bind = $mainMod SHIFT, 9, movetoworkspace, 9
       bind = $mainMod SHIFT, 0, movetoworkspace, 10
+
+windowrulev2 = fullscreen,class:^steam_app\d+$
+windowrulev2 = monitor 1,class:^steam_app_\d+$
+windowrulev2 = workspace 10,class:^steam_app_\d+$
+workspace = 10, border:false, rounding:false
+
 
       # Scroll through existing workspaces with mainMod + scroll
       bind = $mainMod, mouse_down, workspace, e+1

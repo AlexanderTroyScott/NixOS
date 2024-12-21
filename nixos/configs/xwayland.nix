@@ -11,10 +11,10 @@
     xwayland.enable = true;  
   };
     #TouchPad
-    services.xserver.libinput = {
+    services.libinput = {
     enable = true;  #Expected to be enabled by default
     touchpad = {
-      dev = "/dev/input/event6";
+      dev = "/dev/input/event7";
       sendEventsMode = "enabled";
       scrollMethod = "twofinger"; #one of "twofinger", "edge", "button", "none"
       naturalScrolling = true; # Enables natural/reverse scrolling

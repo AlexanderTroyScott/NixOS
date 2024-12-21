@@ -10,7 +10,7 @@ fonts= {
     font-awesome                            # Icons
     corefonts                               # MS
     # nerdfonts
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+      #(nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
   ];};
  # Font configuration
   fonts.fontconfig.defaultFonts = {

@@ -7,7 +7,7 @@ boot = {
     # Boot options
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["!" "thunderbolt"];
-    kernelParams = [ "bolt" "i915.force_probe=46a6" ];
+    kernelParams = [ "bolt" "i915.force_probe=46a6" "i8042.noaux" "i8042.nomux" "i8042.noloop" "i8042.reset" "i8042.nopnp" ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
@@ -18,7 +18,7 @@ boot = {
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      intel-media-driver        #GPU acceleration 
+      intel-media-driver        #GPU acceleration
       intel-compute-runtime     #OpenComputeLanguage
       intel-ocl                 #OpenComputeLanguage
       # vaapiIntel              #Drivers for older intel CPUs (gen 7 or 8), not needed for 12th gen
@@ -28,7 +28,6 @@ boot = {
   environment.systemPackages = with pkgs; [
     undervolt   #undervolting
   ];
-  
   #Power Optimization
   boot.kernel.sysctl."vm.dirty_writeback_centisecs" = 1500; # 15 seconds
 
@@ -73,14 +72,24 @@ boot = {
       '';
     pcscd.enable = true; #for yubikey but may not have worked
     pipewire = {
-      enable = true;
-      audio.enable = true;
-      alsa = {
         enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-      jack.enable = true;
+        audio.enable = true;
+        alsa = {
+            enable = true;
+            support32Bit = true;
+        };
+        pulse.enable = true;
+        jack.enable = true;
+        wireplumber = {
+            enable = true;
+            extraConfig =  {
+                "10-disable-camera" =  {
+                    "wireplumber.profiles" = {
+                        main."monitor.libcamera" = "disabled";
+                    };
+                };
+            };
+        };
     };
     #logind.lidSwitch = "ignore";           # Laptop does not go to sleep when lid is closed
     auto-cpufreq.enable = true;
@@ -97,6 +106,14 @@ boot = {
     };
   };
 
+  /*Fingerprint sensor, currently not supported*/
+ #services.fprintd.enable = true;
+ #services.fprintd.tod.enable = true;
+ #services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+ security.pam.services.login.fprintAuth = true;
+ #security.pam.services.hyprlock = {};
+ #security.pam.services.hyprlock.fprintAuth;
+
  programs = {
     dconf.enable = true;
     light.enable = true;
@@ -106,9 +123,9 @@ boot = {
   };
 
   environment.variables.BROWSER = "${pkgs.vivaldi}/bin/vivaldi"; #set default browser
-  
+
   environment.sessionVariables = {
-    #WLR_NO_HARDWARE_CURSORS = "1"; 
+    #WLR_NO_HARDWARE_CURSORS = "1";
     #if cursor is invisible
     NIXOS_OZONE_WL = "1";
   };

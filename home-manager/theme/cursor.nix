@@ -13,4 +13,5 @@
     hyprcursor
     catppuccin-cursors.mochaMauve
  ];
+ 
 }
