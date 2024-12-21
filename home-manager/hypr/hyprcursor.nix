@@ -9,9 +9,7 @@
   ...
 }: {
  home.packages = with pkgs; [
-    
     hyprcursor
-    catppuccin-cursors.mochaMauve
  ];
  
 }
