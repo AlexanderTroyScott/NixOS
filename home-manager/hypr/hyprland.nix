@@ -41,7 +41,7 @@
       # source = ~/.config/hypr/myColors.conf
 
       # Some default env vars.
-      #env = XCURSOR_SIZE,48
+      #env = XCURSOR_SIZE,32
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
@@ -187,6 +187,7 @@
       bind = , switch:off:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, 3840x2400@60, 0x0, auto"
       bind = , switch:on:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, disable"
       #grave is ~
+      bind = $mainMod, W, exec, pkill waybar || waybar &
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
@@ -205,7 +206,7 @@
       bind = $mainMod, 8, workspace, 8
       bind = $mainMod, 9, workspace, 9
       bind = $mainMod, 0, workspace, 10
-
+      
       # Move active window to a workspace with mainMod + SHIFT + [0-9]
       bind = $mainMod SHIFT, 1, movetoworkspace, 1
       bind = $mainMod SHIFT, 2, movetoworkspace, 2
@@ -218,10 +219,10 @@
       bind = $mainMod SHIFT, 9, movetoworkspace, 9
       bind = $mainMod SHIFT, 0, movetoworkspace, 10
 
-windowrulev2 = fullscreen,class:^steam_app\d+$
-windowrulev2 = monitor 1,class:^steam_app_\d+$
-windowrulev2 = workspace 10,class:^steam_app_\d+$
-workspace = 10, border:false, rounding:false
+#windowrulev2 = fullscreen,class:^steam_app\d+$
+#windowrulev2 = monitor 1,class:^steam_app_\d+$
+#windowrulev2 = workspace 10,class:^steam_app_\d+$
+#workspace = 10, border:false, rounding:false
 
 
       # Scroll through existing workspaces with mainMod + scroll
@@ -238,19 +239,23 @@ workspace = 10, border:false, rounding:false
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
 
-      #windowrulev2 = float,class:(kitty)
-      #windowrulev2 = fullscreen,class:(vivaldi-stable)
-      windowrulev2 = workspace:(coding),title:(Visual Studio Code)
-      windowrulev2 = workspace  silent,^class:(com.moonlight_stream.Moonlight)$      
+      workspace = 3, default:true, persistent:true
+      workspace = 2, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true
+      workspace = 8, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true
 
-      workspace = 2, name:browser, monitor:eDP-1, default:true
-      workspace = 1, name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:eDP-1
+      #windowrulev2 = workspace:(coding),class:^steam_app_\d+$
+      windowrulev2 = workspace 8 silent,initialClass:(discord)
+      windowrulev2 = workspace 2 silent,initialClass:(code) 
+      #windowrulev2 = workspace 2 silent, class:^(firefox)$, title:^(firefox)$
+      
       misc{
       disable_autoreload = true
       }
 
-      exec-once = waybar & hyprpaper & nm-applet & blueman-applet & clipse -listen  
+      exec-once = waybar & hyprpaper & nm-applet & blueman-applet & clipse -listen  & hyprctl dispatch exec code & betterdiscordctl install
+      exec-once = hyprctl dispatch exec discord & hyprctl dispatch exec zen
 
   '';
   };
 }
+

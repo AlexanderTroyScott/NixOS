@@ -12,10 +12,12 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    stylix.url = "github:danth/stylix";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
-    catppuccin.url = "github:catppuccin/nix";
+    #catppuccin.url = "github:catppuccin/nix";
     hyprland = {                                                            # Official Hyprland flake
         url = "git+https://github.com/hyprwm/Hyprland?submodules=1";                                   # Add "hyprland.nixosModules.default" to the host modules
         inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -30,7 +32,9 @@
     nixpkgs,
     home-manager,
     hyprland,
-    catppuccin,
+   # catppuccin,
+    #zen-browser,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -69,8 +73,9 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
-          catppuccin.nixosModules.catppuccin
+         # catppuccin.nixosModules.catppuccin
           hyprland.nixosModules.default
+          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
           home-manager = {
@@ -78,13 +83,13 @@
             users.alex = {
                 imports = [
                   ./home-manager/home.nix
-                  catppuccin.homeManagerModules.catppuccin
+                 # catppuccin.homeManagerModules.catppuccin
                 ];
             };
             
           };
-          catppuccin.flavor = "mocha";
-    catppuccin.enable = true;
+    #      catppuccin.flavor = "mocha";
+    #catppuccin.enable = true;
           }
         ];
       };

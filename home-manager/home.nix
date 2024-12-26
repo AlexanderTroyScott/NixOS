@@ -31,11 +31,12 @@ in
     ./hypr/hyprlock.nix
     ./hypr/hypridle.nix
     ./hypr/hyprpaper.nix
+    ./hypr/hyprcursor.nix
     ./vscode.nix
     ./theme/icons.nix
-    ./theme/catppuccin.nix
+   # ./theme/catppuccin.nix
   ];
-
+  
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -95,10 +96,10 @@ in
     #element-desktop
     #element-web
     vivaldi
+    masterpdfeditor
     firefox
     vdhcoapp #firefox video downloader extension
                # Torrents
-    hyprcursor
     steam            # Games
   # Required libraries for Proton
   libglvnd
@@ -121,6 +122,7 @@ in
     unzip             # Zip Files
     unrar             # Rar Files
     zip               # Zip
+    nerd-fonts.symbols-only #Symbols for waybar/etc.
     #trilium-desktop
     #parsec-bin
     softmaker-office

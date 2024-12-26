@@ -41,6 +41,52 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 #services.xserver.enable = false;
+  stylix = {
+     enable = true;
+     image = 
+      pkgs.fetchurl {
+      url = "https://github.com/AlexanderTroyScott/NixOS/blob/main/.github/black_cat.jpeg?raw=true";
+      sha256 = "8229741e8e01042330037a708462dc8243df5ff2de3c99189436a68799220f0b";
+      };
+     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+     override.base00 = "000000";
+     #override.base02 = "000000";
+     #cursor.package = pkgs.hyprcursor;
+     cursor.package = pkgs.bibata-cursors;
+     cursor.name = "Bibata-Original-Classic";
+     cursor.size=20;
+     polarity = "dark";
+     opacity = {
+       applications = 1.0;
+       terminal = 0.9;
+       popups = 1.0;
+       desktop = 1.0;
+     };
+     fonts = {
+       sizes = {
+         applications = 9;
+         terminal = 9;
+         popups = 9;
+         desktop = 9;
+       };
+       serif = {
+         package = pkgs.dejavu_fonts;
+         name = "DejaVu Serif";
+       };
+       sansSerif = {
+         package = pkgs.dejavu_fonts;
+         name = "DejaVu Sans";
+       };
+       monospace = {
+         name = "Fira Code";
+         package = pkgs.fira-code;
+       };
+       emoji = {
+         package = pkgs.fira-code-symbols;
+         name = "Fira Code Emoji";
+       };
+      };
+    };
 
   nixpkgs = {
     # You can add overlays here
@@ -116,6 +162,8 @@
 services.flatpak.enable = true;
 virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
+
+      inputs.zen-browser.packages."${system}".default
       libva
       libva-utils            # Video Acceleration Info (intel)
       git              # Repositories
