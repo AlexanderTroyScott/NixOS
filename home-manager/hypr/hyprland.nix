@@ -154,16 +154,18 @@
       # Example windowrule v2
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-      windowrulev2 = float,title:(Picture in picture),class:()
-      windowrulev2 = opacity 0.05 override 1.0 override,title:(Picture in picture),class:()
-      windowrulev2 = pin,title:(Picture in picture)
-      windowrulev2 = move 1046 708,class:(), title:(Picture in picture)
+      $PictureInPicture = Picture-In-Picture
+      windowrulev2 = float,title:($PictureInPicture)
+      windowrulev2 = float,title:(Picture-in-Picture)
+      windowrulev2 = opacity 0.05 override 1.0 override,title:(Picture-in-Picture)
+      windowrulev2 = pin,title:(Picture-in-Picture)
+      windowrulev2 = move 1046 708, title:(Picture-in-Picture)
 
       #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = float, class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = size 800 450, class:^(firefox)$, title:^(Picture-in-Picture)$
-      windowrulev2 = size 848 468, title:(Picture in picture), class:()
+      windowrulev2 = size 848 468, title:(Picture-in-Picture)
       windowrulev2 = float,class:(floating)  
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more$ nix-env --delete-generations 14d
 
