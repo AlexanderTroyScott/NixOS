@@ -126,11 +126,11 @@ in
     #trilium-desktop
     #parsec-bin
     softmaker-office
-    hyprgui
     fuzzel
     clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
     #anytype
     #Utilities
+    vesktop        #discord
     google-chrome
     dnsutils
     moonlight-qt
@@ -171,6 +171,8 @@ in
     xreader
     xviewer
     pix
+    nodejs
+    nodePackages.bower
     ];
 
   # Enable home-manager and git
