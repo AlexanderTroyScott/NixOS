@@ -96,8 +96,10 @@ in
     #element-desktop
     #element-web
     vivaldi
-    masterpdfeditor
+    #masterpdfeditor
+    teams-for-linux
     firefox
+    deluge
     vdhcoapp #firefox video downloader extension
                # Torrents
     steam            # Games
@@ -141,6 +143,7 @@ in
     plex-media-player
     gparted
     docker
+    qFlipper
     distrobox
     polkit
     rclone
@@ -157,12 +160,12 @@ in
     #libsForQt5.qtinstaller
     #libsForQt5.audiotube
     #adwaita-qt #qt theme
-    cosmic-files
-    cosmic-term
-    cosmic-icons
-    cosmic-greeter
-    cosmic-session
-    cosmic-edit
+    #cosmic-files
+    #cosmic-term
+    #cosmic-icons
+    #cosmic-greeter
+    #cosmic-session
+    #cosmic-edit
     #cava
     dysk
     #CINNAMON APPs
