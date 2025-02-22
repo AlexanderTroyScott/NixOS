@@ -8,8 +8,9 @@
   options = [
   "nofail"
 	"rw"
-	"hard"
+	"soft"
 	"intr"
+  "timeo=14"
 	];
   };
   fileSystems."/unraid/library" = {
@@ -20,8 +21,9 @@
   options = [
   "nofail"
 	"rw"
-	"hard"
+	"soft"
 	"intr"
+  "timeo=14"
 	];
   };
  fileSystems."/unraid/vault" = {
@@ -32,8 +34,9 @@
   options = [
   "nofail"
 	"rw"
-	"hard"
+	"soft"
 	"intr"
+  "timeo=14"
 	];
   };
 
@@ -44,9 +47,10 @@
     options = [
       "nofail"
       "rw"
-      "hard"
+      "soft"
       "intr"
       "exec"
+      "timeo=14"
      # "uid=1000"   # Replace with your local user’s UID
      # "gid=100"     # Replace with your local user's GID
     ];
@@ -60,7 +64,8 @@
   options = [
   "nofail"
 	"rw"
-	"hard"
+	"soft"
+  "timeo=14"
 	];
   };
 
