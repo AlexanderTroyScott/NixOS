@@ -36,7 +36,7 @@ in
     ./theme/icons.nix
    # ./theme/catppuccin.nix
   ];
-  
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -69,6 +69,7 @@ in
     username = "alex";
     homeDirectory = "/home/alex";
   };
+  #services.polkit.enable = true;
  nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
               ];
@@ -82,6 +83,8 @@ in
     coder
     #insync
     rsync
+plexamp
+#plex-desktop
    # wootility
     btop              # Resource Manager
     ranger            # File Manager
@@ -90,9 +93,10 @@ in
     pavucontrol       # Audio Control
     vlc               # Media Player
     pinta             # Image editor
-    discord           # Chat
-    betterdiscordctl  # Discord Themes
-    youtube-music
+    vesktop           #discord
+    #discord           # Chat
+    #betterdiscordctl  # Discord Themes
+    #youtube-music
     #element-desktop
     #element-web
     vivaldi
@@ -113,7 +117,6 @@ in
     lutris
     wine-wayland
     siyuan
-    keepassxc
     #obsidian
     #logseq          # electron-24.8.6 which is insecure, waiting for update
     #libreoffice      # Office Tools
@@ -124,15 +127,13 @@ in
     unzip             # Zip Files
     unrar             # Rar Files
     zip               # Zip
+    proton-pass
     nerd-fonts.symbols-only #Symbols for waybar/etc.
-    #trilium-desktop
-    #parsec-bin
     softmaker-office
     fuzzel
     clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
-    #anytype
     #Utilities
-    vesktop        #discord
+
     google-chrome
     dnsutils
     moonlight-qt
@@ -140,17 +141,12 @@ in
     dive
     baobab
     warp-terminal
-    plex-media-player
     gparted
     docker
-    qFlipper
     distrobox
-    polkit
     rclone
     rclone-browser
-    nodejs_22
     traceroute
-    proton-pass
     #wineWowPackages.waylandFull
     #QT5 and QT6 packages
     #qt5.qtwayland
@@ -174,8 +170,9 @@ in
     xreader
     xviewer
     pix
-    nodejs
-    nodePackages.bower
+    #nodejs_22
+    #nodejs
+    #nodePackages.bower
     ];
 
   # Enable home-manager and git
