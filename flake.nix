@@ -32,7 +32,6 @@
     nixpkgs,
     home-manager,
     hyprland,
-   # catppuccin,
     #zen-browser,
     stylix,
     ...
@@ -73,7 +72,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
-         # catppuccin.nixosModules.catppuccin
           hyprland.nixosModules.default
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
@@ -83,13 +81,10 @@
             users.alex = {
                 imports = [
                   ./home-manager/home.nix
-                 # catppuccin.homeManagerModules.catppuccin
                 ];
             };
             
           };
-    #      catppuccin.flavor = "mocha";
-    #catppuccin.enable = true;
           }
         ];
       };

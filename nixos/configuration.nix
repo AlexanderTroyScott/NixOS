@@ -8,7 +8,6 @@
   pkgs,
   hyprland,
   home-manager,
-  catppuccin,
   ...
 }: {
   # You can import other NixOS modules here
@@ -40,6 +39,7 @@
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
+
 #services.xserver.enable = false;
   stylix = {
      enable = true;
