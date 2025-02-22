@@ -188,6 +188,8 @@
       bind = $mainMod, grave, exec, fuzzel
       bind = , switch:off:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, 3840x2400@60, 0x0, auto"
       bind = , switch:on:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, disable"
+      #suspend and lock
+      bind = $mainMod, DELETE, exec, systemctl suspend && hyprlock --immediate
       #grave is ~
       bind = $mainMod, W, exec, pkill waybar || waybar &
 
