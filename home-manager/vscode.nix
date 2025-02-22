@@ -14,7 +14,7 @@
       ];
       userSettings = {
          "window.titleBarStyle" = "custom";
-         "workbench.colorTheme" = "Darcula Amoled Theme";
+         "workbench.colorTheme" = "Amoled Github";
          "editor.fontFamily" = "'M+1Code Nerd Font','Droid Sans Mono', 'monospace', monospace";
          "github.copilot.enable" = {
            "*" = true;
