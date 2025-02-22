@@ -104,6 +104,7 @@ boot = {
         };
       };
     };
+    flipperzero.enable = true;
   };
 
   /*Fingerprint sensor, currently not supported*/
