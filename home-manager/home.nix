@@ -136,14 +136,15 @@ plexamp
 
     google-chrome
     dnsutils
-    moonlight-qt
+    #moonlight-embedded
+    #moonlight-qt
     powertop
     dive
     baobab
-    warp-terminal
-    gparted
+    #warp-terminal
+    #gparted
     docker
-    distrobox
+    #distrobox
     rclone
     rclone-browser
     traceroute
