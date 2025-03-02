@@ -68,5 +68,17 @@
   "timeo=14"
 	];
   };
-
+  fileSystems."/zephyr/test" = {
+	device = "192.168.2.184:/mnt/user/testz";
+	fsType = "nfs4";
+	neededForBoot = false;
+  #automount.enable = true;
+  options = [
+  "nofail"
+	"rw"
+	"soft"
+	"intr"
+  "timeo=14"
+	];
+  };
 }
