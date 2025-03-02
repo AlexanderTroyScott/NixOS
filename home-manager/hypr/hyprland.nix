@@ -11,8 +11,8 @@
     enable = true;
     
     extraConfig = ''
-    env = QT_QPA_PLATFORM,wayland
-    env = QT_QPA_PLATFORMTHEME,qt5ct
+    #env = QT_QPA_PLATFORM,wayland
+    #env = QT_QPA_PLATFORMTHEME,qt5ct
       # See https://wiki.hyprland.org/Configuring/Monitors/
       #monitor=desc:Samsung Display Corp. 0x4173,3840x2400,0x0,auto
 
