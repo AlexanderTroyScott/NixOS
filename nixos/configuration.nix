@@ -281,6 +281,12 @@ nix.extraOptions = ''
     connect-timeout = 100
   stalled-download-timeout = 100
 '';
+programs.ssh.extraConfig = ''
+  ServerAliveInterval 60
+  ServerAliveCountMax 120
+  TCPKeepAlive yes
+'';
+
 
 networking.extraHosts = ''
   192.168.190.196:8006 proxmox.lan
