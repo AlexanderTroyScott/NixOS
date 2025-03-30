@@ -36,7 +36,6 @@ in
     ./theme/icons.nix
    # ./theme/catppuccin.nix
   ];
-
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -120,7 +119,7 @@ plexamp
     #obsidian
     #logseq          # electron-24.8.6 which is insecure, waiting for update
     #libreoffice      # Office Tools
-    okular            # PDF Viewer
+    #okular            # PDF Viewer
     #pcmanfm           # File Manager
     p7zip             # Zip Encryption
     rsync             # Syncer - $ rsync -r dir1/ dir2/
@@ -137,7 +136,7 @@ plexamp
     google-chrome
     dnsutils
     #moonlight-embedded
-    #moonlight-qt
+    moonlight-qt
     powertop
     dive
     baobab
@@ -171,6 +170,7 @@ plexamp
     xreader
     xviewer
     pix
+    vscode
     #nodejs_22
     #nodejs
     #nodePackages.bower
