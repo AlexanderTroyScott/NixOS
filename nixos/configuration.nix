@@ -39,7 +39,7 @@
     #inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
-
+  home-manager.backupFileExtension = "backup";
 #services.xserver.enable = false;
   stylix = {
      enable = true;
@@ -88,7 +88,7 @@
       };
     };
 
-  nixpkgs = {
+nixpkgs = {
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
@@ -114,6 +114,18 @@
     };
   };
   nix = {
+    distributedBuilds = true;
+    buildMachines = [{
+      hostName = "192.168.209.156";
+      system = "x86_64-linux";  # Adjust if your desktop is a different architecture
+      maxJobs = 1;  # Adjust based on your desktop's CPU core count
+      speedFactor = 2;
+      sshKey = "/root/.ssh/id_ed25519";
+      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      mandatoryFeatures = [ ];
+      sshUser = "builder";
+    }];
+    settings.builders-use-substitutes = true;
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
@@ -127,6 +139,13 @@
       experimental-features = "nix-command flakes";
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
+      trusted-users = [
+  "root"
+  "alex"
+  "builder"
+  "@wheel"
+];
+allowed-users = [ "root" "builder" "alex" "@wheel"];
     };
     gc = {                                  # Automatic garbage collection
       automatic = true;
@@ -258,6 +277,10 @@ environment.systemPackages = with pkgs.unstable; [
       extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker" "storage"];
     };
   };
+nix.extraOptions = ''
+    connect-timeout = 100
+  stalled-download-timeout = 100
+'';
 
 networking.extraHosts = ''
   192.168.190.196:8006 proxmox.lan
