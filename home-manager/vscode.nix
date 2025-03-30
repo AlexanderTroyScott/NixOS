@@ -2,7 +2,7 @@
 {
   stylix.targets.vscode.enable =false;
 
-    programs.vscode = {
+    programs.vscode.profiles.default = {
       enable = true;
       enableUpdateCheck = true;
       enableExtensionUpdateCheck = true;
