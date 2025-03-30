@@ -249,15 +249,16 @@
 
       #windowrulev2 = workspace:(coding),class:^steam_app_\d+$
       windowrulev2 = workspace 8 silent,initialClass:(vesktop)
-      windowrulev2 = workspace 2 silent,initialClass:(code) 
+      #windowrulev2 = workspace 2 silent,initialClass:(code) 
       #windowrulev2 = workspace 2 silent, class:^(firefox)$, title:^(firefox)$
       
       misc{
       disable_autoreload = true
       }
 
-      exec-once = waybar & hyprpaper & nm-applet & blueman-applet & clipse -listen  & hyprctl dispatch exec code 
-      exec-once = hyprctl dispatch exec vesktop & hyprctl dispatch exec zen
+      exec-once = waybar & hyprpaper & nm-applet & blueman-applet 
+      #exec-once =  clipse -listen  & hyprctl dispatch exec code 
+      #exec-once = hyprctl dispatch exec vesktop & hyprctl dispatch exec zen
 
   '';
   };
