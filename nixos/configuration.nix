@@ -187,7 +187,6 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
 services.flatpak.enable = true;
 virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
-
       inputs.zen-browser.packages."${system}".default
       libva
       libva-utils            # Video Acceleration Info (intel)
@@ -249,6 +248,8 @@ environment.systemPackages = with pkgs.unstable; [
     auth include login
    '';
   };
+
+
   environment.sessionVariables = {
     #WLR_NO_HARDWARE_CURSORS = "1";
     #if cursor is invisible
