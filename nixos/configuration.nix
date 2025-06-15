@@ -6,14 +6,13 @@
   lib,
   config,
   pkgs,
-  hyprland,
   home-manager,
   ...
 }: {
   # You can import other NixOS modules here
   imports = [
          #./hardware/zenbook/hardware-settings.nix
-          ./hardware/zenbook/hardware-configuration.nix
+          
           #./hardware/yubikey.nix
           #./hardware/storage.nix
           ./hardware/printer.nix
@@ -189,72 +188,23 @@ virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
       inputs.zen-browser.packages."${system}".default
       libva
-      libva-utils            # Video Acceleration Info (intel)
+      libva-utils      # Video Acceleration Info (intel)
       git              # Repositories
       pciutils         # Computer Utility Info
       pipewire         # Sound
       usbutils         # USB Utility Info
       wget             # Downloader
-      dunst            # Notifications
-      libnotify        # Dependency for Dunst
       glxinfo          # Get graphics card info
       neofetch
-      vdhcoapp #Firefox downloader extension
-      # Menu
-      mpd
-      rofi-power-menu  # Power Menu
-      #udiskie          # Auto Mounting
-      #xorg.xrandr      # Screen Settings
-      #xorg.xinit
-      #xorg.xorgserver
-      autotiling       # Tiling Script
-      grim             # Image Grabber
-      slurp            # Region Selector
-      wev              # Input Viewer
-      wl-clipboard     # Console Clipboard
-      wlr-randr        # Screen Settings
       pamixer          # Pulse Audio Mixer
-      networkmanagerapplet
       blueman          # Bluetooth
-      cbatticon        # Battery Notifications
-      light            # Display Brightness
       wireguard-tools
       lshw
       udiskie
-      zed-editor
       cifs-utils #SMB/CIFS share for unraid
       libsecret #for keyring remembering secrets
-      popsicle
     ];
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-
-  #Gnome Keyring
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.lightdm.enableGnomeKeyring = true;
-  #ssh.startAgent = true;
-
-  services.upower.enable = true;
-  xdg.portal.config.common.default = "*"; #https://github.com/flatpak/xdg-desktop-portal/blob/1.18.1/doc/portals.conf.rst.in
-  programs.hyprland = {
-    enable = true;
-  };
-  security.pam.services.swaylock = {
-    text = ''
-    auth include login
-   '';
-  };
-
-
-  environment.sessionVariables = {
-    #WLR_NO_HARDWARE_CURSORS = "1";
-    #if cursor is invisible
-    NIXOS_OZONE_WL = "1";
-  };
   networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
