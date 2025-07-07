@@ -68,7 +68,8 @@
         modules = [
           ./nixos/configuration.nix
           ./nixos/desktop.nix
-          ./hardware/zenbook/hardware-configuration.nix
+          ./nixos/hardware/zenbook/hardware-configuration.nix
+          ./nixos/hardware/zenbook/sound.nix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
