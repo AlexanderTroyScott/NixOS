@@ -1,3 +1,11 @@
+{ config, lib, pkgs, modulesPath, ... }:
+
+{
+    environment.systemPackages = with pkgs; [
+  pipewire
+  wireplumber
+  pavucontrol  # GUI volume control
+];
 services = {
     #hardware.bolt.enable = true;
     #getty.autologinUser = "alex";        #auto-login at boot
@@ -33,3 +41,4 @@ services = {
     #auto-cpufreq.enable = true;
     blueman.enable = true;
   };
+}
