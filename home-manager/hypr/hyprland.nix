@@ -29,8 +29,10 @@
       #middle
       monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160@60,auto,1
 
-
+      #XIAOMI MI BOOK
       monitor=desc:Samsung Display Corp. 0x4173,3840x2400,auto,2
+      #zenbook
+      monitor=desc:Samsung Display Corp. 0x419D,2880x1800,auto,2
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -42,7 +44,8 @@
 
       # Some default env vars.
       #env = XCURSOR_SIZE,32
-
+      env = GDK_BACKEND,wayland,x11,*
+      env = QT_QPA_PLATFORM,wayland;xcb
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
           kb_layout = us
@@ -136,11 +139,11 @@ env = XCURSOR_SIZE,20
       #    new_is_master = true
       #}
 
-      gestures {
+      #gestures {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
-          workspace_swipe = true
-      }
-
+      #    gesture = 3, horizontal, workspace
+      #}
+      gesture = 3, horizontal, workspace
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
       #device:epic-mouse-v1 {
@@ -262,7 +265,8 @@ env = XCURSOR_SIZE,20
       disable_autoreload = true
       }
 
-      exec-once = waybar & hyprpaper & nm-applet & blueman-applet 
+      exec-once = hyprpaper & nm-applet & blueman-applet 
+      exec-once = waybar
       #exec-once =  clipse -listen  & hyprctl dispatch exec code 
       #exec-once = hyprctl dispatch exec vesktop & hyprctl dispatch exec zen
 
