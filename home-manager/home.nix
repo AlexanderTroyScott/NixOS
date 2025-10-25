@@ -22,7 +22,7 @@ in
     #inputs.hyprland.nixosModules.default
     #inputs.hyprland.homeManagerModules.default
     # You can also split up your configuration and import pieces of it here:
-
+    ./desktop.nix
     ./kitty.nix
     ./waybar.nix
     ./fuzzel.nix
@@ -127,10 +127,12 @@ plexamp
     proton-pass
     nerd-fonts.symbols-only #Symbols for waybar/etc.
     softmaker-office
+    onlyoffice-desktopeditors
     fuzzel
     clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
     #Utilities
-
+    htop
+    zoom-us
     google-chrome
     dnsutils
     #moonlight-embedded
@@ -167,7 +169,7 @@ plexamp
     yt-dlg
     xreader
     xviewer
-    pix
+    #pix
     vscode
     ];
 
@@ -175,8 +177,10 @@ plexamp
   programs.home-manager.enable = true;
   programs.git = {
     enable = true;
-    userName = "AlexanderTroyScott";
-    userEmail = "Alexander.Troy.Scott@gmail.com";
+    settings = {
+    user.name = "AlexanderTroyScott";
+    user.email = "Alexander.Troy.Scott@gmail.com";
+    };
   };
 
 
