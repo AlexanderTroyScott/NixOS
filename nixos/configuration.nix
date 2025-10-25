@@ -14,7 +14,7 @@
          #./hardware/zenbook/hardware-settings.nix
           
           #./hardware/yubikey.nix
-          #./hardware/storage.nix
+          ./hardware/storage.nix
           ./hardware/printer.nix
           #./configs/fonts.nix
 
@@ -45,52 +45,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   home-manager.backupFileExtension = "backup";
 services.xserver.enable = true;  
-  stylix = {
-     enable = true;
-     image =
-      pkgs.fetchurl {
-      url = "https://github.com/AlexanderTroyScott/NixOS/blob/main/.github/black_cat.jpeg?raw=true";
-      sha256 = "8229741e8e01042330037a708462dc8243df5ff2de3c99189436a68799220f0b";
-      };
-     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-     override.base00 = "000000";
-     #override.base02 = "000000";
-     #cursor.package = pkgs.hyprcursor;
-     cursor.package = pkgs.bibata-cursors;
-     cursor.name = "Bibata-Original-Classic";
-     cursor.size=20;
-     polarity = "dark";
-     opacity = {
-       applications = 1.0;
-       terminal = 0.9;
-       popups = 1.0;
-       desktop = 1.0;
-     };
-     fonts = {
-       sizes = {
-         applications = 9;
-         terminal = 9;
-         popups = 9;
-         desktop = 9;
-       };
-       serif = {
-         package = pkgs.dejavu_fonts;
-         name = "DejaVu Serif";
-       };
-       sansSerif = {
-         package = pkgs.dejavu_fonts;
-         name = "DejaVu Sans";
-       };
-       monospace = {
-         name = "Fira Code";
-         package = pkgs.fira-code;
-       };
-       emoji = {
-         package = pkgs.fira-code-symbols;
-         name = "Fira Code Emoji";
-       };
-      };
-    };
+  
 
 nixpkgs = {
     # You can add overlays here
@@ -117,20 +72,9 @@ nixpkgs = {
       allowUnsupportedSystem = true;
     };
   };
+  #nix.settings.builders = [ ];
+  nix.distributedBuilds = true;
   nix = {
-    distributedBuilds = true;
-    buildMachines = [{
-      hostName = "remote-builder";
-      system = "x86_64-linux";  # Adjust if your desktop is a different architecture
-      maxJobs = 1;  # Adjust based on your desktop's CPU core count
-      speedFactor = 2;
-      #sshKey = "/root/.ssh/id_ed25519";
-      sshKey = "/home/alex/.ssh/id_ed25519";
-      supportedFeatures = [ "nixos-test" "big-parallel" "kvm" ];
-      mandatoryFeatures = [ ];
-      sshUser = "builder";
-    }];
-    settings.builders-use-substitutes = true;
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
@@ -183,7 +127,6 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-services.flatpak.enable = true;
 virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
       inputs.zen-browser.packages."${system}".default
@@ -196,6 +139,7 @@ environment.systemPackages = with pkgs.unstable; [
       wget             # Downloader
       glxinfo          # Get graphics card info
       neofetch
+      libxml2
       pamixer          # Pulse Audio Mixer
       blueman          # Bluetooth
       wireguard-tools
