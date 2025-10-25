@@ -18,6 +18,7 @@
           #./hardware/storage.nix
           ./hardware/printer.nix
           #./configs/fonts.nix
+          
 
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
@@ -46,10 +47,11 @@
   services.xserver.enable = true;  
   stylix = {
      enable = true;
+     #to get sha256 run: curl -L 'https://raw.githubusercontent.com/AlexanderTroyScott/NixOS/main/.github/omori-aubrey.gif' | sha256sum
      image =
       pkgs.fetchurl {
-      url = "https://github.com/AlexanderTroyScott/NixOS/blob/main/.github/black_cat.jpeg?raw=true";
-      sha256 = "8229741e8e01042330037a708462dc8243df5ff2de3c99189436a68799220f0b";
+      url = "https://github.com/AlexanderTroyScott/NixOS/blob/main/.github/raven.jpg?raw=true";
+      sha256 = "ba4cf84f018203f809a3f67615c4b991858a6c7d7ec4f882e945679bff7aa795";
       };
      base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
      override.base00 = "000000";
@@ -98,7 +100,7 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-services.flatpak.enable = true;
+#services.flatpak.enable = true;
 virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
       inputs.zen-browser.packages."${system}".default
@@ -115,7 +117,7 @@ environment.systemPackages = with pkgs.unstable; [
       neofetch
       vdhcoapp #Firefox downloader extension
       # Menu
-      mpd
+      #mpd
       rofi-power-menu  # Power Menu
       #udiskie          # Auto Mounting
       #xorg.xrandr      # Screen Settings
@@ -140,6 +142,17 @@ environment.systemPackages = with pkgs.unstable; [
       libsecret #for keyring remembering secrets
       popsicle
     ];
+      hardware = {
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
+    flipperzero.enable = true;
+  };
 
   xdg.portal = {
     enable = true;
@@ -158,8 +171,9 @@ environment.systemPackages = with pkgs.unstable; [
     auth include login
    '';
   };
-
-
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "alex";
+  services.hardware.bolt.enable = true;
   environment.sessionVariables = {
     #WLR_NO_HARDWARE_CURSORS = "1";
     #if cursor is invisible

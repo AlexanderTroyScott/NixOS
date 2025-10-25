@@ -30,7 +30,7 @@ in
     ./hypr/hyprpaper.nix
     #./hypr/hyprcursor.nix
     ./vscode.nix
-    ./theme/icons.nix
+    #./theme/icons.nix
    # ./theme/catppuccin.nix
   ];
   
@@ -149,7 +149,7 @@ plexamp
     yt-dlg
     xreader
     xviewer
-    pix
+    #pix
     vscode
     ];
 
