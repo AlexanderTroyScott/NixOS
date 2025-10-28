@@ -17,11 +17,7 @@
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
-    #catppuccin.url = "github:catppuccin/nix";
-    hyprland = {                                                            # Official Hyprland flake
-        url = "git+https://github.com/hyprwm/Hyprland?submodules=1";                                   # Add "hyprland.nixosModules.default" to the host modules
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
+   
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -31,7 +27,6 @@
     self,
     nixpkgs,
     home-manager,
-    hyprland,
     #zen-browser,
     stylix,
     ...
@@ -68,11 +63,13 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
+      zenbook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
-          hyprland.nixosModules.default
+          ./nixos/desktop.nix
+          ./nixos/hardware/zenbook/hardware-configuration.nix
+          ./nixos/hardware/zenbook/sound.nix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {

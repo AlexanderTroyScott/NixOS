@@ -12,6 +12,6 @@
     hyprcursor
  ];
  home.pointerCursor.hyprcursor.enable = true;
- home.pointerCursor.hyprcursor.size = 32;
+ home.pointerCursor.hyprcursor.size = 20;
  
 }

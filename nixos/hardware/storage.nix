@@ -9,7 +9,6 @@
   "nofail"
 	"rw"
 	"soft"
-	"intr"
   "timeo=14"
 	];
   };
@@ -22,7 +21,6 @@
   "nofail"
 	"rw"
 	"soft"
-	"intr"
   "timeo=14"
 	];
   };
@@ -48,7 +46,6 @@
       "nofail"
       "rw"
       "soft"
-      "intr"
       "exec"
       "timeo=14"
      # "uid=1000"   # Replace with your local user’s UID
@@ -77,7 +74,6 @@
   "nofail"
 	"rw"
 	"soft"
-	"intr"
   "timeo=14"
 	];
   };

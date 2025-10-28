@@ -9,8 +9,6 @@ in
   lib,
   config,
   pkgs,
-  catppuccin,
-  #home-manager,
   ...
 }: {
   # You can import other home-manager modules here
@@ -22,7 +20,7 @@ in
     #inputs.hyprland.nixosModules.default
     #inputs.hyprland.homeManagerModules.default
     # You can also split up your configuration and import pieces of it here:
-    ./desktop.nix
+
     ./kitty.nix
     ./waybar.nix
     ./fuzzel.nix
@@ -32,7 +30,7 @@ in
     ./hypr/hyprpaper.nix
     #./hypr/hyprcursor.nix
     ./vscode.nix
-    ./theme/icons.nix
+    #./theme/icons.nix
    # ./theme/catppuccin.nix
   ];
   
@@ -62,18 +60,7 @@ in
       allowUnfreePredicate = _: true;
     };
   };
-  # TODO: Set your username
-  home = {
-    username = "alex";
-    homeDirectory = "/home/alex";
-  };
-  #services.polkit.enable = true;
- nixpkgs.config.permittedInsecurePackages = [
-                "electron-25.9.0"
-              ];
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+
   home.packages = with pkgs; [
     #libnotify
     #programs
@@ -119,20 +106,13 @@ plexamp
     #libreoffice      # Office Tools
     #okular            # PDF Viewer
     #pcmanfm           # File Manager
-    p7zip             # Zip Encryption
-    rsync             # Syncer - $ rsync -r dir1/ dir2/
-    unzip             # Zip Files
-    unrar             # Rar Files
-    zip               # Zip
     proton-pass
     nerd-fonts.symbols-only #Symbols for waybar/etc.
     softmaker-office
-    onlyoffice-desktopeditors
     fuzzel
     clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
     #Utilities
-    htop
-    zoom-us
+
     google-chrome
     dnsutils
     #moonlight-embedded
@@ -172,16 +152,6 @@ plexamp
     #pix
     vscode
     ];
-
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    settings = {
-    user.name = "AlexanderTroyScott";
-    user.email = "Alexander.Troy.Scott@gmail.com";
-    };
-  };
 
 
   # Nicely reload system units when changing configs

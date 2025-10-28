@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 {
-  stylix.targets.vscode.enable =false;
+  stylix.targets.vscode.enable =true;
 
-    programs.vscode = {
+    programs.vscode.profiles.default = {
       enable = true;
       enableUpdateCheck = true;
       enableExtensionUpdateCheck = true;
