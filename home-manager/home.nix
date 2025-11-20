@@ -111,6 +111,7 @@ plexamp
   vulkan-loader
  vulkan-tools
   # Additional graphics drivers, if needed
+  #TODO: Find a default app so that when I double click on zip files I can drill into them
   mesa
     gamescope
     lutris
