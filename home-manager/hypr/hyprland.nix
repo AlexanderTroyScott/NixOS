@@ -36,9 +36,6 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
-      # Execute your favorite apps at launch
-      # exec-once = waybar & hyprpaper & firefox
-
       # Source a file (multi-file configs)
       # source = ~/.config/hypr/myColors.conf
 
@@ -71,14 +68,6 @@ env = XCURSOR_SIZE,20
         enabled = true
         force_zero_scaling = true
       }
-     #device:01e0-mouse {
-     #       input {
-     #       touchpad {
-     #       natural_scroll = no
-     #       tap-to-click = yes
-     #       }
-     #       }
-     #     }
       general {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
@@ -96,17 +85,6 @@ env = XCURSOR_SIZE,20
 
           rounding = 10
           inactive_opacity = .64
-          #blur = yes
-          #blur_size = 3
-          #blur_passes = 1
-          #blur_new_optimizations = on
-
-          #drop_shadow = yes
-          #shadow_range = 4
-          #shadow_render_power = 3
-          #col.shadow = rgba(1a1a1aee)
-
-          
           blur {
             enabled = false             #Battery optimisations
             popups_ignorealpha = 1
@@ -139,16 +117,7 @@ env = XCURSOR_SIZE,20
       #    new_is_master = true
       #}
 
-      #gestures {
-          # See https://wiki.hyprland.org/Configuring/Variables/ for more
-      #    gesture = 3, horizontal, workspace
-      #}
       gesture = 3, horizontal, workspace
-      # Example per-device config
-      # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-      #device:epic-mouse-v1 {
-      #    sensitivity = -0.5
-      #}
 
       misc {
         force_default_wallpaper = 0
@@ -158,10 +127,6 @@ env = XCURSOR_SIZE,20
         #Battery optimisations
         vfr = true
      }
-      # Example windowrule v1
-      # windowrule = float, ^(kitty)$
-      # Example windowrule v2
-      # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
       $PictureInPicture = Picture-In-Picture
       windowrulev2 = float,title:($PictureInPicture)
@@ -179,9 +144,6 @@ env = XCURSOR_SIZE,20
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more$ nix-env --delete-generations 14d
 
       $mainMod = SUPER
-
-      
-
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, Q, exec, kitty
       bind = $mainMod, C, killactive, 
@@ -231,12 +193,6 @@ env = XCURSOR_SIZE,20
       bind = $mainMod SHIFT, 8, movetoworkspace, 8
       bind = $mainMod SHIFT, 9, movetoworkspace, 9
       bind = $mainMod SHIFT, 0, movetoworkspace, 10
-
-#windowrulev2 = fullscreen,class:^steam_app\d+$
-#windowrulev2 = monitor 1,class:^steam_app_\d+$
-#windowrulev2 = workspace 10,class:^steam_app_\d+$
-#workspace = 10, border:false, rounding:false
-
 
       # Scroll through existing workspaces with mainMod + scroll
       bind = $mainMod, mouse_down, workspace, e+1
