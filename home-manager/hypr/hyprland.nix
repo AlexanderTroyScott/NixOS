@@ -1,6 +1,9 @@
 
 { config, pkgs, inputs, ... }:
 {
+  #to-do: SEARCH TODO
+  #
+
   #imports = [ inputs.hyprland.nixosModules.default ];
   #home.packages = with pkgs; [
  #     hyprland
@@ -11,38 +14,45 @@
     enable = true;
     
     extraConfig = ''
+    #TODO: Cleanup env and determine if those are just overwrting one another
+    #env = XCURSOR_SIZE,32
+    env = GDK_BACKEND,wayland,x11,*
+    env = QT_QPA_PLATFORM,wayland;xcb
     #env = QT_QPA_PLATFORM,wayland
     #env = QT_QPA_PLATFORMTHEME,qt5ct
+    env = GDK_SCALE,2
+    env = XCURSOR_SIZE,20
+
+    #TODO: Move monitors in a stand-alone file
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      #monitor=desc:Samsung Display Corp. 0x4173,3840x2400,0x0,auto
-
-      #work monitors
-      #left
-      monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
-      #right
-      monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
-      #---------------------------------
-      #home monitors
-        
-      #left
-      monitor=desc:LG Electronics LG HDR 4K 0x0001D608,3840x2160@60,auto,1
-      #middle
-      monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160@60,auto,1
-
-      #XIAOMI MI BOOK
-      monitor=desc:Samsung Display Corp. 0x4173,3840x2400,auto,2
-      #zenbook
-      monitor=desc:Samsung Display Corp. 0x419D,2880x1800,auto,2
+      #docked
+      #work
+        #left
+        monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
+        #right
+        monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
+      #home
+        #left
+        monitor=desc:LG Electronics LG HDR 4K 0x0001D608,3840x2160@60,auto,1
+        #middle
+        monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160@60,auto,1`
+      #zenbook duo
+      #TODO: make keybind for the portable monitors to set orientation/side
+      #TODO: replace monitors with descriptions
+        monitor = DP-4, 1920x1200@60, auto-left, 1.5, transform, 3
+        monitor = DP-3, 1920x1200@60, 0x0, 1.5, transform, 3
+      #laptops
+        #XIAOMI MI BOOK
+        monitor=desc:Samsung Display Corp. 0x4173,3840x2400,auto,2
+        #zenbook
+        monitor=desc:Samsung Display Corp. 0x419D,2880x1800,auto,2
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
       # Source a file (multi-file configs)
       # source = ~/.config/hypr/myColors.conf
 
-      # Some default env vars.
-      #env = XCURSOR_SIZE,32
-      env = GDK_BACKEND,wayland,x11,*
-      env = QT_QPA_PLATFORM,wayland;xcb
+
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
           kb_layout = us
@@ -59,11 +69,8 @@
               scroll_factor = 0.5
           }
           sensitivity = 0.4 # -1.0 - 1.0, 0 means no modification.
-          
-
       }
-      env = GDK_SCALE,2
-env = XCURSOR_SIZE,20
+
       xwayland {
         enabled = true
         force_zero_scaling = true
@@ -84,7 +91,7 @@ env = XCURSOR_SIZE,20
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
           rounding = 10
-          inactive_opacity = .64
+          inactive_opacity = .64          
           blur {
             enabled = false             #Battery optimisations
             popups_ignorealpha = 1
@@ -128,6 +135,7 @@ env = XCURSOR_SIZE,20
         vfr = true
      }
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+      #TODO: Put windowrules in separate file
       $PictureInPicture = Picture-In-Picture
       windowrulev2 = float,title:($PictureInPicture)
       windowrulev2 = float,title:(Picture-in-Picture)
@@ -139,10 +147,14 @@ env = XCURSOR_SIZE,20
       #windowrulev2 = float, class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = size 800 450, class:^(firefox)$, title:^(Picture-in-Picture)$
+      #TODO: Make picture-in-picture based upon the flake being used (i.e. zenbook uses different pixels)
       windowrulev2 = size 848 468, title:(Picture-in-Picture)
       windowrulev2 = float,class:(floating)  
+
+      windowrulev2 = workspace 8 silent,initialClass:(vesktop)
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more$ nix-env --delete-generations 14d
 
+      #TODO: Put binds in separate file
       $mainMod = SUPER
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, Q, exec, kitty
@@ -198,6 +210,7 @@ env = XCURSOR_SIZE,20
       bind = $mainMod, mouse_down, workspace, e+1
       bind = $mainMod, mouse_up, workspace, e-1
       #F1-9
+      #TODO: Find out why these aren't working on zenbook, need key monitor to see what keys are being pressed (if any)
       bind =, XF86AudioMute, exec,pamixer -t
       bind =, XF86AudioLowerVolume, exec,pamixer -d 9
       bind =, XF86AudioRaiseVolume, exec,pamixer -i 9
@@ -207,16 +220,10 @@ env = XCURSOR_SIZE,20
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
-
+      #TODO: make workspacee file 
       workspace = 3, default:true, persistent:true
       workspace = 2, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true
-      workspace = 8, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true
-
-      #windowrulev2 = workspace:(coding),class:^steam_app_\d+$
-      windowrulev2 = workspace 8 silent,initialClass:(vesktop)
-      #windowrulev2 = workspace 2 silent,initialClass:(code) 
-      #windowrulev2 = workspace 2 silent, class:^(firefox)$, title:^(firefox)$
-      
+      workspace = 8, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true      
       misc{
       disable_autoreload = true
       }
