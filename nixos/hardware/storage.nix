@@ -1,7 +1,7 @@
 {
  #services.autofs.enable = true;
   fileSystems."/unraid/docker/volumes" = {
-	device = "192.168.2.2:/mnt/user/docker/volumes";
+	device = "192.168.2.2:/mnt/ssd/docker/volumes";
 	fsType = "nfs4";
 	neededForBoot = false;
   #automount.enable = true;
@@ -25,7 +25,7 @@
 	];
   };
  fileSystems."/unraid/vault" = {
-	device = "192.168.2.2:/mnt/user/vault";
+	device = "192.168.2.2:/mnt/ssd/vault";
 	fsType = "nfs4";
 	neededForBoot = false;
   #automount.enable = true;
@@ -39,7 +39,7 @@
   };
 
   fileSystems."/unraid/games" = {
-    device = "192.168.2.2:/mnt/user/games";
+    device = "192.168.2.2:/mnt/ssd/games";
     fsType = "nfs4";
     neededForBoot = false;
     options = [
@@ -55,7 +55,7 @@
 
 
   fileSystems."/unraid/scan" = {
-  device = "unraid.lan:/mnt/user/scan";
+  device = "unraid.lan:/mnt/ssd/scan";
   fsType = "nfs4";
   neededForBoot = false;
   options = [
