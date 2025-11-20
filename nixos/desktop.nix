@@ -31,7 +31,6 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
-    #./configs/github-runner.nix
 
     ./configs/wireguard.nix
     ./configs/fonts.nix
@@ -113,7 +112,7 @@ environment.systemPackages = with pkgs.unstable; [
       wget             # Downloader
       dunst            # Notifications
       libnotify        # Dependency for Dunst
-      glxinfo          # Get graphics card info
+      mesa-demos       # Get graphics card info
       neofetch
       vdhcoapp #Firefox downloader extension
       # Menu

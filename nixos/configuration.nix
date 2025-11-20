@@ -29,8 +29,6 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
-    #./configs/github-runner.nix
-
     ./configs/wireguard.nix
     ./configs/fonts.nix
     #./configs/xwayland.nix
@@ -137,7 +135,7 @@ environment.systemPackages = with pkgs.unstable; [
       pipewire         # Sound
       usbutils         # USB Utility Info
       wget             # Downloader
-      glxinfo          # Get graphics card info
+      mesa-demos       # Get graphics card info
       neofetch
       libxml2
       pamixer          # Pulse Audio Mixer
