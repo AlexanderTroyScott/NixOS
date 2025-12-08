@@ -35,7 +35,7 @@
         #left
         monitor=desc:LG Electronics LG HDR 4K 0x0001D608,3840x2160@60,auto,1
         #middle
-        monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160@60,auto,1`
+        monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160@60,auto,1
       #zenbook duo
       #TODO: make keybind for the portable monitors to set orientation/side
       #TODO: replace monitors with descriptions
