@@ -37,9 +37,8 @@
   "timeo=14"
 	];
   };
-
-  fileSystems."/unraid/games" = {
-    device = "192.168.2.2:/mnt/ssd/games";
+  fileSystems."/unraid/reolink" = {
+    device = "192.168.2.2:/mnt/user/reolink";
     fsType = "nfs4";
     neededForBoot = false;
     options = [
