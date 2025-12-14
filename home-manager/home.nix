@@ -67,7 +67,7 @@ in
     username = "alex";
     homeDirectory = "/home/alex";
   };
-  #services.polkit.enable = true;
+ 
  nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
               ];
@@ -183,7 +183,6 @@ plexamp
     user.email = "Alexander.Troy.Scott@gmail.com";
     };
   };
-
 
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";

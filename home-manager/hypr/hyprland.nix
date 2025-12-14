@@ -230,6 +230,7 @@
 
       exec-once = hyprpaper & nm-applet & blueman-applet 
       exec-once = waybar
+exec-once = lxqt-policykit-agent #polkit for popsicle
       #exec-once =  clipse -listen  & hyprctl dispatch exec code 
       #exec-once = hyprctl dispatch exec vesktop & hyprctl dispatch exec zen
 

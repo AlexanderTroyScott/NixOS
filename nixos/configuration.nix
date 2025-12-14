@@ -145,8 +145,9 @@ environment.systemPackages = with pkgs.unstable; [
       udiskie
       cifs-utils #SMB/CIFS share for unraid
       libsecret #for keyring remembering secrets
+      lxqt.lxqt-policykit #polkit, for popsicle in hyprland
     ];
-
+  
   networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
@@ -176,6 +177,7 @@ programs.ssh.extraConfig = ''
   ServerAliveCountMax 120
   TCPKeepAlive yes
 '';
+security.polkit.enable = true;
 
 
 networking.extraHosts = ''
