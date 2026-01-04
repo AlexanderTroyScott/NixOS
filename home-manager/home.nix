@@ -30,12 +30,15 @@ in
     ./hypr/hyprlock.nix
     ./hypr/hypridle.nix
     ./hypr/hyprpaper.nix
+    ./hypr/hyprpanel.nix
     #./hypr/hyprcursor.nix
     ./vscode.nix
     ./theme/icons.nix
    # ./theme/catppuccin.nix
   ];
   
+
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -92,7 +95,7 @@ plexamp
     pavucontrol       # Audio Control
     vlc               # Media Player
     pinta             # Image editor
-    vesktop           #discord
+    #vesktop           #discord
       #discord           # Chat
       #betterdiscordctl  # Discord Themes
     #youtube-music
@@ -135,6 +138,7 @@ plexamp
     htop
     zoom-us
     google-chrome
+    antigravity-fhs
     dnsutils
     #moonlight-embedded
     moonlight-qt

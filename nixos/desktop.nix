@@ -130,6 +130,8 @@ environment.systemPackages = with pkgs.unstable; [
       wlr-randr        # Screen Settings
       pamixer          # Pulse Audio Mixer
       networkmanagerapplet
+      hyprpanel
+
       blueman          # Bluetooth
       cbatticon        # Battery Notifications
       light            # Display Brightness
@@ -183,5 +185,6 @@ environment.systemPackages = with pkgs.unstable; [
   programs.hyprland = {
     enable = true;
   };
+
 
 }

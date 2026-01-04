@@ -79,7 +79,7 @@ plexamp
     pavucontrol       # Audio Control
     vlc               # Media Player
     pinta             # Image editor
-    vesktop           #discord
+    #vesktop           #discord
       #discord           # Chat
       #betterdiscordctl  # Discord Themes
     #youtube-music
