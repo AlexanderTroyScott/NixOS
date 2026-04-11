@@ -113,8 +113,8 @@ environment.systemPackages = with pkgs.unstable; [
       dunst            # Notifications
       libnotify        # Dependency for Dunst
       mesa-demos       # Get graphics card info
-      neofetch
-      vdhcoapp #Firefox downloader extension
+      
+      #vdhcoapp #Firefox downloader extension
       # Menu
       #mpd
       rofi-power-menu  # Power Menu
@@ -131,10 +131,11 @@ environment.systemPackages = with pkgs.unstable; [
       pamixer          # Pulse Audio Mixer
       networkmanagerapplet
       hyprpanel
-
+      claude-code
+      claude-monitor
       blueman          # Bluetooth
       cbatticon        # Battery Notifications
-      light            # Display Brightness
+      #light            # Display Brightness
       wireguard-tools
       lshw
       udiskie

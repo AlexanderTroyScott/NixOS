@@ -12,6 +12,18 @@
   "timeo=14"
 	];
   };
+    fileSystems."/unraid/photo" = {
+	device = "192.168.2.2:/mnt/ssd/photo";
+	fsType = "nfs4";
+	neededForBoot = false;
+  #automount.enable = true;
+  options = [
+  "nofail"
+	"rw"
+	"soft"
+  "timeo=14"
+	];
+  };
   fileSystems."/unraid/library" = {
 	device = "192.168.2.2:/mnt/user/library";
 	fsType = "nfs4";

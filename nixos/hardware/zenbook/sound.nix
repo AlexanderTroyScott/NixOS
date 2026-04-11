@@ -6,6 +6,9 @@
   wireplumber
   pavucontrol  # GUI volume control
 ];
+hardware.firmware = [
+  pkgs.sof-firmware
+];
 security.rtkit.enable = true;
 services = {
     #hardware.bolt.enable = true;

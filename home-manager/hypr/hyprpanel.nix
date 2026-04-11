@@ -13,7 +13,7 @@
         bar.layouts = {
           "0" = {
             left = [ "dashboard" "workspaces" ];
-            middle = [ "media" ];
+           # middle = [ "media" ];
             right = [ "volume" "systray" "notifications" ];
           };
         };
@@ -27,7 +27,7 @@
           military = true;
           hideSeconds = true;
         };
-        weather.unit = "metric";
+        weather.unit = "imperial";
       };
 
       menus.dashboard.directories.enabled = false;

@@ -60,7 +60,22 @@ in
       allowUnfreePredicate = _: true;
     };
   };
-
+services.kanshi = {
+  enable = true;
+  profiles = {
+    undocked = {
+      outputs = [
+        { criteria = "eDP-1"; status = "enable"; mode = "2880x1800"; position = "0,0"; }
+      ];
+    };
+    docked = {
+      outputs = [
+        { criteria = "Technical Concepts Ltd SmartGlasses 0x00000011"; status = "enable"; mode = "1920x1080"; position = "0,0"; }
+        { criteria = "eDP-1"; status = "disable"; }
+      ];
+    };
+  };
+};
   home.packages = with pkgs; [
     #libnotify
     #programs
@@ -90,7 +105,8 @@ plexamp
     teams-for-linux
     firefox
     deluge
-    vdhcoapp #firefox video downloader extension
+    aria2 #download manager
+    #vdhcoapp #firefox video downloader extension
                # Torrents
     steam            # Games
   # Required libraries for Proton

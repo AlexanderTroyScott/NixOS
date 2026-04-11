@@ -24,7 +24,7 @@ in
     # You can also split up your configuration and import pieces of it here:
     ./desktop.nix
     ./kitty.nix
-    ./waybar.nix
+    #./waybar.nix
     ./fuzzel.nix
     ./hypr/hyprland.nix
     ./hypr/hyprlock.nix
@@ -95,7 +95,7 @@ plexamp
     pavucontrol       # Audio Control
     vlc               # Media Player
     pinta             # Image editor
-    #vesktop           #discord
+    vesktop           #discord
       #discord           # Chat
       #betterdiscordctl  # Discord Themes
     #youtube-music
@@ -106,7 +106,7 @@ plexamp
     teams-for-linux
     firefox
     deluge
-    vdhcoapp #firefox video downloader extension
+    #vdhcoapp #firefox video downloader extension
                # Torrents
     steam            # Games
   # Required libraries for Proton
@@ -187,6 +187,8 @@ plexamp
     user.email = "Alexander.Troy.Scott@gmail.com";
     };
   };
+
+programs.hyprpanel.enable = true;
 
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";

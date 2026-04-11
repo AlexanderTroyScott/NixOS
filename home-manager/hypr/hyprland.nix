@@ -137,21 +137,29 @@
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
       #TODO: Put windowrules in separate file
       $PictureInPicture = Picture-In-Picture
-      windowrulev2 = float,title:($PictureInPicture)
-      windowrulev2 = float,title:(Picture-in-Picture)
-      windowrulev2 = opacity 0.05 override 1.0 override,title:(Picture-in-Picture)
-      windowrulev2 = pin,title:(Picture-in-Picture)
-      windowrulev2 = move 1046 708, title:(Picture-in-Picture)
-
+      #windowrulev2 = float,title:($PictureInPicture)
+      #windowrulev2 = float,title:(Picture-in-Picture)
+      #windowrulev2 = opacity 1.00 override 1.0 override,title:(Picture-in-Picture)
+      #windowrulev2 = opacity 0.05 override 1.0 override,title:(Picture-in-Picture)
+      #windowrulev2 = float,class:(floating)  
+      #windowrulev2 = pin,title:(Picture-in-Picture)
+      #TODO: Make picture-in-picture based upon the flake being used (i.e. zenbook uses different pixels)
+      #mibook
+      #windowrulev2 = move 1046 708, title:(Picture-in-Picture)
+      #windowrulev2 = size 848 468, title:(Picture-in-Picture)
+      #zenbook. 
+      #To get coorinates make a PIP and customize to preferences
+      #run hyprctl clients to see the size/location
+      #update config, rebuild and hyprctl reload
+      #windowrulev2 = size 349 177, title:(Picture-in-Picture)
+      #windowrulev2 = move 1083 718, title:(Picture-in-Picture)
+      
       #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
-      #windowrulev2 = float, class:^(firefox)$, title:^(Picture-in-Picture)$
+      #windowrulev2 = float,3 6 class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = pin,   class:^(firefox)$, title:^(Picture-in-Picture)$
       #windowrulev2 = size 800 450, class:^(firefox)$, title:^(Picture-in-Picture)$
-      #TODO: Make picture-in-picture based upon the flake being used (i.e. zenbook uses different pixels)
-      windowrulev2 = size 848 468, title:(Picture-in-Picture)
-      windowrulev2 = float,class:(floating)  
-
-      windowrulev2 = workspace 8 silent,initialClass:(vesktop)
+     
+      #windowrulev2 = workspace 8 silent,initialClass:(vesktop)
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more$ nix-env --delete-generations 14d
 
       #TODO: Put binds in separate file
@@ -228,11 +236,11 @@
       disable_autoreload = true
       }
 
-      exec-once = hyprpaper & nm-applet & blueman-applet 
-      exec-once = waybar
-exec-once = lxqt-policykit-agent #polkit for popsicle
+      exec-once = hyprpaper  
+      exec-once = hyprpanel
+      exec-once = lxqt-policykit-agent #polkit for popsicle
       #exec-once =  clipse -listen  & hyprctl dispatch exec code 
-      #exec-once = hyprctl dispatch exec vesktop & hyprctl dispatch exec zen
+      #exec-once = hyprctl dispatch exec vesktop & hyprctl dispatch exec zen 
 
   '';
   };

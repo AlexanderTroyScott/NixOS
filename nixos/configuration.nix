@@ -40,7 +40,7 @@
   ];
 
    # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   home-manager.backupFileExtension = "backup";
 services.xserver.enable = true;  
   
@@ -136,7 +136,8 @@ environment.systemPackages = with pkgs.unstable; [
       usbutils         # USB Utility Info
       wget             # Downloader
       mesa-demos       # Get graphics card info
-      neofetch
+        alsa-utils
+      
       libxml2
       pamixer          # Pulse Audio Mixer
       blueman          # Bluetooth
@@ -147,7 +148,8 @@ environment.systemPackages = with pkgs.unstable; [
       libsecret #for keyring remembering secrets
       lxqt.lxqt-policykit #polkit, for popsicle in hyprland
     ];
-  
+  programs.steam.enable = true;
+
   networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
