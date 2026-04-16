@@ -62,19 +62,25 @@ in
   };
 services.kanshi = {
   enable = true;
-  profiles = {
-    undocked = {
-      outputs = [
-        { criteria = "eDP-1"; status = "enable"; mode = "2880x1800"; position = "0,0"; }
-      ];
-    };
-    docked = {
-      outputs = [
-        { criteria = "Technical Concepts Ltd SmartGlasses 0x00000011"; status = "enable"; mode = "1920x1080"; position = "0,0"; }
-        { criteria = "eDP-1"; status = "disable"; }
-      ];
-    };
-  };
+  settings = [
+    {
+      profile = {
+        name = "undocked";
+        outputs = [
+          { criteria = "eDP-1"; status = "enable"; mode = "2880x1800"; position = "0,0"; }
+        ];
+      };
+    }
+    {
+      profile = {
+        name = "docked";
+        outputs = [
+          { criteria = "Technical Concepts Ltd SmartGlasses 0x00000011"; status = "enable"; mode = "1920x1080"; position = "0,0"; }
+          { criteria = "eDP-1"; status = "disable"; }
+        ];
+      };
+    }
+  ];
 };
   home.packages = with pkgs; [
     #libnotify
