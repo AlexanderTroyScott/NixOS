@@ -23,30 +23,6 @@
     env = GDK_SCALE,2
     env = XCURSOR_SIZE,20
 
-    #TODO: Move monitors in a stand-alone file
-      # See https://wiki.hyprland.org/Configuring/Monitors/
-      #docked
-      #work
-        #left
-        monitor=desc:Dell Inc. DELL P2414H 524N34963F2L,1920x1080,0x0,1,transform,1
-        #right
-        monitor=desc:Dell Inc. DELL P2414H 524N34963P1L,1920x1080,1080x0,1
-      #home
-        #left
-        monitor=desc:LG Electronics LG HDR 4K 0x0001D608,3840x2160@60,auto,1
-        #middle
-        monitor=desc:LG Electronics LG HDR 4k 0x0001D6E3,3840x2160@60,auto,1
-      #zenbook duo
-      #TODO: make keybind for the portable monitors to set orientation/side
-      #TODO: replace monitors with descriptions
-        monitor = DP-4, 1920x1200@60, auto-left, 1.5, transform, 3
-        monitor = DP-3, 1920x1200@60, 0x0, 1.5, transform, 3
-      #laptops
-        #XIAOMI MI BOOK
-        monitor=desc:Samsung Display Corp. 0x4173,3840x2400,auto,2
-        #zenbook
-        monitor=desc:Samsung Display Corp. 0x419D,2880x1800,auto,2
-
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
       # Source a file (multi-file configs)
@@ -177,8 +153,6 @@
       bind = $mainMod, J, togglesplit, # dwindle
       bind = $mainMod, X, exec, grim -g "$(slurp -d)" - | wl-copy -t image/png
       bind = $mainMod, grave, exec, fuzzel
-      bind = , switch:off:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, 3840x2400@60, 0x0, auto"
-      bind = , switch:on:Lid Switch,exec,hyprctl keyword monitor "desc:Samsung Display Corp. 0x4173, disable"
       #suspend and lock
       bind = $mainMod, DELETE, exec, systemctl suspend && hyprlock --immediate
       #grave is ~

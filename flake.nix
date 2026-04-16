@@ -70,6 +70,7 @@
           ./nixos/desktop.nix
           ./nixos/hardware/zenbook/hardware-configuration.nix
           ./nixos/hardware/zenbook/sound.nix
+          ./nixos/hardware/zenbook/services.nix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {

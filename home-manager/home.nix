@@ -27,6 +27,7 @@ in
     #./waybar.nix
     ./fuzzel.nix
     ./hypr/hyprland.nix
+    ./hypr/monitors.nix
     ./hypr/hyprlock.nix
     ./hypr/hypridle.nix
     ./hypr/hyprpaper.nix
@@ -180,8 +181,11 @@ plexamp
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
+  gtk.gtk4.theme = config.gtk.theme;
+
   programs.git = {
     enable = true;
+    signing.format = null;
     settings = {
     user.name = "AlexanderTroyScott";
     user.email = "Alexander.Troy.Scott@gmail.com";
@@ -189,6 +193,12 @@ plexamp
   };
 
 programs.hyprpanel.enable = true;
+
+  # Nemo bookmarks (replaces ~/.config/gtk-3.0/bookmarks — GUI-added bookmarks won't persist)
+  xdg.configFile."gtk-3.0/bookmarks".text = ''
+    file:///unraid/vault/tax Tax
+    nfs://192.168.2.2/mnt/ssd/vault/tax Tax (Network)
+  '';
 
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
