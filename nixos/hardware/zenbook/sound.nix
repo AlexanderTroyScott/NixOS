@@ -51,6 +51,52 @@ services = {
                     main."monitor.libcamera" = "disabled";
                 };
             };
+            "20-rename-sinks" = {
+                "monitor.alsa.rules" = [
+                    {
+                        matches = [{ "node.name" = "alsa_output.pci-0000_00_1f.3-platform-sof_sdw.pro-output-0"; }];
+                        actions.update-props = {
+                            "node.description" = "Speakers";
+                            "node.nick" = "Speakers";
+                        };
+                    }
+                    {
+                        matches = [{ "node.name" = "alsa_output.pci-0000_00_1f.3-platform-sof_sdw.pro-output-2"; }];
+                        actions.update-props = {
+                            "node.description" = "Headphones";
+                            "node.nick" = "Headphones";
+                        };
+                    }
+                    {
+                        matches = [{ "node.name" = "alsa_output.pci-0000_00_1f.3-platform-sof_sdw.pro-output-5"; }];
+                        actions.update-props = {
+                            "node.description" = "HDMI 1";
+                            "node.nick" = "HDMI 1";
+                        };
+                    }
+                    {
+                        matches = [{ "node.name" = "alsa_output.pci-0000_00_1f.3-platform-sof_sdw.pro-output-6"; }];
+                        actions.update-props = {
+                            "node.description" = "HDMI 2";
+                            "node.nick" = "HDMI 2";
+                        };
+                    }
+                    {
+                        matches = [{ "node.name" = "alsa_output.pci-0000_00_1f.3-platform-sof_sdw.pro-output-7"; }];
+                        actions.update-props = {
+                            "node.description" = "HDMI 3";
+                            "node.nick" = "HDMI 3";
+                        };
+                    }
+                    {
+                        matches = [{ "node.name" = "alsa_output.pci-0000_00_1f.3-platform-sof_sdw.pro-output-31"; }];
+                        actions.update-props = {
+                            "node.description" = "IEC958";
+                            "node.nick" = "IEC958";
+                        };
+                    }
+                ];
+            };
         };
       };
   };
