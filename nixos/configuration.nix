@@ -42,8 +42,7 @@
    # Use latest kernel.
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   home-manager.backupFileExtension = "backup";
-services.xserver.enable = true;  
-  
+
 
 nixpkgs = {
     # You can add overlays here
@@ -122,32 +121,7 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  services.devmon.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
-virtualisation.docker.enable = true;
-environment.systemPackages = with pkgs.unstable; [
-      inputs.zen-browser.packages."${system}".default
-      libva
-      libva-utils      # Video Acceleration Info (intel)
-      git              # Repositories
-      pciutils         # Computer Utility Info
-      pipewire         # Sound
-      usbutils         # USB Utility Info
-      wget             # Downloader
-      mesa-demos       # Get graphics card info
-        alsa-utils
-      
-      libxml2
-      pamixer          # Pulse Audio Mixer
-      blueman          # Bluetooth
-      wireguard-tools
-      lshw
-      udiskie
-      cifs-utils #SMB/CIFS share for unraid
-      libsecret #for keyring remembering secrets
-      lxqt.lxqt-policykit #polkit, for popsicle in hyprland
-    ];
+  virtualisation.docker.enable = true;
   programs.steam.enable = true;
 
   networking.networkmanager.enable = true;

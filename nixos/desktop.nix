@@ -11,36 +11,7 @@
   ...
 }: {
   # You can import other NixOS modules here
-  imports = [
-         #./hardware/zenbook/hardware-settings.nix
-          ./hardware/zenbook/hardware-configuration.nix
-          #./hardware/yubikey.nix
-          #./hardware/storage.nix
-          ./hardware/printer.nix
-          #./configs/fonts.nix
-          
-
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    ./configs/wireguard.nix
-    ./configs/fonts.nix
-    #./configs/xwayland.nix
-    # Import your generated (nixos-generate-config) hardware configuration
-
-    #Home manager
-    #inputs.home-manager.nixosModules.default
-    inputs.home-manager.nixosModules.home-manager
-  ];
+  imports = [];
 
 
   services.xserver.enable = true;  
@@ -100,9 +71,8 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 #services.flatpak.enable = true;
-virtualisation.docker.enable = true;
 environment.systemPackages = with pkgs.unstable; [
-      inputs.zen-browser.packages."${system}".default
+      inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
       libva
       libva-utils            # Video Acceleration Info (intel)
       git              # Repositories
@@ -143,7 +113,11 @@ environment.systemPackages = with pkgs.unstable; [
       cifs-utils #SMB/CIFS share for unraid
       libsecret #for keyring remembering secrets
       popsicle
+      alsa-utils
+      libxml2
+      lxqt.lxqt-policykit #polkit, for popsicle in hyprland
     ];
+
       hardware = {
     bluetooth = {
       enable = true;
@@ -175,14 +149,11 @@ environment.systemPackages = with pkgs.unstable; [
   };
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alex";
-  services.hardware.bolt.enable = true;
   environment.sessionVariables = {
     #WLR_NO_HARDWARE_CURSORS = "1";
     #if cursor is invisible
     NIXOS_OZONE_WL = "1"; #Needed for cursor to not be pixilated over xwayland apps
   };
-  networking.networkmanager.enable = true;
-
   programs.hyprland = {
     enable = true;
   };
