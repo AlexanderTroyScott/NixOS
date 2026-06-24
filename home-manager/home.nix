@@ -30,11 +30,11 @@ in
     ./hypr/hyprlock.nix
     ./hypr/hypridle.nix
     ./hypr/hyprpaper.nix
-    ./hypr/hyprpanel.nix
-    #./hypr/hyprcursor.nix
+    #./hypr/hyprpanel.nix
+    ./hypr/hyprcursor.nix
     ./vscode.nix
-    ./theme/icons.nix
-   # ./theme/catppuccin.nix
+    ./waybar.nix
+    ./docker.nix
   ];
   
 
@@ -96,15 +96,15 @@ plexamp
   vulkan-loader
  vulkan-tools
   # Additional graphics drivers, if needed
-  #TODO: Find a default app so that when I double click on zip files I can drill into them
   mesa
     gamescope
-    lutris
+    #lutris
     wine-wayland
     siyuan
     #libreoffice      # Office Tools
     #okular            # PDF Viewer
     #pcmanfm           # File Manager
+    file-roller       # GUI Archive Manager (for Nemo)
     p7zip             # Zip Encryption
     rsync             # Syncer - $ rsync -r dir1/ dir2/
     unzip             # Zip Files
@@ -155,12 +155,15 @@ plexamp
     yt-dlg
     xreader
     xviewer
+    julia
+    gh
+
     #pix
     ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  gtk.gtk4.theme = config.gtk.theme;
+  #gtk.gtk4.theme = config.gtk.theme;
 
   programs.git = {
     enable = true;
@@ -170,8 +173,6 @@ plexamp
     user.email = "Alexander.Troy.Scott@gmail.com";
     };
   };
-
-programs.hyprpanel.enable = true;
 
 services.kanshi = {
   enable = true;
@@ -193,6 +194,26 @@ services.kanshi = {
         ];
       };
     }
+    {
+      profile = {
+        name = "docked-work";
+        outputs = [
+          { criteria = "Dell Inc. DELL P2414H 524N34963F2L"; status = "enable"; mode = "1920x1080"; position = "0,0"; }
+          { criteria = "Dell Inc. DELL P2414H 524N34963P1L"; status = "enable"; mode = "1920x1080"; position = "1080,0"; }
+          { criteria = "eDP-1"; status = "disable"; }
+        ];
+      };
+    }
+    {
+      profile = {
+        name = "docked-home";
+        outputs = [
+          { criteria = "LG Electronics LG HDR 4K 0x0001D608"; status = "enable"; mode = "3840x2160@30"; position = "0,0"; }
+          { criteria = "LG Electronics LG HDR 4K 0x0001D6E3"; status = "enable"; mode = "3840x2160@30"; position = "3840,0"; }
+          { criteria = "eDP-1"; status = "disable"; }
+        ];
+      };
+    }
   ];
 };
 
@@ -200,6 +221,11 @@ services.kanshi = {
   xdg.configFile."gtk-3.0/bookmarks".text = ''
     file:///unraid/vault/tax Tax
     nfs://192.168.2.2/mnt/ssd/vault/tax Tax (Network)
+  '';
+
+  # YubiKey U2F registration — replace with output of `pamu2fcfg` after rebuilding
+  xdg.configFile."Yubico/u2f_keys".text = ''
+    alex:zfdSit8q1sJK5468T4Q/t1smgbTtHuIPIOSZ4rT/yZliznDtfHKdMSDzfrhGYSVHrsXKxebP0qPS5F0rpdBtZQ==,dQTbDDeMUvqGiYvgFDBkPTb6xDhZJR39jr67fnAQVHA5NBdYlvN+F950q9p0WDDm2iphTkN8Jxcipdj2uxUUtg==,es256,+presence
   '';
 
   # Nicely reload system units when changing configs

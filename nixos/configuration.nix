@@ -12,9 +12,10 @@
   imports = [
          #./hardware/zenbook/hardware-settings.nix
           
-          #./hardware/yubikey.nix
+          ./hardware/yubikey.nix
           ./hardware/storage.nix
           ./hardware/printer.nix
+          ./docker.nix
           #./configs/fonts.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -120,6 +121,12 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
   virtualisation.docker.enable = true;
   programs.steam.enable = true;
 
+  # SSD TRIM optimization
+  services.fstrim.enable = true;
+
+  # Compressed swap in RAM for better memory pressure handling
+  zramSwap.enable = true;
+
   networking.networkmanager.enable = lib.mkDefault true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = lib.mkDefault true;
@@ -154,7 +161,7 @@ security.polkit.enable = true;
 
 networking.extraHosts = ''
   192.168.209.156 remote-builder
-  192.168.190.196:8006 proxmox.lan
+  192.168.190.196 proxmox.lan
 '';
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
