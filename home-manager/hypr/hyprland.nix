@@ -206,9 +206,6 @@
       workspace = 3, default:true, persistent:true
       workspace = 2, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true
       workspace = 8, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true      
-      misc{
-      disable_autoreload = true
-      }
 
       exec-once = hyprpaper  
       exec-once = hyprpanel

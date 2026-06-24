@@ -22,7 +22,6 @@ in
     #inputs.hyprland.nixosModules.default
     #inputs.hyprland.homeManagerModules.default
     # You can also split up your configuration and import pieces of it here:
-    ./desktop.nix
     ./kitty.nix
     #./waybar.nix
     ./fuzzel.nix
@@ -41,23 +40,6 @@ in
 
 
   nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -84,13 +66,11 @@ in
     github-desktop
     coder
     #insync
-    rsync
 plexamp
 #plex-desktop
     wootility
     btop              # Resource Manager
     ranger            # File Manager
-    unzip
     brillo
     feh               # Image Viewer
     pavucontrol       # Audio Control
@@ -107,6 +87,7 @@ plexamp
     teams-for-linux
     firefox
     deluge
+    aria2             # Download Manager
     #vdhcoapp #firefox video downloader extension
                # Torrents
     steam            # Games
@@ -133,7 +114,6 @@ plexamp
     nerd-fonts.symbols-only #Symbols for waybar/etc.
     softmaker-office
     onlyoffice-desktopeditors
-    fuzzel
     clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
     #Utilities
     htop
@@ -176,7 +156,6 @@ plexamp
     xreader
     xviewer
     #pix
-    vscode
     ];
 
   # Enable home-manager and git
@@ -193,6 +172,29 @@ plexamp
   };
 
 programs.hyprpanel.enable = true;
+
+services.kanshi = {
+  enable = true;
+  settings = [
+    {
+      profile = {
+        name = "undocked";
+        outputs = [
+          { criteria = "eDP-1"; status = "enable"; mode = "2880x1800"; position = "0,0"; }
+        ];
+      };
+    }
+    {
+      profile = {
+        name = "docked";
+        outputs = [
+          { criteria = "Technical Concepts Ltd SmartGlasses 0x00000011"; status = "enable"; mode = "1920x1080"; position = "0,0"; }
+          { criteria = "eDP-1"; status = "disable"; }
+        ];
+      };
+    }
+  ];
+};
 
   # Nemo bookmarks (replaces ~/.config/gtk-3.0/bookmarks — GUI-added bookmarks won't persist)
   xdg.configFile."gtk-3.0/bookmarks".text = ''

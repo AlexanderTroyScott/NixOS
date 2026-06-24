@@ -28,7 +28,7 @@ services = {
       #'';
     #pcscd.enable = true; #for yubikey but may not have worked
       # Enable sound with pipewire.
-  pulseaudio.enable = false;
+  pulseaudio.enable = lib.mkDefault false;
     
   pipewire = {
     enable = true;

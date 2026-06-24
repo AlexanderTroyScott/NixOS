@@ -83,7 +83,7 @@ environment.systemPackages = with pkgs.unstable; [
       dunst            # Notifications
       libnotify        # Dependency for Dunst
       mesa-demos       # Get graphics card info
-      
+      opencode
       #vdhcoapp #Firefox downloader extension
       # Menu
       #mpd

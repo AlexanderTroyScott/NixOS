@@ -6,7 +6,6 @@
   lib,
   config,
   pkgs,
-  home-manager,
   ...
 }: {
   # You can import other NixOS modules here
@@ -34,9 +33,6 @@
     #./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
 
-    #Home manager
-    #inputs.home-manager.nixosModules.default
-    inputs.home-manager.nixosModules.home-manager
   ];
 
    # Use latest kernel.
@@ -100,7 +96,7 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
     };
   };
   #Timezone and Keyboard
-  time.timeZone = "America/Chicago";
+  time.timeZone = lib.mkDefault "America/Chicago";
   #time.timeZone = "Europe/London";
   services.timesyncd.enable = true;
   #services.automatic-timezoned.enable = true;
@@ -124,9 +120,9 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
   virtualisation.docker.enable = true;
   programs.steam.enable = true;
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = lib.mkDefault true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = lib.mkDefault true;
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
