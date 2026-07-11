@@ -91,7 +91,7 @@
 
       dwindle {
           # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-          pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+          #pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
           preserve_split = yes # you probably want this
       }
 
@@ -108,7 +108,7 @@
         disable_splash_rendering = 1
         disable_autoreload = true #This is handled with nixos rebuild
         #Battery optimisations
-        vfr = true
+        #vfr = true
      }
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
       #TODO: Put windowrules in separate file
@@ -150,7 +150,7 @@
       bind = $mainMod, V, exec,  kitty --class floating -e bash  -c 'clipse $PPID' 
       bind = $mainMod, R, exec, fuzzel
       bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod, J, togglesplit, # dwindle
+      #bind = $mainMod, J, togglesplit, # dwindle
       bind = $mainMod, X, exec, grim -g "$(slurp -d)" - | wl-copy -t image/png
       bind = $mainMod, grave, exec, fuzzel
       #suspend and lock
@@ -196,8 +196,8 @@
       bind =, XF86AudioMute, exec,pamixer -t
       bind =, XF86AudioLowerVolume, exec,pamixer -d 9
       bind =, XF86AudioRaiseVolume, exec,pamixer -i 9
-      bind =, XF86MonBrightnessDOWN, exec,light  -U .29
-      bind =, XF86MonBrightnessUP, exec, light -A 3
+      bind =, XF86MonBrightnessDOWN, exec,brightnessctl set 5%-
+      bind =, XF86MonBrightnessUP, exec, brightnessctl set +5%
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = $mainMod, mouse:272, movewindow
@@ -208,7 +208,7 @@
       workspace = 8, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, persistent:true      
 
       exec-once = hyprpaper  
-      exec-once = hyprpanel
+      exec-once = waybar
       exec-once = lxqt-policykit-agent #polkit for popsicle
       #exec-once =  clipse -listen  & hyprctl dispatch exec code 
       #exec-once = hyprctl dispatch exec vesktop & hyprctl dispatch exec zen 

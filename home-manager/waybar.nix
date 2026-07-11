@@ -20,6 +20,7 @@
           "custom/power_profile"
           "battery"
           "backlight"
+          "network"
           "pulseaudio"
           "pulseaudio#microphone"
           "tray"
@@ -41,8 +42,8 @@
           device = "intel_backlight";
           format = "{icon} {percent}%";
           format-icons = ["󰃞" "󰃟" "󰃠"];
-          on-scroll-up = "light -A 1";
-          on-scroll-down = "light -U 1";
+          on-scroll-up = "brightnessctl set +1%";
+          on-scroll-down = "brightnessctl set 1%-";
           min-length = 6;
         };
 
