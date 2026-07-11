@@ -6,7 +6,6 @@
   lib,
   config,
   pkgs,
-  hyprland,
   home-manager,
   ...
 }: {
@@ -14,7 +13,9 @@
   imports = [];
 
 
-  services.xserver.enable = true;  
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.xserver.displayManager.lightdm.enable = false;
   stylix = {
      enable = true;
      #to get sha256 run: curl -L 'https://raw.githubusercontent.com/AlexanderTroyScott/NixOS/main/.github/omori-aubrey.gif' | sha256sum
@@ -29,8 +30,13 @@
      #cursor.package = pkgs.hyprcursor;
      cursor.package = pkgs.bibata-cursors;
      cursor.name = "Bibata-Original-Classic";
-     cursor.size=20;
-     polarity = "dark";
+      cursor.size=20;
+      icons = {
+        enable = true;
+        package = pkgs.papirus-icon-theme;
+        dark = "Papirus-Dark";
+      };
+      polarity = "dark";
      opacity = {
        applications = 1.0;
        terminal = 0.9;
@@ -72,12 +78,12 @@
   services.udisks2.enable = true;
 #services.flatpak.enable = true;
 environment.systemPackages = with pkgs.unstable; [
+      hyprland
       inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
       libva
       libva-utils            # Video Acceleration Info (intel)
       git              # Repositories
       pciutils         # Computer Utility Info
-      pipewire         # Sound
       usbutils         # USB Utility Info
       wget             # Downloader
       dunst            # Notifications
@@ -100,7 +106,7 @@ environment.systemPackages = with pkgs.unstable; [
       wlr-randr        # Screen Settings
       pamixer          # Pulse Audio Mixer
       networkmanagerapplet
-      hyprpanel
+      #hyprpanel
       claude-code
       claude-monitor
       blueman          # Bluetooth
@@ -124,8 +130,8 @@ environment.systemPackages = with pkgs.unstable; [
       settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";
-        };
       };
+    };
     };
     flipperzero.enable = true;
   };
@@ -147,8 +153,8 @@ environment.systemPackages = with pkgs.unstable; [
     auth include login
    '';
   };
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "alex";
+  #services.displayManager.defaultSession = "hyprland";
+  #services.displayManager.autoLogin.enable = false;
   environment.sessionVariables = {
     #WLR_NO_HARDWARE_CURSORS = "1";
     #if cursor is invisible
