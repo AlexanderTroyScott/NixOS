@@ -15,7 +15,7 @@
           ./hardware/yubikey.nix
           ./hardware/storage.nix
           ./hardware/printer.nix
-          ./docker.nix
+          ./configs/docker.nix
           #./configs/fonts.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -64,6 +64,9 @@ nixpkgs = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
       allowUnsupportedSystem = true;
+      permittedInsecurePackages = [
+        "pnpm-10.29.2"
+      ];
     };
   };
   #nix.settings.builders = [ ];
@@ -120,6 +123,7 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
   };
   virtualisation.docker.enable = true;
   programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true; #steam resolution scaling
 
   # SSD TRIM optimization
   services.fstrim.enable = true;
