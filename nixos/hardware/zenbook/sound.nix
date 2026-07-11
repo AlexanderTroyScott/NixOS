@@ -2,8 +2,6 @@
 
 {
     environment.systemPackages = with pkgs; [
-  pipewire
-  wireplumber
   pavucontrol  # GUI volume control
 ];
 hardware.firmware = [
