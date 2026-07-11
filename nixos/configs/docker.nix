@@ -15,6 +15,9 @@
   #  setSocketVariable = true;
   #};
   virtualisation.docker.liveRestore = false;
+
+  networking.firewall.allowedTCPPorts = [ 2377 7946 ];
+  networking.firewall.allowedUDPPorts = [ 7946 4789 ];
   #virtualisation.docker.storageDriver = "btrfs";
 
   # (Optional) Enable Docker registry.
