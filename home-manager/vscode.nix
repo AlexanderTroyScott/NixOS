@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
-  stylix.targets.vscode.enable =true;
+  stylix.targets.vscode.enable = true;
+  programs.vscode.enable = true;
 
     programs.vscode.profiles.default = {
-      enable = true;
       enableUpdateCheck = true;
       enableExtensionUpdateCheck = true;
       extensions = with pkgs.vscode-extensions; [
@@ -14,8 +14,7 @@
       ];
       userSettings = {
          "window.titleBarStyle" = "custom";
-         "workbench.colorTheme" = "Amoled Github";
-         "editor.fontFamily" = "'M+1Code Nerd Font','Droid Sans Mono', 'monospace', monospace";
+         "workbench.colorTheme" = lib.mkForce "Amoled Github";
          "github.copilot.enable" = {
            "*" = true;
            "plaintext" = false;

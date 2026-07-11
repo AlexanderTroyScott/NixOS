@@ -34,7 +34,6 @@ in
     ./hypr/hyprcursor.nix
     ./vscode.nix
     ./waybar.nix
-    ./docker.nix
   ];
   
 
@@ -56,6 +55,7 @@ in
  
  nixpkgs.config.permittedInsecurePackages = [
                 "electron-25.9.0"
+                "pnpm-10.29.2"
               ];
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
@@ -112,7 +112,7 @@ plexamp
     zip               # Zip
     proton-pass
     nerd-fonts.symbols-only #Symbols for waybar/etc.
-    softmaker-office
+    #softmaker-office
     onlyoffice-desktopeditors
     clipse  #clipboard manager              https://github.com/savedra1/clipse?tab=readme-ov-file
     #Utilities
