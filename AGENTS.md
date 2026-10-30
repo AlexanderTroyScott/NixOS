@@ -20,6 +20,9 @@ sudo nixos-rebuild build --flake .#zenbook
 # Update all flake inputs
 nix flake update
 
+# Bump the Eye of Zomm app pin to its latest upstream release
+nix run .#update-eoz
+
 # Format all .nix files (uses alejandra)
 nix fmt
 
@@ -47,7 +50,7 @@ Entry point: `flake.nix` — single `nixosConfigurations` output with two hosts.
 ### Overlay pattern
 
 Three overlays defined in `overlays/default.nix`:
-- `additions` — custom packages from `pkgs/` (currently empty)
+- `additions` — custom packages from `pkgs/` (currently `eye-of-zomm` and its `update-eoz` updater)
 - `modifications` — patched upstream packages (pcloud override)
 - `unstable-packages` — exposes nixpkgs-unstable as `pkgs.unstable.*`
 
@@ -94,7 +97,7 @@ Monitor profiles are handled by **Kanshi** (`services.kanshi` in `home-manager/h
 
 ### overlays/ and pkgs/
 
-`overlays/default.nix` — three overlays (see above). `pkgs/default.nix` — empty placeholder for custom packages.
+`overlays/default.nix` — three overlays (see above). `pkgs/default.nix` — custom packages entry point. `pkgs/eye-of-zomm/` — Eye of Zomm (EQLWiki) app for EverQuest Legends, packaged from the upstream AppImage release; `update.nix` is the `update-eoz` script that bumps the package's version/hash pin to the latest upstream release.
 
 ### modules/
 
@@ -106,7 +109,8 @@ Monitor profiles are handled by **Kanshi** (`services.kanshi` in `home-manager/h
 - `nixos/building.nix` defines a remote builder but is **not imported** in any configuration by default. It's a reference/template.
 - The `coral` host does not import Stylix, Hyprland, or desktop modules — it's a headless server.
 - Coral uses `home-manager` but with its own `home.nix` at `nixos/hosts/coral/home.nix`, not `home-manager/home.nix`.
-- `pkgs/` is currently empty (no custom packages). `modules/` directories are also empty placeholders.
+- `modules/` directories are empty placeholders.
+- `nixos/building.nix` has a pre-existing syntax error (it is a template fragment, not a module), so `nix fmt` reports a parse failure on it. Ignore or fix separately; it is not imported anywhere.
 - The `zen-browser` flake input is commented out in the `outputs` destructuring but still passed via `inputs` — it's accessed as `inputs.zen-browser.packages` in `desktop.nix`.
 - Flake inputs use `nixpkgs` (unstable) as the base. There is no stable nixpkgs input.
 - `nix.gc` is configured for weekly garbage collection, deleting generations older than 7 days.

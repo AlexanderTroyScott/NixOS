@@ -26,7 +26,7 @@ in
 
     # Chromium's text-to-speech (trigger speech) talks to speech-dispatcher.
     # It also needs the daemon: services.speechd.enable = true;
-    extraPkgs = pkgs: [pkgs.speech-dispatcher];
+    extraPkgs = pkgs: [pkgs.speechd];
 
     extraInstallCommands = ''
       # Desktop entry + icon from the AppImage. Upstream runs Electron with
