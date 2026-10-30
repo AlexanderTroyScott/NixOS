@@ -1,4 +1,7 @@
 *.jar
 *.tar.gz
+# nix build symlinks
+result
+result-*
 #ignore wireguard config files
 */wireguard/*.conf
