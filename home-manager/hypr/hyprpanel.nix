@@ -1,20 +1,18 @@
-{ inputs, ... }:
-{
+{inputs, ...}: {
   programs.hyprpanel = {
     # Configure and theme almost all options from the GUI.
     # See 'https://hyprpanel.com/configuration/settings.html'.
     # Default: <same as gui>
     settings = {
-
       # Configure bar layouts for monitors.
       # See 'https://hyprpanel.com/configuration/panel.html'.
       # Default: null
       layout = {
         bar.layouts = {
           "0" = {
-            left = [ "dashboard" "workspaces" ];
-           # middle = [ "media" ];
-            right = [ "volume" "systray" "notifications" ];
+            left = ["dashboard" "workspaces"];
+            # middle = [ "media" ];
+            right = ["volume" "systray" "notifications"];
           };
         };
       };
@@ -35,10 +33,10 @@
 
       theme.bar.transparent = true;
 
-    #  theme.font = {
-    #    name = "CaskaydiaCove NF";
-    #    size = "16px";
-    #  };
+      #  theme.font = {
+      #    name = "CaskaydiaCove NF";
+      #    size = "16px";
+      #  };
     };
   };
 }

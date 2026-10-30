@@ -1,18 +1,20 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-  libinput
-  xorg.xinput
-  #xterm
+    libinput
+    xorg.xinput
+    #xterm
   ];
 
   programs.hyprland = {
-    xwayland.enable = true;  
+    xwayland.enable = true;
   };
-    #TouchPad
-    services.libinput = {
-    enable = true;  #Expected to be enabled by default
+  #TouchPad
+  services.libinput = {
+    enable = true; #Expected to be enabled by default
     touchpad = {
       dev = "/dev/input/event7";
       sendEventsMode = "enabled";
@@ -22,8 +24,7 @@
       tappingDragLock = false; # Enables tap-and-drag
     };
   };
- #services.xserver.displayManager.sddm.enable = true; #This line enables sddm
- #services.xserver.enable = true; 
-#services.xserver.libinput.touchpad.tappingDragLock = false;
-
+  #services.xserver.displayManager.sddm.enable = true; #This line enables sddm
+  #services.xserver.enable = true;
+  #services.xserver.libinput.touchpad.tappingDragLock = false;
 }

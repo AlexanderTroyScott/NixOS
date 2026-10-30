@@ -10,13 +10,13 @@
 }: {
   # You can import other NixOS modules here
   imports = [
-         #./hardware/zenbook/hardware-settings.nix
-          
-          ./hardware/yubikey.nix
-          ./hardware/storage.nix
-          ./hardware/printer.nix
-          ./configs/docker.nix
-          #./configs/fonts.nix
+    #./hardware/zenbook/hardware-settings.nix
+
+    ./hardware/yubikey.nix
+    ./hardware/storage.nix
+    ./hardware/printer.nix
+    ./configs/docker.nix
+    #./configs/fonts.nix
 
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
@@ -25,23 +25,19 @@
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
 
-
-
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
     ./configs/wireguard.nix
     ./configs/fonts.nix
     #./configs/xwayland.nix
     # Import your generated (nixos-generate-config) hardware configuration
-
   ];
 
-   # Use latest kernel.
+  # Use latest kernel.
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   home-manager.backupFileExtension = "backup";
 
-
-nixpkgs = {
+  nixpkgs = {
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
@@ -82,18 +78,19 @@ nixpkgs = {
 
     settings = {
       # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
+      experimental-features = ["nix-command" "flakes"];
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
       trusted-users = [
-  "root"
-  "alex"
-  "builder"
-  "@wheel"
-];
-allowed-users = [ "root" "builder" "alex" "@wheel"];
+        "root"
+        "alex"
+        "builder"
+        "@wheel"
+      ];
+      allowed-users = ["root" "builder" "alex" "@wheel"];
     };
-    gc = {                                  # Automatic garbage collection
+    gc = {
+      # Automatic garbage collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
@@ -148,25 +145,23 @@ allowed-users = [ "root" "builder" "alex" "@wheel"];
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "wheel" "networkmanager" "video" "audio" "camera" "input" "docker" "storage"];
+      extraGroups = ["wheel" "networkmanager" "video" "audio" "camera" "input" "docker" "storage"];
     };
   };
-nix.extraOptions = ''
-    connect-timeout = 100
-  stalled-download-timeout = 100
-'';
-programs.ssh.extraConfig = ''
-  ServerAliveInterval 60
-  ServerAliveCountMax 120
-  TCPKeepAlive yes
-'';
-security.polkit.enable = true;
+  nix.extraOptions = ''
+      connect-timeout = 100
+    stalled-download-timeout = 100
+  '';
+  programs.ssh.extraConfig = ''
+    ServerAliveInterval 60
+    ServerAliveCountMax 120
+    TCPKeepAlive yes
+  '';
+  security.polkit.enable = true;
 
-
-networking.extraHosts = ''
-  192.168.209.156 remote-builder
-  192.168.190.196 proxmox.lan
-'';
+  networking.extraHosts = ''
+    192.168.209.156 remote-builder
+  '';
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }

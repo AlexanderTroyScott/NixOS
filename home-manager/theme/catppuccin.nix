@@ -3,10 +3,10 @@
   catppuccin.enable = true;
   catppuccin.accent = "teal";
   catppuccin.flavor = "mocha";
-  
- # catppuccin.pointerCursor.enable = true;
- # catppuccin.pointerCursor.accent = "dark";
- # catppuccin.pointerCursor.flavor = "mocha";
+
+  # catppuccin.pointerCursor.enable = true;
+  # catppuccin.pointerCursor.accent = "dark";
+  # catppuccin.pointerCursor.flavor = "mocha";
   catppuccin.gtk.enable = true;
   catppuccin.gtk.accent = "dark";
   catppuccin.gtk.flavor = "mocha";

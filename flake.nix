@@ -13,7 +13,7 @@
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
-   
+
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -33,8 +33,8 @@
       "aarch64-linux"
       "i686-linux"
       "x86_64-linux"
-    #  "aarch64-darwin"
-    #  "x86_64-darwin"
+      #  "aarch64-darwin"
+      #  "x86_64-darwin"
     ];
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument

@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-
-{
-    home.packages = with pkgs; [
-        hypridle
-    ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    hypridle
+  ];
 
   xdg.configFile."hypr/hypridle.conf".text = ''
     listener {

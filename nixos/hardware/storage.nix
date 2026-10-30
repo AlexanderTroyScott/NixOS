@@ -11,8 +11,7 @@ let
     "x-systemd.idle-timeout=600"
     "x-systemd.mount-timeout=10"
   ];
-in
-{
+in {
   fileSystems."/unraid/docker/volumes" = {
     device = "192.168.2.2:/mnt/ssd/docker/volumes";
     fsType = "nfs4";
@@ -41,7 +40,7 @@ in
     device = "192.168.2.2:/mnt/user/reolink";
     fsType = "nfs4";
     neededForBoot = false;
-    options = nfsOptions ++ [ "exec" ];
+    options = nfsOptions ++ ["exec"];
     # "uid=1000"   # Replace with your local user’s UID
     # "gid=100"    # Replace with your local user’s GID
   };

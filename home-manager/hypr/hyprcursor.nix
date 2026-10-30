@@ -8,10 +8,12 @@
   #home-manager,
   ...
 }: {
- home.packages = with pkgs; [
+  home.packages = with pkgs; [
     hyprcursor
- ];
- home.pointerCursor.hyprcursor.enable = true;
- home.pointerCursor.hyprcursor.size = 20;
- 
+  ];
+  home.pointerCursor = {
+    enable = true;
+    hyprcursor.enable = true;
+    hyprcursor.size = 20;
+  };
 }

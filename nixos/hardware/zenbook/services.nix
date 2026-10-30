@@ -1,7 +1,10 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   environment.systemPackages = with pkgs.unstable; [
-    asusctl       # ASUS keyboard/fan/backlight control
+    asusctl # ASUS keyboard/fan/backlight control
     brightnessctl # Backlight control (display + keyboard LED)
   ];
 

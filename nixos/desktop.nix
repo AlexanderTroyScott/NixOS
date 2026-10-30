@@ -12,133 +12,131 @@
   # You can import other NixOS modules here
   imports = [];
 
-
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.xserver.displayManager.lightdm.enable = false;
+  #services.xserver.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.xserver.displayManager.lightdm.enable = false;
   stylix = {
-     enable = true;
-     #to get sha256 run: curl -L 'https://raw.githubusercontent.com/AlexanderTroyScott/NixOS/main/.github/omori-aubrey.gif' | sha256sum
-     image =
-      pkgs.fetchurl {
+    enable = true;
+    #to get sha256 run: curl -L 'https://raw.githubusercontent.com/AlexanderTroyScott/NixOS/main/.github/omori-aubrey.gif' | sha256sum
+    image = pkgs.fetchurl {
       url = "https://github.com/AlexanderTroyScott/NixOS/blob/main/.github/raven.jpg?raw=true";
       sha256 = "ba4cf84f018203f809a3f67615c4b991858a6c7d7ec4f882e945679bff7aa795";
+    };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    override.base00 = "000000";
+    #override.base02 = "000000";
+    #cursor.package = pkgs.hyprcursor;
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Original-Classic";
+    cursor.size = 20;
+    icons = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      dark = "Papirus-Dark";
+    };
+    polarity = "dark";
+    opacity = {
+      applications = 1.0;
+      terminal = 0.9;
+      popups = 1.0;
+      desktop = 1.0;
+    };
+    fonts = {
+      sizes = {
+        applications = 9;
+        terminal = 9;
+        popups = 9;
+        desktop = 9;
       };
-     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-     override.base00 = "000000";
-     #override.base02 = "000000";
-     #cursor.package = pkgs.hyprcursor;
-     cursor.package = pkgs.bibata-cursors;
-     cursor.name = "Bibata-Original-Classic";
-      cursor.size=20;
-      icons = {
-        enable = true;
-        package = pkgs.papirus-icon-theme;
-        dark = "Papirus-Dark";
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
       };
-      polarity = "dark";
-     opacity = {
-       applications = 1.0;
-       terminal = 0.9;
-       popups = 1.0;
-       desktop = 1.0;
-     };
-     fonts = {
-       sizes = {
-         applications = 9;
-         terminal = 9;
-         popups = 9;
-         desktop = 9;
-       };
-       serif = {
-         package = pkgs.dejavu_fonts;
-         name = "DejaVu Serif";
-       };
-       sansSerif = {
-         package = pkgs.dejavu_fonts;
-         name = "DejaVu Sans";
-       };
-       monospace = {
-         name = "Fira Code";
-         package = pkgs.fira-code;
-       };
-       emoji = {
-         package = pkgs.fira-code-symbols;
-         name = "Fira Code Emoji";
-       };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      monospace = {
+        name = "Fira Code";
+        package = pkgs.fira-code;
+      };
+      emoji = {
+        package = pkgs.fira-code-symbols;
+        name = "Fira Code Emoji";
       };
     };
+  };
 
-  
   #services.avahi.enable = true;
   #services.avahi.nssmdns = true;
 
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-#services.flatpak.enable = true;
-environment.systemPackages = with pkgs.unstable; [
-      hyprland
-      inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-      libva
-      libva-utils            # Video Acceleration Info (intel)
-      git              # Repositories
-      pciutils         # Computer Utility Info
-      usbutils         # USB Utility Info
-      wget             # Downloader
-      dunst            # Notifications
-      libnotify        # Dependency for Dunst
-      mesa-demos       # Get graphics card info
-      opencode
-      #vdhcoapp #Firefox downloader extension
-      # Menu
-      #mpd
-      rofi-power-menu  # Power Menu
-      #udiskie          # Auto Mounting
-      #xorg.xrandr      # Screen Settings
-      #xorg.xinit
-      #xorg.xorgserver
-      autotiling       # Tiling Script
-      grim             # Image Grabber
-      slurp            # Region Selector
-      wev              # Input Viewer
-      wl-clipboard     # Console Clipboard
-      wlr-randr        # Screen Settings
-      pamixer          # Pulse Audio Mixer
-      networkmanagerapplet
-      #hyprpanel
-      claude-code
-      claude-monitor
-      blueman          # Bluetooth
-      cbatticon        # Battery Notifications
-      #light            # Display Brightness
-      wireguard-tools
-      lshw
-      udiskie
-      zed-editor
-      cifs-utils #SMB/CIFS share for unraid
-      libsecret #for keyring remembering secrets
-      popsicle
-      alsa-utils
-      libxml2
-      lxqt.lxqt-policykit #polkit, for popsicle in hyprland
-    ];
+  #services.flatpak.enable = true;
+  environment.systemPackages = with pkgs.unstable; [
+    hyprland
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+    libva
+    libva-utils # Video Acceleration Info (intel)
+    git # Repositories
+    pciutils # Computer Utility Info
+    usbutils # USB Utility Info
+    wget # Downloader
+    dunst # Notifications
+    libnotify # Dependency for Dunst
+    mesa-demos # Get graphics card info
+    opencode
+    #vdhcoapp #Firefox downloader extension
+    # Menu
+    #mpd
+    rofi-power-menu # Power Menu
+    #udiskie          # Auto Mounting
+    #xorg.xrandr      # Screen Settings
+    #xorg.xinit
+    #xorg.xorgserver
+    autotiling # Tiling Script
+    grim # Image Grabber
+    slurp # Region Selector
+    wev # Input Viewer
+    wl-clipboard # Console Clipboard
+    wlr-randr # Screen Settings
+    pamixer # Pulse Audio Mixer
+    networkmanagerapplet
+    #hyprpanel
+    claude-code
+    claude-monitor
+    docker-sbx
+    blueman # Bluetooth
+    cbatticon # Battery Notifications
+    #light            # Display Brightness
+    wireguard-tools
+    lshw
+    udiskie
+    zed-editor
+    cifs-utils #SMB/CIFS share for unraid
+    libsecret #for keyring remembering secrets
+    popsicle
+    alsa-utils
+    libxml2
+    lxqt.lxqt-policykit #polkit, for popsicle in hyprland
+  ];
 
-      hardware = {
+  hardware = {
     bluetooth = {
       enable = true;
       settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";
+        };
       };
-    };
     };
     flipperzero.enable = true;
   };
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   #Gnome Keyring
@@ -147,11 +145,11 @@ environment.systemPackages = with pkgs.unstable; [
   #ssh.startAgent = true;
 
   services.upower.enable = true;
- 
+
   security.pam.services.swaylock = {
     text = ''
-    auth include login
-   '';
+      auth include login
+    '';
   };
   #services.displayManager.defaultSession = "hyprland";
   #services.displayManager.autoLogin.enable = false;
@@ -163,6 +161,4 @@ environment.systemPackages = with pkgs.unstable; [
   programs.hyprland = {
     enable = true;
   };
-
-
 }
